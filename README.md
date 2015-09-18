@@ -10,8 +10,11 @@ The repository contains a collection of Docker images with headless VNC environm
 ### Current provided OS & UI sessions:
 * __Centos7:__
 
-  Run command with mapping to local port `5911`: `docker run -d -p 5911:5901 consol/centos-xfce-vnc`
-  Build image from scratch: `docker build -t consol/centos-xfce-vnc centos-xfce-vnc`
+  Run command with mapping to local port `5911`:
+      docker run -d -p 5911:5901 consol/centos-xfce-vnc
+
+  Build image from scratch:
+      docker build -t consol/centos-xfce-vnc centos-xfce-vnc
 
   __=> connecti via VNC viewer `localhost:5911`__, default password:`vncpassword`
 
