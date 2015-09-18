@@ -45,6 +45,5 @@ ADD scripts /root/scripts
 RUN chmod +x  /root/scripts/*.sh /root/.vnc/xstartup /etc/xdg/xfce4/xinitrc /root/Desktop/*.desktop
 RUN /bin/dbus-uuidgen > /etc/machine-id
 
-ENTRYPOINT ["/root/scripts/vnc_startup.sh"]
-CMD ["--tail-log"]
+CMD ["/root/scripts/vnc_startup.sh", "--tail-log"]
 
