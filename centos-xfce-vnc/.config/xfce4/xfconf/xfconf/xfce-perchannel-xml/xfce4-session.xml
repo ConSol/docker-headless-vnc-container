@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Sakuli - Testing and Monitoring-Tool for Websites and common UIs.
+  ~
+  ~ Copyright 2013 - 2015 the original author or authors.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<channel name="xfce4-session" version="1.0">
+    <property name="general" type="empty">
+        <property name="FailsafeSessionName" type="string" value="Failsafe"/>
+    </property>
+    <property name="sessions" type="empty">
+        <property name="Failsafe" type="empty">
+            <property name="IsFailsafe" type="bool" value="true"/>
+            <property name="Count" type="int" value="5"/>
+            <property name="Client0_Command" type="array">
+                <value type="string" value="xfwm4"/>
+            </property>
+            <property name="Client0_PerScreen" type="bool" value="false"/>
+            <property name="Client1_Command" type="array">
+                <value type="string" value="xfsettingsd"/>
+            </property>
+            <property name="Client1_PerScreen" type="bool" value="false"/>
+            <property name="Client2_Command" type="array">
+                <value type="string" value="xfce4-panel"/>
+            </property>
+            <property name="Client2_PerScreen" type="bool" value="false"/>
+            <property name="Client3_Command" type="array">
+                <value type="string" value="Thunar"/>
+                <value type="string" value="--daemon"/>
+            </property>
+            <property name="Client3_PerScreen" type="bool" value="false"/>
+            <property name="Client4_Command" type="array">
+                <value type="string" value="xfdesktop"/>
+            </property>
+            <property name="Client4_PerScreen" type="bool" value="false"/>
+        </property>
+    </property>
+    <property name="splash" type="empty">
+        <property name="Engine" type="string" value=""/>
+    </property>
+</channel>

@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Exec=exo-open --launch WebBrowser %u
+Icon=web-browser
+StartupNotify=true
+Terminal=false
+Categories=Network;X-XFCE;X-Xfce-Toplevel;
+OnlyShowIn=XFCE;
+X-XFCE-MimeType=x-scheme-handler/http;x-scheme-handler/https;
+Name=Web Browser
+Comment=Browse the web
+X-XFCE-Source=file:///usr/share/applications/exo-web-browser.desktop
