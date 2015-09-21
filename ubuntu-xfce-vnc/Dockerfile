@@ -48,6 +48,5 @@ ADD Desktop /root/Desktop
 ADD scripts /root/scripts
 RUN chmod +x /root/.vnc/xstartup /etc/X11/xinit/xinitrc /root/scripts/*.sh /root/Desktop/*.desktop
 
-ENTRYPOINT ["/root/scripts/vnc_startup.sh"]
-CMD ["--tail-log"]
+CMD ["/root/scripts/vnc_startup.sh", "--tail-log"]
 
