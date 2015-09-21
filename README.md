@@ -8,19 +8,19 @@ The repository contains a collection of Docker images with headless VNC environm
 * Chrome (Java not longer supported)
 
 ### Current provided OS & UI sessions:
-* __Centos7:__
+* __Centos7 with `Xfce4` UI session:__
 
   Run command with mapping to local port `5911`:
 
       docker run -d -p 5911:5901 consol/centos-xfce-vnc
 
   Build image from scratch:
-  
+
       docker build -t consol/centos-xfce-vnc centos-xfce-vnc
 
-  __=> connecti via VNC viewer `localhost:5911`__, default password:`vncpassword`
+  __=> connect via VNC viewer `localhost:5911`__, default password:`vncpassword`
 
-* __Ubuntu 14.04:__
+* __Ubuntu 14.04 with `Xfce4` UI session:__
 
   Run command with mapping to local port `5912`: `docker run -d -p 5912:5901 consol/ubuntu-xfce-vnc`
   Build image from scratch: `docker build -t consol/ubuntu-xfce-vnc ubuntu-xfce-vnc`

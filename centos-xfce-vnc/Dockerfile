@@ -32,9 +32,6 @@ RUN yum -y install google-chrome-stable \
     && echo "alias google-chrome='/usr/bin/google-chrome --user-data-dir'" >> /root/.bashrc \
     && echo "alias google-chrome='/usr/bin/google-chrome -no-default-browser-check --user-data-dir'" >> /etc/bashrc
 
-### CleanUp
-RUN yum clean all
-
 # xvnc server porst, if $DISPLAY=:1 port will be 5901
 EXPOSE 5901
 
