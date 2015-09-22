@@ -3,13 +3,14 @@
 FROM ubuntu:14.04
 
 MAINTAINER Tobias Schneck "tobias.schneck@consol.de"
-ENV REFRESHED_AT 2015-09-18
+ENV REFRESHED_AT 2015-09-21
 
 ENV JAVA_VERSION 8u60
 ENV JAVA_HOME /usr/lib/jvm/java-$JAVA_VERSION
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV DISPLAY :1
+ENV NO_VNC_HOME /root/noVNC
 ENV VNC_COL_DEPTH 24
 ENV VNC_RESOLUTION 1280x1024
 ENV VNC_PW vncpassword
@@ -23,6 +24,11 @@ RUN echo "deb http://packages.linuxmint.com/ rafaela main upstream import" >> /e
 
 ############### xvnc / xfce installation
 RUN apt-get update && apt-get upgrade -y && apt-get install -y supervisor vim xfce4 vnc4server wget unzip firefox
+### Install noVNC - HTML5 based VNC viewer
+RUN mkdir -p $NO_VNC_HOME/utils/websockify \
+    && wget -qO- https://github.com/kanaka/noVNC/archive/master.tar.gz | tar xz --strip 1 -C $NO_VNC_HOME \
+    &&  wget -qO- https://github.com/kanaka/websockify/archive/v0.7.0.tar.gz | tar xz --strip 1 -C $NO_VNC_HOME/utils/websockify \
+    && chmod +x -v /root/noVNC/utils/*.sh
 
 ##### Add Oracle JAVA JRE8
 #RUN apt-get -y install software-properties-common && add-apt-repository ppa:webupd8team/java -y
@@ -41,6 +47,8 @@ RUN apt-get install -y chromium-browser chromium-browser-l10n chromium-codecs-ff
 
 # xvnc server porst, if $DISPLAY=:1 port will be 5901
 EXPOSE 5901
+# novnc web port
+EXPOSE 6901
 
 ADD .vnc /root/.vnc
 ADD .config /root/.config
@@ -49,4 +57,3 @@ ADD scripts /root/scripts
 RUN chmod +x /root/.vnc/xstartup /etc/X11/xinit/xinitrc /root/scripts/*.sh /root/Desktop/*.desktop
 
 CMD ["/root/scripts/vnc_startup.sh", "--tail-log"]
-

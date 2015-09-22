@@ -1,25 +1,32 @@
 # This Dockerfile is used to build an sakuli image based on Centos
 
 FROM centos:centos7
+
 MAINTAINER Tobias Schneck "tobias.schneck@consol.de"
-ENV REFRESHED_AT 2015-09-18
+ENV REFRESHED_AT 2015-09-21
 
 ENV JAVA_VERSION 8u60
 
 ENV DISPLAY :1
+ENV NO_VNC_HOME /root/noVNC
 ENV VNC_COL_DEPTH 24
 ENV VNC_RESOLUTION 1280x1024
 ENV VNC_PW vncpassword
 
 ENV SAKULI_DOWNLOAD_URL https://labs.consol.de/sakuli/install
 
-# Install the appropriate software
+############### xvnc / xfce installation
 RUN yum -y install epel-release; yum clean all
 RUN yum -y update; yum clean all
 RUN yum -y install sudo
 RUN yum --enablerepo=epel -y -x gnome-keyring --skip-broken groups install "Xfce"
 RUN yum -y groups install "Fonts"
-RUN yum -y install tigervnc-server wget unzip firefox
+RUN yum -y install tigervnc-server wget net-tools unzip firefox
+### Install noVNC - HTML5 based VNC viewer
+RUN mkdir -p $NO_VNC_HOME/utils/websockify \
+    && wget -qO- https://github.com/kanaka/noVNC/archive/master.tar.gz | tar xz --strip 1 -C $NO_VNC_HOME \
+    &&  wget -qO- https://github.com/kanaka/websockify/archive/v0.7.0.tar.gz | tar xz --strip 1 -C $NO_VNC_HOME/utils/websockify \
+    && chmod +x -v /root/noVNC/utils/*.sh
 
 ### Install java and java-plugin
 RUN yum -y install $SAKULI_DOWNLOAD_URL/3rd-party/jre-$JAVA_VERSION-linux-x64.rpm
@@ -34,6 +41,8 @@ RUN yum -y install google-chrome-stable \
 
 # xvnc server porst, if $DISPLAY=:1 port will be 5901
 EXPOSE 5901
+# novnc web port
+EXPOSE 6901
 
 ADD .vnc /root/.vnc
 ADD .config /root/.config
@@ -43,4 +52,3 @@ RUN chmod +x  /root/scripts/*.sh /root/.vnc/xstartup /etc/xdg/xfce4/xinitrc /roo
 RUN /bin/dbus-uuidgen > /etc/machine-id
 
 CMD ["/root/scripts/vnc_startup.sh", "--tail-log"]
-
