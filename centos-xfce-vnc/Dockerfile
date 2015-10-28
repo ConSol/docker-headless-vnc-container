@@ -3,9 +3,9 @@
 FROM centos:centos7
 
 MAINTAINER Tobias Schneck "tobias.schneck@consol.de"
-ENV REFRESHED_AT 2015-09-21
+ENV REFRESHED_AT 2015-10-28
 
-ENV JAVA_VERSION 8u60
+ENV JAVA_VERSION 8u65
 
 ENV DISPLAY :1
 ENV NO_VNC_HOME /root/noVNC
@@ -51,4 +51,5 @@ ADD scripts /root/scripts
 RUN chmod +x  /root/scripts/*.sh /root/.vnc/xstartup /etc/xdg/xfce4/xinitrc /root/Desktop/*.desktop
 RUN /bin/dbus-uuidgen > /etc/machine-id
 
-CMD ["/root/scripts/vnc_startup.sh", "--tail-log"]
+ENTRYPOINT ["/root/scripts/vnc_startup.sh"]
+CMD ["--tail-log"]

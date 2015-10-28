@@ -3,9 +3,9 @@
 FROM ubuntu:14.04
 
 MAINTAINER Tobias Schneck "tobias.schneck@consol.de"
-ENV REFRESHED_AT 2015-09-21
+ENV REFRESHED_AT 2015-10-28
 
-ENV JAVA_VERSION 8u60
+ENV JAVA_VERSION 8u65
 ENV JAVA_HOME /usr/lib/jvm/java-$JAVA_VERSION
 
 ENV DEBIAN_FRONTEND noninteractive
@@ -31,7 +31,6 @@ RUN mkdir -p $NO_VNC_HOME/utils/websockify \
     && chmod +x -v /root/noVNC/utils/*.sh
 
 ##### Add Oracle JAVA JRE8
-#RUN apt-get -y install software-properties-common && add-apt-repository ppa:webupd8team/java -y
 RUN mkdir -p $JAVA_HOME \
     # download and extract
     && wget -qO- $SAKULI_DOWNLOAD_URL/3rd-party/jre-$JAVA_VERSION-linux-x64.tar.gz | tar xz --strip 1 -C $JAVA_HOME \
@@ -56,4 +55,5 @@ ADD Desktop /root/Desktop
 ADD scripts /root/scripts
 RUN chmod +x /root/.vnc/xstartup /etc/X11/xinit/xinitrc /root/scripts/*.sh /root/Desktop/*.desktop
 
-CMD ["/root/scripts/vnc_startup.sh", "--tail-log"]
+ENTRYPOINT ["/root/scripts/vnc_startup.sh"]
+CMD ["--tail-log"]

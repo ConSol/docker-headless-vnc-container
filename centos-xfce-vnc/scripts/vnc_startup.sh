@@ -11,6 +11,7 @@ echo "change vnc password!"
 
 ##start vncserver and noVNC webclient
 $NO_VNC_HOME/utils/launch.sh --vnc $VNC_IP:$VNC_PORT --listen $NO_VNC_PORT &
+vncserver -kill :1 && rm -rfv /tmp/.X* ; echo "remove old vnc locks to be a reattachable container"
 vncserver $DISPLAY -depth $VNC_COL_DEPTH -geometry $VNC_RESOLUTION
 /etc/xdg/xfce4/xinitrc &
 sleep 1
@@ -28,7 +29,8 @@ case $i in
     tail -f /root/.vnc/*$DISPLAY.log
     ;;
     *)
-    # unknown option ==> do nothing
+    # unknown option ==> call command
+    exec $i
     ;;
 esac
 done
