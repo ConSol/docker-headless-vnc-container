@@ -1,12 +1,15 @@
 # Docker containers with "headless" VNC session
-The repository contains a collection of Docker images with headless VNC environments. The following things are already installed:
+The repository contains a collection of Docker images with headless VNC environments.
 
-* UI session like e.g. `Xfce`
-* VNC-Server with default VNC port `5901`
-* [noVNC](https://github.com/kanaka/noVNC) - HTML5 VNC client
+Each Sakuli docker image is installed with the following components:
+
+* Desktop environment [**Xfce4**](http://www.xfce.org)
+* VNC-Server (default VNC port `5901`)
+* [**noVNC**](https://github.com/kanaka/noVNC) - HTML5 VNC client (default http port `6901`)
 * Java JRE 8
-* Firefox + Java Plugin
-* Chrome (Java not longer supported)
+* Browsers:
+  * Mozilla Firefox + Java Plugin
+  * Google Chrome (Java-Plugin is no longer supported)
 
 ### Current provided OS & UI sessions:
 * __Centos7 with `Xfce4` UI session:__
@@ -44,9 +47,10 @@ the docker run command:
 
     docker run -it -p 5911:5901 -p 6902:6901 -e "VNC_PW=my-new-password" consol/centos-xfce-vnc
 
-### Contanct
-If you further questions or maybe some hints, feel free to contact me via [tobias.schneck@consol.de]() or open an [issue](https://github.com/ConSol/docker-headless-vnc-container/issues/new).
+### Contact
+For questions or maybe some hints, feel free to contact us via **[sakuli@consol.de](mailto:sakuli@consol.de)** or open an [issue](https://github.com/ConSol/docker-headless-vnc-container/issues/new).
 
+The guys behind Sakuli:
 <table>
 <tr>
 <td>
