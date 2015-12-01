@@ -3,7 +3,7 @@
 FROM centos:centos7
 
 MAINTAINER Tobias Schneck "tobias.schneck@consol.de"
-ENV REFRESHED_AT 2015-10-28
+ENV REFRESHED_AT 2015-12-01
 
 ENV JAVA_VERSION 8u65
 
@@ -29,7 +29,7 @@ RUN mkdir -p $NO_VNC_HOME/utils/websockify \
     && chmod +x -v /root/noVNC/utils/*.sh
 
 ### Install java and java-plugin
-RUN yum -y install $SAKULI_DOWNLOAD_URL/3rd-party/jre-$JAVA_VERSION-linux-x64.rpm
+RUN yum -y install $SAKULI_DOWNLOAD_URL/3rd-party/java/jre-$JAVA_VERSION-linux-x64.rpm
 # creat symbolic link for firefox java plugin
 RUN ln -s /usr/java/default/lib/amd64/libnpjp2.so /usr/lib64/mozilla/plugins/
 
