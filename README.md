@@ -1,7 +1,7 @@
 # Docker containers with "headless" VNC session
 The repository contains a collection of Docker images with headless VNC environments.
 
-Each Sakuli docker image is installed with the following components:
+Each docker image is installed with the following components:
 
 * Desktop environment [**Xfce4**](http://www.xfce.org)
 * VNC-Server (default VNC port `5901`)
@@ -50,7 +50,7 @@ the docker run command:
 ### Contact
 For questions or maybe some hints, feel free to contact us via **[sakuli@consol.de](mailto:sakuli@consol.de)** or open an [issue](https://github.com/ConSol/docker-headless-vnc-container/issues/new).
 
-The guys behind Sakuli:
+The guys behind:
 <table>
 <tr>
 <td>
