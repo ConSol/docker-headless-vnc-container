@@ -1,9 +1,9 @@
 # This Dockerfile is used to build an sakuli image based on Centos
 
-FROM centos:centos7
+FROM centos:7.2.1511
 
 MAINTAINER Tobias Schneck "tobias.schneck@consol.de"
-ENV REFRESHED_AT 2015-12-01
+ENV REFRESHED_AT 2015-12-18
 
 ENV JAVA_VERSION 8u65
 
