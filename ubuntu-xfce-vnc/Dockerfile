@@ -3,9 +3,9 @@
 FROM ubuntu:14.04
 
 MAINTAINER Tobias Schneck "tobias.schneck@consol.de"
-ENV REFRESHED_AT 2015-12-01
+ENV REFRESHED_AT 2016-06-01
 
-ENV JAVA_VERSION 8u65
+ENV JAVA_VERSION 8u92
 ENV JAVA_HOME /usr/lib/jvm/java-$JAVA_VERSION
 
 ENV DEBIAN_FRONTEND noninteractive
@@ -23,12 +23,17 @@ RUN echo "deb http://packages.linuxmint.com/ rafaela main upstream import" >> /e
     && echo "deb http://extra.linuxmint.com/ rafaela main " >> /etc/apt/sources.list.d/mint.list
 
 ############### xvnc / xfce installation
-RUN apt-get update && apt-get upgrade -y && apt-get install -y supervisor vim xfce4 vnc4server wget unzip firefox
+RUN apt-get update && apt-get upgrade -y && apt-get install -y supervisor vim xfce4 vnc4server wget
 ### Install noVNC - HTML5 based VNC viewer
 RUN mkdir -p $NO_VNC_HOME/utils/websockify \
     && wget -qO- https://github.com/kanaka/noVNC/archive/master.tar.gz | tar xz --strip 1 -C $NO_VNC_HOME \
     &&  wget -qO- https://github.com/kanaka/websockify/archive/v0.7.0.tar.gz | tar xz --strip 1 -C $NO_VNC_HOME/utils/websockify \
     && chmod +x -v /root/noVNC/utils/*.sh
+
+### Install firfox and chrome browser
+RUN apt-get install -y firefox chromium-browser chromium-browser-l10n chromium-codecs-ffmpeg \
+    && ln -s /usr/bin/chromium-browser /usr/bin/google-chrome \
+    && echo "alias chromium-browser='/usr/bin/chromium-browser --user-data-dir'" >> /root/.bashrc
 
 ##### Add Oracle JAVA JRE8
 RUN mkdir -p $JAVA_HOME \
@@ -38,11 +43,6 @@ RUN mkdir -p $JAVA_HOME \
     && update-alternatives --install "/usr/bin/java" "java" "$JAVA_HOME/bin/java" 1 \
     && update-alternatives --install "/usr/bin/javaws" "javaws" "$JAVA_HOME/bin/javaws" 1 \
     && update-alternatives --install "/usr/lib/firefox/browser/plugins/mozilla-javaplugin.so" "mozilla-javaplugin.so" "$JAVA_HOME/lib/amd64/libnpjp2.so" 1
-
-### Install chrome browser
-RUN apt-get install -y chromium-browser chromium-browser-l10n chromium-codecs-ffmpeg \
-    && ln -s /usr/bin/chromium-browser /usr/bin/google-chrome \
-    && echo "alias chromium-browser='/usr/bin/chromium-browser --user-data-dir'" >> /root/.bashrc
 
 # xvnc server porst, if $DISPLAY=:1 port will be 5901
 EXPOSE 5901

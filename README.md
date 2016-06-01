@@ -51,13 +51,8 @@ the docker run command:
 For questions or maybe some hints, feel free to contact us via **[sakuli@consol.de](mailto:sakuli@consol.de)** or open an [issue](https://github.com/ConSol/docker-headless-vnc-container/issues/new).
 
 The guys behind:
-<table>
-<tr>
-<td>
+
 **ConSol* Consulting & Solutions Software GmbH** <br/>
 *Franziskanerstr. 38, D-81669 München* <br/>
 *Tel. +49-89-45841-100, Fax +49-89-45841-111*<br/>
 *Homepage: http://www.consol.de E-Mail: [info@consol.de](info@consol.de)*
-</td>
-</tr>
-<table>
