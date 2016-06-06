@@ -22,7 +22,7 @@ RUN yum -y groups install "Fonts"
 RUN yum -y install tigervnc-server wget net-tools
 ### Install noVNC - HTML5 based VNC viewer
 RUN mkdir -p $NO_VNC_HOME/utils/websockify \
-    && wget -qO- https://github.com/kanaka/noVNC/archive/master.tar.gz | tar xz --strip 1 -C $NO_VNC_HOME \
+    && wget -qO- https://github.com/ConSol/noVNC/archive/consol_1.0.0.tar.gz | tar xz --strip 1 -C $NO_VNC_HOME \
     &&  wget -qO- https://github.com/kanaka/websockify/archive/v0.7.0.tar.gz | tar xz --strip 1 -C $NO_VNC_HOME/utils/websockify \
     && chmod +x -v /root/noVNC/utils/*.sh
 

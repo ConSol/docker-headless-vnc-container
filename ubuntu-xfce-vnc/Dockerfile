@@ -26,7 +26,7 @@ RUN echo "deb http://packages.linuxmint.com/ rafaela main upstream import" >> /e
 RUN apt-get update && apt-get upgrade -y && apt-get install -y supervisor vim xfce4 vnc4server wget
 ### Install noVNC - HTML5 based VNC viewer
 RUN mkdir -p $NO_VNC_HOME/utils/websockify \
-    && wget -qO- https://github.com/kanaka/noVNC/archive/master.tar.gz | tar xz --strip 1 -C $NO_VNC_HOME \
+    && wget -qO- https://github.com/ConSol/noVNC/archive/consol_1.0.0.tar.gz | tar xz --strip 1 -C $NO_VNC_HOME \
     &&  wget -qO- https://github.com/kanaka/websockify/archive/v0.7.0.tar.gz | tar xz --strip 1 -C $NO_VNC_HOME/utils/websockify \
     && chmod +x -v /root/noVNC/utils/*.sh
 
