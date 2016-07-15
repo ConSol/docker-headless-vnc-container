@@ -18,6 +18,10 @@ Each docker image is installed with the following components:
 
       docker run -d -p 5901:5901 -p 6901:6901 consol/centos-xfce-vnc
 
+      Add ```--cap-add=SYS_ADMIN``` for the use of Chrome.
+
+      Change the default user within a container to your own with: ```--user $(id -u)```
+
   Build image from scratch:
 
       docker build -t consol/centos-xfce-vnc centos-xfce-vnc

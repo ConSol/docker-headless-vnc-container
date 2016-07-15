@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source /headless/scripts/generate_container_user
+
 #resolve_vnc_connection
 VNC_IP=$(ip addr show eth0 | grep -Po 'inet \K[\d.]+')
 VNC_PORT="590"${DISPLAY:1}
@@ -25,8 +27,8 @@ do
 case $i in
     # if option `-t` or `--tail-log` block the execution and tail the VNC log
     -t|--tail-log)
-    echo -e "\n------------------ /root/.vnc/*$DISPLAY.log ------------------"
-    tail -f /root/.vnc/*$DISPLAY.log
+    echo -e "\n------------------ /headless/.vnc/*$DISPLAY.log ------------------"
+    tail -f /headless/.vnc/*$DISPLAY.log
     ;;
     *)
     # unknown option ==> call command
