@@ -3,7 +3,7 @@
 FROM ubuntu:14.04
 
 MAINTAINER Tobias Schneck "tobias.schneck@consol.de"
-ENV REFRESHED_AT 2016-06-01
+ENV REFRESHED_AT 2016-07-16
 
 ENV JAVA_VERSION 8u92
 ENV JAVA_HOME /usr/lib/jvm/java-$JAVA_VERSION
@@ -33,7 +33,7 @@ RUN mkdir -p $NO_VNC_HOME/utils/websockify \
 ### Install firfox and chrome browser
 RUN apt-get install -y firefox chromium-browser chromium-browser-l10n chromium-codecs-ffmpeg \
     && ln -s /usr/bin/chromium-browser /usr/bin/google-chrome \
-    && echo "alias chromium-browser='/usr/bin/chromium-browser --user-data-dir'" >> /root/.bashrc
+    && echo "CHROMIUM_FLAGS='--no-sandbox --start-maximized --user-data-dir'" > ~/.chromium-browser.init
 
 ##### Add Oracle JAVA JRE8
 RUN mkdir -p $JAVA_HOME \
