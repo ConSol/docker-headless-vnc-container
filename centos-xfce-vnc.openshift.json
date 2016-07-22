@@ -1,0 +1,237 @@
+{
+    "kind": "List",
+    "apiVersion": "v1",
+    "metadata": {},
+    "items": [
+        {
+            "kind": "ImageStream",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "centos",
+                "creationTimestamp": null,
+                "labels": {
+                    "app": "docker-headless-vnc-container"
+                },
+                "annotations": {
+                    "openshift.io/generated-by": "OpenShiftNewApp"
+                }
+            },
+            "spec": {
+                "tags": [
+                    {
+                        "name": "7",
+                        "annotations": {
+                            "openshift.io/imported-from": "centos:7"
+                        },
+                        "from": {
+                            "kind": "DockerImage",
+                            "name": "centos:7"
+                        },
+                        "generation": null,
+                        "importPolicy": {}
+                    }
+                ]
+            },
+            "status": {
+                "dockerImageRepository": ""
+            }
+        },
+        {
+            "kind": "ImageStream",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "docker-headless-vnc-container",
+                "creationTimestamp": null,
+                "labels": {
+                    "app": "docker-headless-vnc-container"
+                },
+                "annotations": {
+                    "openshift.io/generated-by": "OpenShiftNewApp"
+                }
+            },
+            "spec": {},
+            "status": {
+                "dockerImageRepository": ""
+            }
+        },
+        {
+            "kind": "BuildConfig",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "docker-headless-vnc-container",
+                "creationTimestamp": null,
+                "labels": {
+                    "app": "docker-headless-vnc-container"
+                },
+                "annotations": {
+                    "openshift.io/generated-by": "OpenShiftNewApp"
+                }
+            },
+            "spec": {
+                "triggers": [
+                    {
+                        "type": "GitHub",
+                        "github": {
+                            "secret": "IWbKk0HDcS_gIjQvsS0L"
+                        }
+                    },
+                    {
+                        "type": "Generic",
+                        "generic": {
+                            "secret": "V8IC_gQvRw8IOLbNkQ-V"
+                        }
+                    },
+                    {
+                        "type": "ConfigChange"
+                    },
+                    {
+                        "type": "ImageChange",
+                        "imageChange": {}
+                    }
+                ],
+                "source": {
+                    "type": "Git",
+                    "git": {
+                        "uri": "https://github.com/ConSol/docker-headless-vnc-container.git",
+                        "ref": "rbo/openshift"
+                    },
+                    "contextDir": "centos-xfce-vnc",
+                    "secrets": []
+                },
+                "strategy": {
+                    "type": "Docker",
+                    "dockerStrategy": {
+                        "from": {
+                            "kind": "DockerImage",
+                            "name": "centos:7"
+                        }
+                    }
+                },
+                "output": {
+                    "to": {
+                        "kind": "ImageStreamTag",
+                        "name": "docker-headless-vnc-container:latest"
+                    }
+                },
+                "resources": {},
+                "postCommit": {}
+            },
+            "status": {
+                "lastVersion": 0
+            }
+        },
+        {
+            "kind": "DeploymentConfig",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "docker-headless-vnc-container",
+                "creationTimestamp": null,
+                "labels": {
+                    "app": "docker-headless-vnc-container"
+                },
+                "annotations": {
+                    "openshift.io/generated-by": "OpenShiftNewApp"
+                }
+            },
+            "spec": {
+                "strategy": {
+                    "resources": {}
+                },
+                "triggers": [
+                    {
+                        "type": "ConfigChange"
+                    },
+                    {
+                        "type": "ImageChange",
+                        "imageChangeParams": {
+                            "automatic": true,
+                            "containerNames": [
+                                "docker-headless-vnc-container"
+                            ],
+                            "from": {
+                                "kind": "ImageStreamTag",
+                                "name": "docker-headless-vnc-container:latest"
+                            }
+                        }
+                    }
+                ],
+                "replicas": 1,
+                "test": false,
+                "selector": {
+                    "app": "docker-headless-vnc-container",
+                    "deploymentconfig": "docker-headless-vnc-container"
+                },
+                "template": {
+                    "metadata": {
+                        "creationTimestamp": null,
+                        "labels": {
+                            "app": "docker-headless-vnc-container",
+                            "deploymentconfig": "docker-headless-vnc-container"
+                        },
+                        "annotations": {
+                            "openshift.io/container.docker-headless-vnc-container.image.entrypoint": "[\"/bin/bash\"]",
+                            "openshift.io/generated-by": "OpenShiftNewApp"
+                        }
+                    },
+                    "spec": {
+                        "containers": [
+                            {
+                                "name": "docker-headless-vnc-container",
+                                "image": "docker-headless-vnc-container:latest",
+                                "ports": [
+                                    {
+                                        "containerPort": 5901,
+                                        "protocol": "TCP"
+                                    },
+                                    {
+                                        "containerPort": 6901,
+                                        "protocol": "TCP"
+                                    }
+                                ],
+                                "resources": {}
+                            }
+                        ]
+                    }
+                }
+            },
+            "status": {}
+        },
+        {
+            "kind": "Service",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "docker-headless-vnc-cont",
+                "creationTimestamp": null,
+                "labels": {
+                    "app": "docker-headless-vnc-container"
+                },
+                "annotations": {
+                    "openshift.io/generated-by": "OpenShiftNewApp"
+                }
+            },
+            "spec": {
+                "ports": [
+                    {
+                        "name": "5901-tcp",
+                        "protocol": "TCP",
+                        "port": 5901,
+                        "targetPort": 5901
+                    },
+                    {
+                        "name": "6901-tcp",
+                        "protocol": "TCP",
+                        "port": 6901,
+                        "targetPort": 6901
+                    }
+                ],
+                "selector": {
+                    "app": "docker-headless-vnc-container",
+                    "deploymentconfig": "docker-headless-vnc-container"
+                }
+            },
+            "status": {
+                "loadBalancer": {}
+            }
+        }
+    ]
+}
