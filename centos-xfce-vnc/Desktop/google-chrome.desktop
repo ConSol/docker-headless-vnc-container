@@ -105,7 +105,7 @@ Comment[vi]=Truy cập Internet
 Comment[zh_CN]=访问互联网
 Comment[zh_HK]=連線到網際網路
 Comment[zh_TW]=連線到網際網路
-Exec=/usr/bin/google-chrome-stable --user-data-dir %U
+Exec=/usr/bin/google-chrome --user-data-dir %U
 Terminal=false
 Icon=google-chrome
 Type=Application
@@ -168,7 +168,7 @@ Name[uk]=Нове вікно
 Name[vi]=Cửa sổ Mới
 Name[zh_CN]=新建窗口
 Name[zh_TW]=開新視窗
-Exec=/usr/bin/google-chrome-stable --user-data-dir
+Exec=/usr/bin/google-chrome --user-data-dir
 TargetEnvironment=Unity
 
 [NewIncognito Shortcut Group]
@@ -221,5 +221,5 @@ Name[uk]=Нове вікно в режимі анонімного перегля
 Name[vi]=Cửa sổ ẩn danh mới
 Name[zh_CN]=新建隐身窗口
 Name[zh_TW]=新增無痕式視窗
-Exec=/usr/bin/google-chrome-stable --user-data-dir --incognito
+Exec=/usr/bin/google-chrome --user-data-dir --incognito
 TargetEnvironment=Unity

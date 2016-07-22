@@ -3,7 +3,7 @@
 FROM centos:7
 
 MAINTAINER Tobias Schneck "tobias.schneck@consol.de"
-ENV REFRESHED_AT 2016-06-01
+ENV REFRESHED_AT 2016-07-16
 
 ENV JAVA_VERSION 8u92
 
@@ -28,9 +28,11 @@ RUN mkdir -p $NO_VNC_HOME/utils/websockify \
 
 ### Install firefox chrome browser
 ADD repos /etc/yum.repos.d/
-RUN yum -y install firefox google-chrome-stable \
-    && echo "alias google-chrome='/usr/bin/google-chrome --user-data-dir'" >> /root/.bashrc \
-    && echo "alias google-chrome='/usr/bin/google-chrome -no-default-browser-check --user-data-dir'" >> /etc/bashrc
+RUN yum -y install firefox google-chrome-stable && yum clean all -y
+# add `--no-sandbox` to be able to start chrome inside of the docker container
+RUN rm -f /etc/alternatives/google-chrome \
+    && echo '/usr/bin/google-chrome-stable --no-sandbox --start-maximized --user-data-dir "$@"' > /etc/alternatives/google-chrome \
+    && chmod +x /etc/alternatives/google-chrome
 
 ### Install java and java-plugin
 RUN yum -y install $SAKULI_DOWNLOAD_URL/3rd-party/java/jre-$JAVA_VERSION-linux-x64.rpm
