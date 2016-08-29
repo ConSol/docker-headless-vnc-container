@@ -1,4 +1,8 @@
 # Docker containers with "headless" VNC session
+
+* `consol/ubuntu-xfce-vnc` [![](https://images.microbadger.com/badges/version/consol/ubuntu-xfce-vnc.svg)](https://hub.docker.com/r/consol/ubuntu-xfce-vnc/) [![](https://images.microbadger.com/badges/image/consol/ubuntu-xfce-vnc.svg)](http://microbadger.com/images/consol/ubuntu-xfce-vnc)
+* `consol/centos-xfce-vnc` [![](https://images.microbadger.com/badges/version/consol/centos-xfce-vnc.svg)](https://hub.docker.com/r/consol/centos-xfce-vnc/) [![](https://images.microbadger.com/badges/image/consol/centos-xfce-vnc.svg)](http://microbadger.com/images/consol/centos-xfce-vnc)
+
 The repository contains a collection of Docker images with headless VNC environments.
 
 Each docker image is installed with the following components:
