@@ -3,7 +3,7 @@
 FROM centos:7
 
 MAINTAINER Tobias Schneck "tobias.schneck@consol.de"
-ENV REFRESHED_AT 2016-07-16
+ENV REFRESHED_AT 2016-10-21
 
 ENV JAVA_VERSION 8u92
 
@@ -27,12 +27,12 @@ RUN mkdir -p $NO_VNC_HOME/utils/websockify \
     && chmod +x -v /root/noVNC/utils/*.sh
 
 ### Install firefox chrome browser
-ADD repos /etc/yum.repos.d/
-RUN yum -y install firefox google-chrome-stable && yum clean all -y
-# add `--no-sandbox` to be able to start chrome inside of the docker container
-RUN rm -f /etc/alternatives/google-chrome \
-    && echo '/usr/bin/google-chrome-stable --no-sandbox --start-maximized --user-data-dir "$@"' > /etc/alternatives/google-chrome \
-    && chmod +x /etc/alternatives/google-chrome
+ENV CHROMIUM_VERSION 53.0.2785.116-1
+RUN yum -y install firefox http://install.linux.ncsu.edu/pub/yum/itecs/public/chromium/7/x86_64/chromium-$CHROMIUM_VERSION.el7.centos.x86_64.rpm \
+        && ln -s /usr/bin/chromium-browser /usr/bin/google-chrome
+# fix to start chromium in a Docker container, see https://github.com/ConSol/docker-headless-vnc-container/issues/2
+RUN sed -i -e 's/exec $CMD_PREFIX "$HERE\/chrome"/exec $CMD_PREFIX "$HERE\/chrome" $CHROMIUM_FLAGS/' /opt/chromium/chrome-wrapper
+ENV CHROMIUM_FLAGS "--no-sandbox --start-maximized --user-data-dir"
 
 ### Install java and java-plugin
 RUN yum -y install $SAKULI_DOWNLOAD_URL/3rd-party/java/jre-$JAVA_VERSION-linux-x64.rpm
