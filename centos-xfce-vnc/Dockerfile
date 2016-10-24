@@ -17,9 +17,9 @@ ENV SAKULI_DOWNLOAD_URL https://labs.consol.de/sakuli/install
 
 ############### xvnc / xfce installation
 RUN yum -y install epel-release && yum -y update && yum -y install sudo && yum clean all
-RUN yum --enablerepo=epel -y -x gnome-keyring --skip-broken groups install "Xfce"
-RUN yum -y groups install "Fonts"
-RUN yum -y install tigervnc-server wget net-tools
+RUN yum --enablerepo=epel -y -x gnome-keyring --skip-broken groups install "Xfce" && yum clean all
+RUN yum -y groups install "Fonts" && yum clean all
+RUN yum -y install tigervnc-server wget net-tools && yum clean all
 ### Install noVNC - HTML5 based VNC viewer
 RUN mkdir -p $NO_VNC_HOME/utils/websockify \
     && wget -qO- https://github.com/ConSol/noVNC/archive/consol_1.0.0.tar.gz | tar xz --strip 1 -C $NO_VNC_HOME \
@@ -29,13 +29,14 @@ RUN mkdir -p $NO_VNC_HOME/utils/websockify \
 ### Install firefox chrome browser
 ENV CHROMIUM_VERSION 53.0.2785.116-1
 RUN yum -y install firefox http://install.linux.ncsu.edu/pub/yum/itecs/public/chromium/7/x86_64/chromium-$CHROMIUM_VERSION.el7.centos.x86_64.rpm \
+        && yum clean all \
         && ln -s /usr/bin/chromium-browser /usr/bin/google-chrome
 # fix to start chromium in a Docker container, see https://github.com/ConSol/docker-headless-vnc-container/issues/2
 RUN sed -i -e 's/exec $CMD_PREFIX "$HERE\/chrome"/exec $CMD_PREFIX "$HERE\/chrome" $CHROMIUM_FLAGS/' /opt/chromium/chrome-wrapper
 ENV CHROMIUM_FLAGS "--no-sandbox --start-maximized --user-data-dir"
 
 ### Install java and java-plugin
-RUN yum -y install $SAKULI_DOWNLOAD_URL/3rd-party/java/jre-$JAVA_VERSION-linux-x64.rpm
+RUN yum -y install $SAKULI_DOWNLOAD_URL/3rd-party/java/jre-$JAVA_VERSION-linux-x64.rpm && yum clean all
 # creat symbolic link for firefox java plugin
 RUN ln -s /usr/java/default/lib/amd64/libnpjp2.so /usr/lib64/mozilla/plugins/
 
