@@ -31,7 +31,8 @@ RUN mkdir -p $NO_VNC_HOME/utils/websockify \
     && chmod +x -v /root/noVNC/utils/*.sh
 
 ### Install firfox and chrome browser
-RUN apt-get install -y firefox chromium-browser chromium-browser-l10n chromium-codecs-ffmpeg \
+RUN apt-get update \
+    && apt-get install -y firefox chromium-browser chromium-browser-l10n chromium-codecs-ffmpeg \
     && rm -rf /var/lib/apt/ \
     && ln -s /usr/bin/chromium-browser /usr/bin/google-chrome \
     # fix to start chromium in a Docker container, see https://github.com/ConSol/docker-headless-vnc-container/issues/2
