@@ -5,6 +5,12 @@ FROM centos:7
 MAINTAINER Tobias Schneck "tobias.schneck@consol.de"
 ENV REFRESHED_AT 2016-10-21
 
+LABEL io.k8s.description="Headless VNC Container with xfce4, firefox and chromium" \
+      io.k8s.display-name="Headless VNC Container" \
+      io.openshift.expose-services="6901:http,5901:xvnc" \
+      io.openshift.tags="vnc, sakuli" \
+      io.openshift.non-scalable=true
+
 ENV JAVA_VERSION 8u92
 
 ENV DISPLAY :1
