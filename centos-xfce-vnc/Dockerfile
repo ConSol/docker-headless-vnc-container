@@ -19,11 +19,11 @@ ENV SAKULI_DOWNLOAD_URL https://labs.consol.de/sakuli/install
 RUN yum -y install epel-release && yum -y update && yum -y install sudo && yum clean all -y
 RUN yum --enablerepo=epel -y -x gnome-keyring --skip-broken groups install "Xfce" && yum clean all -y
 RUN yum -y groups install "Fonts" && yum clean all -y
-RUN yum -y install tigervnc-server wget net-tools && yum clean all -y
+RUN yum -y install tigervnc-server wget which net-tools && yum clean all -y
 ### Install noVNC - HTML5 based VNC viewer
 RUN mkdir -p $NO_VNC_HOME/utils/websockify \
-    && wget -qO- https://github.com/ConSol/noVNC/archive/consol_1.0.0.tar.gz | tar xz --strip 1 -C $NO_VNC_HOME \
-    &&  wget -qO- https://github.com/kanaka/websockify/archive/v0.7.0.tar.gz | tar xz --strip 1 -C $NO_VNC_HOME/utils/websockify \
+    && wget -qO- https://github.com/kanaka/noVNC/archive/v0.6.1.tar.gz | tar xz --strip 1 -C $NO_VNC_HOME \
+    && wget -qO- https://github.com/kanaka/websockify/archive/v0.8.0.tar.gz | tar xz --strip 1 -C $NO_VNC_HOME/utils/websockify \
     && chmod +x -v /root/noVNC/utils/*.sh
 
 ### Install firefox chrome browser
