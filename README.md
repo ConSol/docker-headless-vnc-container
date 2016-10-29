@@ -30,11 +30,13 @@ Each docker image is installed with the following components:
 
   => connect via __noVNC HTML5 client__: [http://localhost:6901/vnc_auto.html?password=vncpassword]()
 
-* __Ubuntu 14.04 with `Xfce4` UI session:__
+* __Ubuntu 16.04 with `Xfce4` UI session:__
 
   Run command with mapping to local port `5902`:
 
       docker run -d -p 5902:5901 -p 6902:6901 consol/ubuntu-xfce-vnc
+
+  Change the default user within a container to your own with: ```--user $(id -u)```
 
   Build image from scratch:
 
