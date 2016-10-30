@@ -53,15 +53,17 @@ EXPOSE 6901
 
 ENV HOME /headless
 
-ADD .vnc /headless/.vnc
 ADD .config /headless/.config
 ADD Desktop /headless/Desktop
 ADD scripts /headless/scripts
 
-RUN chmod +x /headless/scripts/*.sh /headless/.vnc/xstartup /etc/xdg/xfce4/xinitrc /headless/Desktop/*.desktop
+RUN chmod +x /headless/scripts/*.sh /headless/Desktop/*.desktop
 RUN chgrp -R 0 /headless
 RUN chmod -R g+rw /headless
 RUN find /headless -type d -exec chmod g+x {} +
+
+# Disable xfce-polkit
+RUN rm /etc/xdg/autostart/xfce-polkit.desktop
 
 RUN /bin/dbus-uuidgen > /etc/machine-id
 
