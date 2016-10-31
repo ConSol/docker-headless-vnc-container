@@ -15,7 +15,8 @@ echo "change vnc password!"
 $NO_VNC_HOME/utils/launch.sh --vnc $VNC_IP:$VNC_PORT --listen $NO_VNC_PORT &
 vncserver -kill :1 && rm -rfv /tmp/.X* ; echo "remove old vnc locks to be a reattachable container"
 vncserver $DISPLAY -depth $VNC_COL_DEPTH -geometry $VNC_RESOLUTION
-startxfce4 &
+sleep 1
+icewm-session &
 sleep 1
 ##log connect options
 echo -e "\n------------------ VNC environment started ------------------"
