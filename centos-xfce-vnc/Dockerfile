@@ -22,10 +22,10 @@ ENV VNC_PW vncpassword
 ENV SAKULI_DOWNLOAD_URL https://labs.consol.de/sakuli/install
 
 ############### xvnc / xfce installation
-RUN yum -y install epel-release && yum -y update && yum -y install sudo && yum clean all -y
-RUN yum --enablerepo=epel -y -x gnome-keyring --skip-broken groups install "Xfce" && yum clean all -y
-RUN yum -y groups install "Fonts" && yum clean all -y
-RUN yum -y install tigervnc-server wget which net-tools nss_wrapper gettext && yum clean all -y
+RUN yum -y install epel-release && yum -y update && yum -y install sudo && yum clean all
+RUN yum --enablerepo=epel -y -x gnome-keyring --skip-broken groups install "Xfce" && yum clean all
+RUN yum -y groups install "Fonts" && yum clean all
+RUN yum -y install tigervnc-server wget which net-tools nss_wrapper gettext && yum clean all
 ### Install noVNC - HTML5 based VNC viewer
 RUN mkdir -p $NO_VNC_HOME/utils/websockify \
     && wget -qO- https://github.com/kanaka/noVNC/archive/v0.6.1.tar.gz | tar xz --strip 1 -C $NO_VNC_HOME \
@@ -35,7 +35,7 @@ RUN mkdir -p $NO_VNC_HOME/utils/websockify \
 ### Install firefox chrome browser
 ENV CHROMIUM_VERSION 53.0.2785.116-1
 RUN yum -y install firefox http://install.linux.ncsu.edu/pub/yum/itecs/public/chromium/7/x86_64/chromium-$CHROMIUM_VERSION.el7.centos.x86_64.rpm \
-        && yum clean all -y\
+        && yum clean all\
         && ln -s /usr/bin/chromium-browser /usr/bin/google-chrome
 # fix to start chromium in a Docker container, see https://github.com/ConSol/docker-headless-vnc-container/issues/2
 RUN sed -i -e 's/exec $CMD_PREFIX "$HERE\/chrome"/exec $CMD_PREFIX "$HERE\/chrome" $CHROMIUM_FLAGS/' /opt/chromium/chrome-wrapper
@@ -52,15 +52,14 @@ EXPOSE 5901
 EXPOSE 6901
 
 ENV HOME /headless
+WORKDIR /headless
 
 ADD .config /headless/.config
 ADD Desktop /headless/Desktop
 ADD scripts /headless/scripts
 
 RUN chmod +x /headless/scripts/*.sh /headless/Desktop/*.desktop
-RUN chgrp -R 0 /headless
-RUN chmod -R g+rw /headless
-RUN find /headless -type d -exec chmod g+x {} +
+RUN chgrp -R 0 /headless && chmod -R g+rw /headless && find /headless -type d -exec chmod g+x {} +
 
 # Disable xfce-polkit
 RUN rm /etc/xdg/autostart/xfce-polkit.desktop
