@@ -52,5 +52,8 @@ ADD scripts /root/scripts
 RUN chmod +x  /root/scripts/*.sh /root/.vnc/xstartup /etc/xdg/xfce4/xinitrc /root/Desktop/*.desktop
 RUN /bin/dbus-uuidgen > /etc/machine-id
 
+# Disable xfce-polkit
+RUN rm /etc/xdg/autostart/xfce-polkit.desktop
+
 ENTRYPOINT ["/root/scripts/vnc_startup.sh"]
 CMD ["--tail-log"]
