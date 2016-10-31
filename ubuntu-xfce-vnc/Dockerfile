@@ -3,7 +3,7 @@
 FROM ubuntu:14.04
 
 MAINTAINER Tobias Schneck "tobias.schneck@consol.de"
-ENV REFRESHED_AT 2016-06-01
+ENV REFRESHED_AT 2016-10-21
 
 ENV JAVA_VERSION 8u92
 ENV JAVA_HOME /usr/lib/jvm/java-$JAVA_VERSION
@@ -23,7 +23,7 @@ RUN echo "deb http://packages.linuxmint.com/ rafaela main upstream import" >> /e
     && echo "deb http://extra.linuxmint.com/ rafaela main " >> /etc/apt/sources.list.d/mint.list
 
 ############### xvnc / xfce installation
-RUN apt-get update && apt-get upgrade -y && apt-get install -y supervisor vim xfce4 vnc4server wget
+RUN apt-get update && apt-get upgrade -y && apt-get install -y supervisor vim xfce4 vnc4server wget && rm -rf /var/lib/apt/
 ### Install noVNC - HTML5 based VNC viewer
 RUN mkdir -p $NO_VNC_HOME/utils/websockify \
     && wget -qO- https://github.com/ConSol/noVNC/archive/consol_1.0.0.tar.gz | tar xz --strip 1 -C $NO_VNC_HOME \
@@ -31,9 +31,12 @@ RUN mkdir -p $NO_VNC_HOME/utils/websockify \
     && chmod +x -v /root/noVNC/utils/*.sh
 
 ### Install firfox and chrome browser
-RUN apt-get install -y firefox chromium-browser chromium-browser-l10n chromium-codecs-ffmpeg \
+RUN apt-get update \
+    && apt-get install -y firefox chromium-browser chromium-browser-l10n chromium-codecs-ffmpeg \
+    && rm -rf /var/lib/apt/ \
     && ln -s /usr/bin/chromium-browser /usr/bin/google-chrome \
-    && echo "alias chromium-browser='/usr/bin/chromium-browser --user-data-dir'" >> /root/.bashrc
+    # fix to start chromium in a Docker container, see https://github.com/ConSol/docker-headless-vnc-container/issues/2
+    && echo "CHROMIUM_FLAGS='--no-sandbox --start-maximized --user-data-dir'" > ~/.chromium-browser.init
 
 ##### Add Oracle JAVA JRE8
 RUN mkdir -p $JAVA_HOME \
