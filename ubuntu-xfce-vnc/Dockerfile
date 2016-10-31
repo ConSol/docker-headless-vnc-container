@@ -63,14 +63,13 @@ EXPOSE 5901
 EXPOSE 6901
 
 ENV HOME /headless
+WORKDIR /headless
 
 ADD .config /headless/.config
 ADD Desktop /headless/Desktop
 ADD scripts /headless/scripts
 RUN chmod +x /headless/scripts/*.sh /headless/Desktop/*.desktop
-RUN chgrp -R 0 /headless
-RUN chmod -R g+rw /headless
-RUN find /headless -type d -exec chmod g+x {} +
+RUN chgrp -R 0 /headless && chmod -R g+rw /headless && find /headless -type d -exec chmod g+x {} +
 
 USER 1984
 
