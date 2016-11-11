@@ -32,8 +32,9 @@ ENV SAKULI_DOWNLOAD_URL https://labs.consol.de/sakuli/install
 ############### xvnc / xfce installation
 RUN apt-get update \
     && apt-get upgrade -y \
-    && apt-get install -y supervisor vim xfce4 vnc4server wget libnss-wrapper gettext net-tools xterm \
-    && apt-get clean -y
+    && apt-get install -y supervisor vim xfce4 wget libnss-wrapper gettext net-tools xterm \
+    && apt-get clean -y \
+    && wget -qO- https://dl.bintray.com/tigervnc/stable/tigervnc-1.7.0.x86_64.tar.gz | tar xz --strip 1 -C /
 
 ### Install noVNC - HTML5 based VNC viewer
 RUN mkdir -p $NO_VNC_HOME/utils/websockify \
