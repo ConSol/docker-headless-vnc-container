@@ -71,7 +71,7 @@ ADD .config /headless/.config
 ADD Desktop /headless/Desktop
 ADD scripts /headless/scripts
 RUN chmod +x /headless/scripts/*.sh /headless/Desktop/*.desktop
-RUN chgrp -R 0 /headless && chmod -R g+rw /headless && find /headless -type d -exec chmod g+x {} +
+RUN chgrp -R 0 /headless && chmod -R a+rw /headless && find /headless -type d -exec chmod a+x {} +
 
 USER 1984
 

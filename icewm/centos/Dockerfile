@@ -60,8 +60,8 @@ ADD scripts /headless/scripts
 
 RUN chmod +x /headless/scripts/*.sh
 RUN chgrp -R 0 /headless
-RUN chmod -R g+rw /headless
-RUN find /headless -type d -exec chmod g+x {} +
+RUN chmod -R a+rw /headless
+RUN find /headless -type d -exec chmod a+x {} +
 
 RUN /bin/dbus-uuidgen > /etc/machine-id
 
