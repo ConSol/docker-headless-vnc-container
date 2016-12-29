@@ -1,11 +1,9 @@
 #!/bin/bash
 
-source /headless/scripts/generate_container_user
+source $HOME/scripts/generate_container_user
 
 #resolve_vnc_connection
 VNC_IP=$(ip addr show eth0 | grep -Po 'inet \K[\d.]+')
-VNC_PORT="590"${DISPLAY:1}
-NO_VNC_PORT="690"${DISPLAY:1}
 
 ##change vnc password
 echo "change vnc password!"
@@ -14,7 +12,7 @@ echo "change vnc password!"
 ##start vncserver and noVNC webclient
 $NO_VNC_HOME/utils/launch.sh --vnc $VNC_IP:$VNC_PORT --listen $NO_VNC_PORT &
 vncserver -kill :1 && rm -rfv /tmp/.X* ; echo "remove old vnc locks to be a reattachable container"
-vncserver $DISPLAY -depth $VNC_COL_DEPTH -geometry $VNC_RESOLUTION -xstartup /usr/bin/startxfce4
+vncserver $DISPLAY -depth $VNC_COL_DEPTH -geometry $VNC_RESOLUTION -xstartup $HOME/wm_startup.sh
 sleep 1
 ##log connect options
 echo -e "\n------------------ VNC environment started ------------------"
@@ -26,8 +24,8 @@ do
 case $i in
     # if option `-t` or `--tail-log` block the execution and tail the VNC log
     -t|--tail-log)
-    echo -e "\n------------------ /headless/.vnc/*$DISPLAY.log ------------------"
-    tail -f /headless/.vnc/*$DISPLAY.log
+    echo -e "\n------------------ /$HOME/.vnc/*$DISPLAY.log ------------------"
+    tail -f /$HOME/.vnc/*$DISPLAY.log
     ;;
     *)
     # unknown option ==> call command
