@@ -22,7 +22,6 @@
     <property name="configver" type="int" value="2"/>
     <property name="panels" type="array">
         <value type="int" value="1"/>
-        <value type="int" value="2"/>
         <property name="panel-1" type="empty">
             <property name="position" type="string" value="p=6;x=0;y=0"/>
             <property name="length" type="uint" value="100"/>
@@ -34,22 +33,7 @@
                 <value type="int" value="15"/>
                 <value type="int" value="4"/>
                 <value type="int" value="5"/>
-                <value type="int" value="6"/>
                 <value type="int" value="2"/>
-            </property>
-        </property>
-        <property name="panel-2" type="empty">
-            <property name="position" type="string" value="p=10;x=0;y=0"/>
-            <property name="position-locked" type="bool" value="true"/>
-            <property name="plugin-ids" type="array">
-                <value type="int" value="7"/>
-                <value type="int" value="8"/>
-                <value type="int" value="9"/>
-                <value type="int" value="10"/>
-                <value type="int" value="11"/>
-                <value type="int" value="12"/>
-                <value type="int" value="13"/>
-                <value type="int" value="14"/>
             </property>
         </property>
     </property>

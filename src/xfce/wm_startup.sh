@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
 echo "startup of Xfce4 window manager"
-/usr/bin/startxfce4
+/usr/bin/startxfce4 --replace > $HOME/wm.log &
+sleep 1
+cat $HOME/wm.log
