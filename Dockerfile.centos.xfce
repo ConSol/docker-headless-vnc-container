@@ -1,14 +1,14 @@
-# This Dockerfile is used to build an headles vnc image based on Ubuntu
+# This Dockerfile is used to build an headles vnc image based on Centos
 
-FROM ubuntu:16.04
+FROM centos:7
 
 MAINTAINER Tobias Schneck "tobias.schneck@consol.de"
 ENV REFRESHED_AT 2016-12-29
 
 LABEL io.k8s.description="Headless VNC Container with Xfce window manager, firefox and chromium" \
-      io.k8s.display-name="Headless VNC Container based on Ubuntu" \
+      io.k8s.display-name="Headless VNC Container based on Centos" \
       io.openshift.expose-services="6901:http,5901:xvnc" \
-      io.openshift.tags="vnc, ubuntu, xfce" \
+      io.openshift.tags="vnc, centos, xfce" \
       io.openshift.non-scalable=true
 
 ## Connection ports for controlling the UI:
@@ -23,7 +23,6 @@ ENV HOME /headless
 WORKDIR $HOME
 
 ### Envrionment config
-ENV DEBIAN_FRONTEND noninteractive
 ENV NO_VNC_HOME /$HOME/noVNC
 ENV VNC_COL_DEPTH 24
 ENV VNC_RESOLUTION 1280x1024
@@ -32,7 +31,7 @@ ENV VNC_PW vncpassword
 ### Add all install scripts for further steps
 ENV INST_SCRIPTS $HOME/install
 ADD ./src/common/install/ $INST_SCRIPTS/
-ADD ./src/ubuntu/install/ $INST_SCRIPTS/
+ADD ./src/centos/install/ $INST_SCRIPTS/
 RUN find $INST_SCRIPTS -name '*.sh' -exec chmod a+x {} +
 
 ### Install some common tools

@@ -1,0 +1,4 @@
+prog xterm xterm xterm
+separator
+prog Firefox /usr/share/icons/hicolor/48x48/apps/firefox.png firefox
+prog "Google Chrome" /opt/google/chrome/product_logo_48.png /etc/alternatives/google-chrome

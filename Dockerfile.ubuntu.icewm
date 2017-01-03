@@ -31,30 +31,31 @@ ENV VNC_PW vncpassword
 
 ### Add all install scripts for further steps
 ENV INST_SCRIPTS $HOME/install
-ADD ./src/install $INST_SCRIPTS
+ADD ./src/common/install/ $INST_SCRIPTS/
+ADD ./src/ubuntu/install/ $INST_SCRIPTS/
 RUN find $INST_SCRIPTS -name '*.sh' -exec chmod a+x {} +
 
 ### Install some common tools
-RUN $INST_SCRIPTS/ubuntu/tools.sh
+RUN $INST_SCRIPTS/tools.sh
 
 ### Install xvnc-server & noVNC - HTML5 based VNC viewer
-RUN $INST_SCRIPTS/common/tigervnc.sh
-RUN $INST_SCRIPTS/common/no_vnc.sh
+RUN $INST_SCRIPTS/tigervnc.sh
+RUN $INST_SCRIPTS/no_vnc.sh
 
 ### Install firfox and chrome browser
-RUN $INST_SCRIPTS/ubuntu/firefox.sh
-RUN $INST_SCRIPTS/ubuntu/chrome.sh
+RUN $INST_SCRIPTS/firefox.sh
+RUN $INST_SCRIPTS/chrome.sh
 
-##### Install JAVA JRE8
+##### TODO Install JAVA JRE8
 #RUN $INST_SCRIPTS/ubuntu/java_jre.sh
 
 ### Install IceWM UI
-RUN $INST_SCRIPTS/ubuntu/icewm_ui.sh
-ADD ./src/icewm/ $HOME/
+RUN $INST_SCRIPTS/icewm_ui.sh
+ADD ./src/ubuntu/icewm/ $HOME/
 
 ### configure startup
-ADD ./src/scripts $HOME/scripts
-RUN $INST_SCRIPTS/common/set_user_permission.sh
+ADD ./src/common/scripts $HOME/scripts
+RUN $INST_SCRIPTS/set_user_permission.sh
 
 USER 1984
 
