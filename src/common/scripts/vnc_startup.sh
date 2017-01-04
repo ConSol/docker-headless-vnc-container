@@ -1,4 +1,6 @@
 #!/bin/bash
+### every exit != 0 fails the script
+set -e
 
 source $HOME/scripts/generate_container_user
 

@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+### every exit != 0 fails the script
+set -e
 
 VNC_RES_W=${VNC_RESOLUTION%x*}
 VNC_RES_H=${VNC_RESOLUTION#*x}
