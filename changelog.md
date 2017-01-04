@@ -6,7 +6,7 @@
    * Support for start container process as non-root in usermode (#7)
    * Add Labels for OpenShift
 * Add [IceWM](http://www.icewm.org/) as alternative UI
-* Change Java installation to OpenJDK (#5)
+* Remove Java installation, not needed in this image (#5)
 * Refactor build structure (#5)
 * Fix chromium/chrome startup (#2): Set chromium as default "chrome" and support `~/.chromium-browser.init`
 * Switch from vnc4server to tigervnc (#4)

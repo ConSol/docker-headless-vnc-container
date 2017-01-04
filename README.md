@@ -7,10 +7,9 @@ Each docker image is installed with the following components:
 * Desktop environment [**Xfce4**](http://www.xfce.org) or [**IceWM**](http://www.icewm.org/)
 * VNC-Server (default VNC port `5901`)
 * [**noVNC**](https://github.com/kanaka/noVNC) - HTML5 VNC client (default http port `6901`)
-* Java JRE 8
 * Browsers:
-  * Mozilla Firefox + Java Plugin
-  * Google Chrome (Java-Plugin is no longer supported)
+  * Mozilla Firefox
+  * Chromium
 
 ## Current provided OS & UI sessions:
 * `consol/centos-xfce-vnc`: __Centos7 with `Xfce4` UI session__ 
