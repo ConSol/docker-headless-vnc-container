@@ -64,13 +64,14 @@ objects:
         kind: ImageStreamTag
         name: ${APPLICATION_NAME}:latest
     source:
-      contextDir: ${CONTEXT_DIR}
       git:
         ref: ${SOURCE_REPOSITORY_REF}
         uri: ${SOURCE_REPOSITORY_URL}
       type: Git
     strategy:
       type: Docker
+      dockerStrategy:
+        dockerfilePath: ${SOURCE_DOCKERFILE}
     triggers:
     - github:
         secret: ${GITHUB_WEBHOOK_SECRET}
@@ -156,9 +157,9 @@ parameters:
 - description: Git branch/tag reference
   name: SOURCE_REPOSITORY_REF
   value: "dev"
-- description: Path within Git project to build; empty for root project directory.
-  name: CONTEXT_DIR
-  value: centos-xfce-vnc
+- description: Name of the Dockerfile for example Dockerfile.centos.icewm, Dockerfile.ubuntu.icewm or Dockerfile.centos.xfce
+  name: SOURCE_DOCKERFILE
+  value: Dockerfile.centos.xfce
 - description: GitHub trigger secret
   from: '[a-zA-Z0-9]{8}'
   generate: expression
