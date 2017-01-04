@@ -3,7 +3,7 @@
 FROM centos:7
 
 MAINTAINER Tobias Schneck "tobias.schneck@consol.de"
-ENV REFRESHED_AT 2016-12-29
+ENV REFRESHED_AT 2017-01-04
 
 LABEL io.k8s.description="Headless VNC Container with Xfce window manager, firefox and chromium" \
       io.k8s.display-name="Headless VNC Container based on Centos" \
@@ -45,8 +45,8 @@ RUN $INST_SCRIPTS/no_vnc.sh
 RUN $INST_SCRIPTS/firefox.sh
 RUN $INST_SCRIPTS/chrome.sh
 
-##### TODO Install JAVA JRE8
-#RUN $INST_SCRIPTS/ubuntu/java_jre.sh
+##### TODO Install JAVA JRE8 ?
+RUN $INST_SCRIPTS/java_jre.sh
 
 ### Install xfce UI
 RUN $INST_SCRIPTS/xfce_ui.sh

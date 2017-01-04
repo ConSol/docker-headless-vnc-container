@@ -21,12 +21,22 @@ Each docker image is installed with the following components:
 
   [![](https://images.microbadger.com/badges/version/consol/ubuntu-xfce-vnc.svg)](https://hub.docker.com/r/consol/ubuntu-xfce-vnc/) [![](https://images.microbadger.com/badges/image/consol/ubuntu-xfce-vnc.svg)](http://microbadger.com/images/consol/ubuntu-xfce-vnc)
 
-* TODO: ICEWM
+* `consol/centos-icewm-vnc`: __Centos7 with `IceWM` UI session__ 
+
+  [![](https://images.microbadger.com/badges/version/consol/centos-icewm-vnc.svg)](https://hub.docker.com/r/consol/centos-icewm-vnc/) [![](https://images.microbadger.com/badges/image/consol/centos-icewm-vnc.svg)](http://microbadger.com/images/consol/centos-icewm-vnc)
+
+* `consol/ubuntu-icewm-vnc`: __Ubuntu with `IceWM` UI session__
+
+  [![](https://images.microbadger.com/badges/version/consol/ubuntu-icewm-vnc.svg)](https://hub.docker.com/r/consol/ubuntu-icewm-vnc/) [![](https://images.microbadger.com/badges/image/consol/ubuntu-icewm-vnc.svg)](http://microbadger.com/images/consol/ubuntu-icewm-vnc)
+
+
+## Latest Changes
+See the [**changelog.md**](./changelog.md).
 
 ## Usage
 The usage is for all provide images **similar**, for instance see following the usage of the `consol/centos-xfce-vnc` image:
 
-Run command with mapping to local port `5911`:
+Run command with mapping to local port `5901` (vnc protocol) and `6901` (vnc web access):
 
     docker run -d -p 5901:5901 -p 6901:6901 consol/centos-xfce-vnc
   
@@ -52,11 +62,17 @@ Build a image from scratch:
 Simple override the value of the environment variable `VNC_PW`. For example in
 the docker run command:
 
-    docker run -it -p 5911:5901 -p 6902:6901 -e "VNC_PW=my-new-password" consol/centos-xfce-vnc
+    docker run -it -p 5901:5901 -p 6901:6901 -e "VNC_PW=my-new-password" consol/centos-xfce-vnc
+    
+### Override the VNC resolution
+Simple override the value of the environment variable `VNC_RESOLUTION`. For example in
+the docker run command:
+
+    docker run -it -p 5901:5901 -p 6901:6901 -e VNC_RESOLUTION=800x600 consol/centos-xfce-vnc
 
 
 ## Contact
-For questions or maybe some hints, feel free to contact us via **[sakuli@consol.de](mailto:sakuli@consol.de)** or open an [issue](https://github.com/ConSol/docker-headless-vnc-container/issues/new).
+For questions or maybe some hints, feel free to contact us via **[testautomatisierung@consol.de](mailto:testautomatisierung@consol.de)** or open an [issue](https://github.com/ConSol/docker-headless-vnc-container/issues/new).
 
 The guys behind:
 

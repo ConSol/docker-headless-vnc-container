@@ -1,0 +1,7 @@
+## custom wrapper to support the $HOME/.chromium-browser.init file
+## will be "sourced" from /usr/lib64/chromium-browser/chromium-browser.sh
+source ~/.chromium-browser.init
+echo "CHROMIUM_FLAGS: $CHROMIUM_FLAGS"
+
+CHROMIUM_DISTRO_FLAGS="$CHROMIUM_DISTRO_FLAGS $CHROMIUM_FLAGS "
+echo "CHROMIUM_DISTRO_FLAGS: $CHROMIUM_DISTRO_FLAGS"
