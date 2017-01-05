@@ -7,7 +7,7 @@ metadata:
     description: Headless VNC (build & run)
     iconClass: icon-beaker
     tags: headless,vnc,consol
-    version: 0.0.1
+    version: 1.0.3
   creationTimestamp: null
   name: headless-vnc-build-and-run
 objects:
@@ -156,7 +156,7 @@ parameters:
   value: https://github.com/ConSol/docker-headless-vnc-container.git
 - description: Git branch/tag reference
   name: SOURCE_REPOSITORY_REF
-  value: "dev"
+  value: "master"
 - description: Name of the Dockerfile for example Dockerfile.centos.icewm, Dockerfile.ubuntu.icewm or Dockerfile.centos.xfce
   name: SOURCE_DOCKERFILE
   value: Dockerfile.centos.xfce
