@@ -1,4 +1,4 @@
-## Changelog of the Docker headless VNC image
+## Changelog of the Docker headless VNC images
 
 ### Version 1.1.0
 
