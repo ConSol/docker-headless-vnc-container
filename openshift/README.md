@@ -24,7 +24,7 @@ After the deployment you will see at your management UI the new deployed service
 
 Over the URL you can look and control the fresh deployed container via the web-vnc interface:
  
-[http://my-run-only-pod-my-project.__YOUR-OS-URL__/vnc_auto.html?password=vncpassword]() 
+[http://my-run-only-pod-my-project.__YOUR-OS-URL__/?password=vncpassword]() 
  
 ![openshift container via webvnc](../.pics/os_container_webvnc.png)
 
@@ -54,7 +54,7 @@ After the image is successfully built, openshift will autmaticly will deploy it 
 
 After the deployment, you you can look and control the fresh deployed container via the web-vnc interface:
  
-[http://my-centos-xfce-image.__YOUR-OS-URL__/vnc_auto.html?password=vncpassword]() 
+[http://my-centos-xfce-image.__YOUR-OS-URL__/?password=vncpassword]() 
  
 ![openshift container via webvnc](../.pics/os_container_webvnc.p
 

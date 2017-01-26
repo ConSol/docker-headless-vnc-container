@@ -53,7 +53,7 @@ Build a image from scratch:
 
 => connect via __VNC viewer `localhost:5901`__, default password: `vncpassword`
 
-=> connect via __noVNC HTML5 client__: [http://localhost:6901/vnc_auto.html?password=vncpassword]()
+=> connect via __noVNC HTML5 client__: [http://localhost:6901/?password=vncpassword]()
 
 
 ## Hints
