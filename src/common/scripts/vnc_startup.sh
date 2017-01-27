@@ -31,8 +31,8 @@ do
 case $i in
     # if option `-t` or `--tail-log` block the execution and tail the VNC log
     -t|--tail-log)
-    echo -e "\n------------------ /$HOME/.vnc/*$DISPLAY.log ------------------"
-    tail -f /$HOME/.vnc/*$DISPLAY.log
+    echo -e "\n------------------ $HOME/.vnc/*$DISPLAY.log ------------------"
+    tail -f $HOME/.vnc/*$DISPLAY.log
     ;;
     *)
     # unknown option ==> call command
