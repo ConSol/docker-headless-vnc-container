@@ -20,6 +20,7 @@ ENV NO_VNC_PORT 6901
 EXPOSE $VNC_PORT $NO_VNC_PORT
 
 ENV HOME /headless
+ENV STARTUPDIR /dockerstartup
 WORKDIR $HOME
 
 ### Envrionment config
@@ -50,10 +51,10 @@ RUN $INST_SCRIPTS/icewm_ui.sh
 ADD ./src/centos/icewm/ $HOME/
 
 ### configure startup
-ADD ./src/common/scripts $HOME/scripts
-RUN $INST_SCRIPTS/set_user_permission.sh
+ADD ./src/common/scripts $STARTUPDIR
+RUN $INST_SCRIPTS/set_user_permission.sh $STARTUPDIR $HOME
 
 USER 1984
 
-ENTRYPOINT ["scripts/vnc_startup.sh"]
+ENTRYPOINT ["/dockerstartup/vnc_startup.sh"]
 CMD ["--tail-log"]

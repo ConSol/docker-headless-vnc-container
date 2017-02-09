@@ -2,10 +2,13 @@
 ### every exit != 0 fails the script
 set -e
 
-source $HOME/scripts/generate_container_user
+source $STARTUPDIR/generate_container_user
+if [ -f $HOME/.bashrc ] ; then
+    source $HOME/.bashrc
+fi
 
 ## write correct window size to chrome properties
-$HOME/scripts/chrome-init.sh
+$STARTUPDIR/chrome-init.sh
 
 ## resolve_vnc_connection
 VNC_IP=$(ip addr show eth0 | grep -Po 'inet \K[\d.]+')
