@@ -29,17 +29,13 @@ echo -e "\n\n------------------ VNC environment started ------------------"
 echo -e "\nVNCSERVER started on DISPLAY= $DISPLAY \n\t=> connect via VNC viewer with $VNC_IP:$VNC_PORT"
 echo -e "\nnoVNC HTML client started:\n\t=> connect via http://$VNC_IP:$NO_VNC_PORT/?password=...\n"
 
-for i in "$@"
-do
-case $i in
+if [[ $1 =~ -t|--tail-log ]]; then
     # if option `-t` or `--tail-log` block the execution and tail the VNC log
-    -t|--tail-log)
     echo -e "\n------------------ $HOME/.vnc/*$DISPLAY.log ------------------"
     tail -f $HOME/.vnc/*$DISPLAY.log
-    ;;
-    *)
+else
     # unknown option ==> call command
-    exec $i
-    ;;
-esac
-done
+    echo -e "\n\n------------------ EXECUTE COMMAND ------------------"
+    echo "Executing command: '$@'"
+    exec "$@"
+fi
