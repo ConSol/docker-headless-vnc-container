@@ -33,6 +33,8 @@ if [[ $1 =~ -t|--tail-log ]]; then
     # if option `-t` or `--tail-log` block the execution and tail the VNC log
     echo -e "\n------------------ $HOME/.vnc/*$DISPLAY.log ------------------"
     tail -f $HOME/.vnc/*$DISPLAY.log
+elif [ -z "$1" ] ; then
+    echo -e "..."
 else
     # unknown option ==> call command
     echo -e "\n\n------------------ EXECUTE COMMAND ------------------"
