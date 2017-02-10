@@ -2,10 +2,8 @@
 ### every exit != 0 fails the script
 set -e
 
-source $STARTUPDIR/generate_container_user
-if [ -f $HOME/.bashrc ] ; then
-    source $HOME/.bashrc
-fi
+# should also source $STARTUPDIR/generate_container_user
+source $HOME/.bashrc
 
 ## write correct window size to chrome properties
 $STARTUPDIR/chrome-init.sh
