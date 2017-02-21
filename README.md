@@ -58,13 +58,13 @@ Build a image from scratch:
 
 ## Hints
 ### Override the VNC password
-Simple override the value of the environment variable `VNC_PW`. For example in
+Simple overwrite the value of the environment variable `VNC_PW`. For example in
 the docker run command:
 
     docker run -it -p 5901:5901 -p 6901:6901 -e "VNC_PW=my-new-password" consol/centos-xfce-vnc
     
 ### Override the VNC resolution
-Simple override the value of the environment variable `VNC_RESOLUTION`. For example in
+Simple overwrite the value of the environment variable `VNC_RESOLUTION`. For example in
 the docker run command:
 
     docker run -it -p 5901:5901 -p 6901:6901 -e VNC_RESOLUTION=800x600 consol/centos-xfce-vnc
