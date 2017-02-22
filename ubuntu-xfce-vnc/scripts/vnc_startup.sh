@@ -9,8 +9,11 @@ NO_VNC_PORT="690"${DISPLAY:1}
 echo "change vnc password!"
 (echo $VNC_PW && echo $VNC_PW) | vncpasswd
 
+#Set default web basepath
+if [ -z $NO_NVC_BASEPATH ]; then NO_NVC_BASEPATH="/"; fi
+
 ##start vncserver and noVNC webclient
-$NO_VNC_HOME/utils/launch.sh --vnc $VNC_IP:$VNC_PORT --listen $NO_VNC_PORT &
+$NO_VNC_HOME/utils/launch.sh --vnc $VNC_IP:$VNC_PORT --web $NO_NVC_BASEPATH --listen $NO_VNC_PORT &
 vncserver -kill :1 && rm -rfv /tmp/.X* ; echo "remove old vnc locks to be a reattachable container"
 vncserver $DISPLAY -depth $VNC_COL_DEPTH -geometry $VNC_RESOLUTION
 sleep 1
