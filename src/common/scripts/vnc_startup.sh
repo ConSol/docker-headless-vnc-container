@@ -5,6 +5,14 @@ set -e
 # should also source $STARTUPDIR/generate_container_user
 source $HOME/.bashrc
 
+# add `--skip` to startup args, to skip the VNC startup procedure
+if [[ $1 =~ --skip ]]; then
+    echo -e "\n\n------------------ SKIP VNC STARTUP -----------------"
+    echo -e "\n\n------------------ EXECUTE COMMAND ------------------"
+    echo "Executing command: '${@:2}'"
+    exec "${@:2}"
+fi
+
 ## write correct window size to chrome properties
 $STARTUPDIR/chrome-init.sh
 
