@@ -26,7 +26,7 @@ echo -e "\n------------------ change VNC password  ------------------"
 
 ## start vncserver and noVNC webclient
 $NO_VNC_HOME/utils/launch.sh --vnc $VNC_IP:$VNC_PORT --listen $NO_VNC_PORT &
-vncserver -kill :1 && rm -rfv /tmp/.X* ; echo "remove old vnc locks to be a reattachable container"
+vncserver -kill :1 || rm -rfv /tmp/.X* ; echo "remove old vnc locks to be a reattachable container"
 vncserver $DISPLAY -depth $VNC_COL_DEPTH -geometry $VNC_RESOLUTION
 $HOME/wm_startup.sh
 
