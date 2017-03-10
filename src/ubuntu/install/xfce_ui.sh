@@ -5,4 +5,5 @@ set -e
 echo "Install Xfce4 UI components"
 apt-get update 
 apt-get install -y supervisor xfce4 xterm
+apt-get purge -y *power* *screensaver*
 apt-get clean -y
