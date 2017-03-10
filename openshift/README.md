@@ -1,6 +1,6 @@
 # OpenShift usage of "headless" VNC Docker images
 
-The following content uses as example the image `consol/centos-xfce-vnc` of the Dockerfile `Dockerfile.centos.xfce`.
+The following content uses as example the image `consol/centos-xfce-vnc` of the Dockerfile `Dockerfile.centos.xfce.vnc`.
 
 ## Run the image from Dockerhub
                                 
