@@ -4,6 +4,6 @@ set -e
 
 echo "Install IceWM UI components"
 apt-get update 
-apt-get install -y supervisor icewm vnc4server xterm
+apt-get install -y supervisor icewm xterm xfonts-base xauth xinit
 apt-get purge -y pm-utils xscreensaver*
 apt-get clean -y
