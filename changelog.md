@@ -10,4 +10,6 @@
 * Refactor build structure (#5)
 * Fix chromium/chrome startup (#2): Set chromium as default "chrome" and support `~/.chromium-browser.init`
 * Switch from vnc4server to tigervnc (#4)
-
+* Remove not needed Screensaver pacakges (#11)        
+* Use Firefox 45 as fixed browser as long current firefox crashes (#16)
+* Fix issue be starting of reattached containers on `docker start` (#15)
