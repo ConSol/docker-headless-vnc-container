@@ -3,4 +3,9 @@
 
 echo "branch= $GIT_BRANCH"
 GIT_BRANCH=${GIT_BRANCH/origin\/}
-echo "DOCKER_TAG=${GIT_BRANCH/feature\/#}" > $WORKSPACE/myjob.properties
+DTAG="${GIT_BRANCH/feature\/#}"
+if [[ $DTAG == "master" ]] ; then
+    DTAG=latest
+fi
+echo "DOCKER_TAG=$DTAG"
+echo "DOCKER_TAG=$DTAG" > $WORKSPACE/myjob.properties
