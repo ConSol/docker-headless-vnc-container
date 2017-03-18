@@ -9,7 +9,7 @@ URLS=(
     "https://registry.hub.docker.com/u/consol/ubuntu-icewm-vnc/trigger/c73f3c3f-ecc3-46b1-9766-46c7dfca4d16/"
     "https://registry.hub.docker.com/u/consol/centos-icewm-vnc/trigger/3ea59f8b-364a-4a31-b1f3-aa0201f321d2/"
 )
-PAYLOAD='{"source_type": "Tag", "source_name": "'$GIT_TAG'"}'
+PAYLOAD='{"source_type": "Tag", "source_name": "'$DOCKER_TAG'"}'
 
 #Loop
 for URL in "${URLS[@]}"
