@@ -11,6 +11,10 @@ URLS=(
 )
 PAYLOAD='{"source_type": "Tag", "source_name": "'$DOCKER_TAG'"}'
 
+if [[ $DOCKER_TAG == "master" ]] ; then
+   PAYLOAD='{"docker_tag": "'latest'"}'
+fi
+
 #Loop
 for URL in "${URLS[@]}"
 do
