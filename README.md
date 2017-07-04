@@ -43,11 +43,11 @@ Change the default user and group within a container to your own with adding `--
 
     docker run -d -p 5901:5901 -p 6901:6901 --user $(id -u):$(id -g) consol/centos-xfce-vnc
 
-If you wan't to get into the container use  interactive mode `-it` and `bash`     
+If you want to get into the container use interactive mode `-it` and `bash`     
 
     docker run -d -p 5901:5901 -p 6901:6901 consol/centos-xfce-vnc
 
-Build a image from scratch:
+Build an image from scratch:
 
     docker build -t consol/centos-xfce-vnc centos-xfce-vnc
 
@@ -59,7 +59,7 @@ Build a image from scratch:
 ## Hints
 
 ### 1) Extend a Image with your own software
-Since `1.1.0` all images run as non-root user per default, so that mean, if you want to extend the image and install software, you have to switch in the `Dockerfile` back to the `root` user:
+Since `1.1.0` all images run as non-root user per default, so that means, if you want to extend the image and install software, you have to switch in the `Dockerfile` back to the `root` user:
 
 ```bash
 ## Custom Dockerfile
@@ -77,7 +77,7 @@ USER 1984
 
 ### 2) Change User of running Sakuli Container
 
-Per default, since version `1.1.0` all container processes will executed with user id `1984`. You can chnage the user id like follow: 
+Per default, since version `1.1.0` all container processes will executed with user id `1984`. You can change the user id like follow: 
 
 #### 2.1) Using root (user id `0`)
 Add the `--user` flag to your docker run command:
@@ -96,13 +96,13 @@ The following VNC environment variables can be overwritten at the `docker run` p
 * `VNC_PW`, default: `my-pw`
 
 #### 3.1) Example: Override the VNC password
-Simple overwrite the value of the environment variable `VNC_PW`. For example in
+Simply overwrite the value of the environment variable `VNC_PW`. For example in
 the docker run command:
 
     docker run -it -p 5901:5901 -p 6901:6901 -e VNC_PW=my-pw consol/centos-xfce-vnc
 
 #### 3.2) Example: Override the VNC resolution
-Simple overwrite the value of the environment variable `VNC_RESOLUTION`. For example in
+Simply overwrite the value of the environment variable `VNC_RESOLUTION`. For example in
 the docker run command:
 
     docker run -it -p 5901:5901 -p 6901:6901 -e VNC_RESOLUTION=800x600 consol/centos-xfce-vnc
