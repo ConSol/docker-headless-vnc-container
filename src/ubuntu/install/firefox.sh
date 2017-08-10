@@ -4,6 +4,6 @@ set -e
 
 echo "Install Firefox"
 apt-get update 
-apt-get install -y firefox=45*
+apt-get install -y firefox=45* language-pack-zh-hant language-pack-gnome-zh-hant firefox-locale-zh-hant
 apt-mark hold firefox
 apt-get clean -y
