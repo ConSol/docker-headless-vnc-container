@@ -26,8 +26,8 @@ WORKDIR $HOME
 ### Envrionment config
 ENV NO_VNC_HOME $HOME/noVNC
 ENV VNC_COL_DEPTH 24
-ENV VNC_RESOLUTION 1280x1024
-ENV VNC_PW vncpassword
+ENV VNC_RESOLUTION 1280x800
+ENV VNC_PW vncpwd
 
 ### Add all install scripts for further steps
 ENV INST_SCRIPTS $HOME/install
