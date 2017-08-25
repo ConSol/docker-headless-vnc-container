@@ -21,12 +21,21 @@ VNC_IP=$(ip addr show eth0 | grep -Po 'inet \K[\d.]+')
 
 ## change vnc password
 echo -e "\n------------------ change VNC password  ------------------"
-(echo $VNC_PW && echo $VNC_PW) | vncpasswd
+# first entry is control, second is view (if only one is valid for both)
+mkdir "$HOME/.vnc"
+PASSWD_PATH="$HOME/.vnc/passwd"
+if [[ $VNC_VIEW_ONLY == "true" ]]; then
+    echo "start VNC server in VIEW ONLY mode!"
+    #create random pw to prevent access
+    echo $(head /dev/urandom | tr -dc A-Za-z0-9 | head -c 20) | vncpasswd -f > $PASSWD_PATH
+fi
+echo "$VNC_PW" | vncpasswd -f >> $PASSWD_PATH
+chmod 600 $PASSWD_PATH
 
 
 ## start vncserver and noVNC webclient
 $NO_VNC_HOME/utils/launch.sh --vnc $VNC_IP:$VNC_PORT --listen $NO_VNC_PORT &
-vncserver -kill :1 || rm -rfv /tmp/.X*-lock /tmp/.X11-unix || echo "remove old vnc locks to be a reattachable container"
+vncserver -kill $DISPLAY || rm -rfv /tmp/.X*-lock /tmp/.X11-unix || echo "remove old vnc locks to be a reattachable container"
 vncserver $DISPLAY -depth $VNC_COL_DEPTH -geometry $VNC_RESOLUTION
 $HOME/wm_startup.sh
 
