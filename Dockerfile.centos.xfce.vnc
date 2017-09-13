@@ -21,6 +21,7 @@ EXPOSE $VNC_PORT $NO_VNC_PORT
 
 ### Envrionment config
 ENV HOME=/headless \
+    TERM=xterm \
     STARTUPDIR=/dockerstartup \
     INST_SCRIPTS=$HOME/install \
     NO_VNC_HOME=$HOME/noVNC \
