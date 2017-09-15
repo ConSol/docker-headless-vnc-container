@@ -11,7 +11,7 @@ URLS=(
 )
 PAYLOAD='{"source_type": "Tag", "source_name": "'$DOCKER_TAG'"}'
 
-if [[ $DOCKER_TAG == "master" ]] ; then
+if [[ $DOCKER_TAG == "latest" ]] ; then
    PAYLOAD='{"docker_tag": "'latest'"}'
 fi
 if [[ $DOCKER_TAG == "dev" ]] ; then
