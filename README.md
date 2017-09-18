@@ -11,7 +11,7 @@ Each Docker image is installed with the following components:
   * Mozilla Firefox
   * Chromium
 
-![Docker VNC Desktop access via HTML page](/home/tschneck/git-files/sakuli-repos/docker-headless-vnc-container/.pics/vnc_container_view.png)
+![Docker VNC Desktop access via HTML page](.pics/vnc_container_view.png)
 
 ## Current provided OS & UI sessions:
 * `consol/centos-xfce-vnc`: __Centos7 with `Xfce4` UI session__ 
