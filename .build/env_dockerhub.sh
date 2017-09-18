@@ -4,6 +4,7 @@
 echo "branch= $GIT_BRANCH"
 GIT_BRANCH=${GIT_BRANCH/origin\/}
 DTAG="${GIT_BRANCH/feature\/#}"
+DTAG="${GIT_BRANCH/refs\/tags\/}"
 
 
 if [[ $DTAG == "master" ]] ; then
