@@ -5,7 +5,7 @@ SRC_TAG=$1
 TARGET_TAG=$2
 echo "tag $SRC_TAG -> $TARGET_TAG"
 if [[ $SRC_TAG == "" ]] || [[ $TARGET_TAG == "" ]] ; then
-  echo "ERROR: execute script like: tag_image.h <src-tag> <target-tag>"
+  echo "ERROR: execute script like: tag_image.sh <src-tag> <target-tag>"
   exit -1
 fi
 

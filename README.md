@@ -2,7 +2,7 @@
 
 The repository contains a collection of Docker images with headless VNC environments.
 
-Each docker image is installed with the following components:
+Each Docker image is installed with the following components:
 
 * Desktop environment [**Xfce4**](http://www.xfce.org) or [**IceWM**](http://www.icewm.org/)
 * VNC-Server (default VNC port `5901`)
@@ -10,6 +10,8 @@ Each docker image is installed with the following components:
 * Browsers:
   * Mozilla Firefox
   * Chromium
+
+![Docker VNC Desktop access via HTML page](/home/tschneck/git-files/sakuli-repos/docker-headless-vnc-container/.pics/vnc_container_view.png)
 
 ## Current provided OS & UI sessions:
 * `consol/centos-xfce-vnc`: __Centos7 with `Xfce4` UI session__ 
@@ -28,6 +30,9 @@ Each docker image is installed with the following components:
 
   [![](https://images.microbadger.com/badges/version/consol/ubuntu-icewm-vnc.svg)](https://hub.docker.com/r/consol/ubuntu-icewm-vnc/) [![](https://images.microbadger.com/badges/image/consol/ubuntu-icewm-vnc.svg)](http://microbadger.com/images/consol/ubuntu-icewm-vnc)
 
+## OpenShift / Kubernetes
+
+It's also possible to run the images in container orchestration platforms like [Kubernetes](https://kubernetes.io) or [OpenShift](https://openshift.io/). For more information how to deploy containers in the cluster, take a look at [OpenShift usage of "headless" VNC Docker images](/openshift/README.md) 
 
 ## Latest Changes
 See the [**changelog.md**](./changelog.md).
@@ -45,7 +50,7 @@ Change the default user and group within a container to your own with adding `--
 
 If you want to get into the container use interactive mode `-it` and `bash`     
 
-    docker run -d -p 5901:5901 -p 6901:6901 consol/centos-xfce-vnc
+    docker run -it -p 5901:5901 -p 6901:6901 consol/centos-xfce-vnc bash
 
 Build an image from scratch:
 
@@ -108,7 +113,7 @@ the docker run command:
     docker run -it -p 5901:5901 -p 6901:6901 -e VNC_RESOLUTION=800x600 consol/centos-xfce-vnc
     
 ### 4) View only VNC
-To prevent unwanted control over the VNC connection, it's possible to set environment variable `VNC_VIEW_ONLY=true`. If set the docker startup script will create a random cryptic password for the control connection and use the value of `VNC_PW` for the view only connection.
+Since version `1.2.0` it's possible to prevent unwanted control over VNC. Therefore you can set the environment variable `VNC_VIEW_ONLY=true`. If set the docker startup script will create a random cryptic password for the control connection and use the value of `VNC_PW` for the view only connection over the VNC connection.
 
      docker run -it -p 5901:5901 -p 6901:6901 -e VNC_VIEW_ONLY=true consol/centos-xfce-vnc
 
