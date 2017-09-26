@@ -22,7 +22,7 @@ VNC_IP=$(hostname -i)
 ## change vnc password
 echo -e "\n------------------ change VNC password  ------------------"
 # first entry is control, second is view (if only one is valid for both)
-mkdir "$HOME/.vnc"
+mkdir -p "$HOME/.vnc"
 PASSWD_PATH="$HOME/.vnc/passwd"
 if [[ $VNC_VIEW_ONLY == "true" ]]; then
     echo "start VNC server in VIEW ONLY mode!"
