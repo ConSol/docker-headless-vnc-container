@@ -1,5 +1,9 @@
 ## Changelog of the Docker headless VNC images
 
+### Version 1.2.1
+* Centos7: use temporally epel-testing repo to fix chrome error `libpng warning: Application built with libpng-1.6.22 but running with 1.5.13` in version `60.0.3112.113-2.el7`
+* Fix broken `docker stop/start` ([#40](https://github.com/ConSol/docker-headless-vnc-container/issues/40))
+
 ### Version 1.2.0
 * Use fixed firefox version `45.9.0esr` ([#39](https://github.com/ConSol/docker-headless-vnc-container/issues/39), [#20](https://github.com/ConSol/docker-headless-vnc-container/issues/20), [#16](https://github.com/ConSol/docker-headless-vnc-container/issues/16)) 
   * fix memory consumption problems in comparison to current firefox 55
