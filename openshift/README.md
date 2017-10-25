@@ -9,7 +9,7 @@ The following content uses as example the image `consol/centos-xfce-vnc` of the 
 
 As soon as you are logged in and selected your oc project, you can simple run the image by using the configuration `openshift.headless-vnc.run.yaml`:
 
-    oc process -f openshift.headless-vnc.run.yaml -v APPLICATION_NAME=my-run-only-pod,IMAGE=consol/centos-xfce-vnc | oc create -f -
+    oc process -f openshift.headless-vnc.run.yaml -v APPLICATION_NAME=myrunonlypod IMAGE=consol/centos-xfce-vnc | oc create -f -
     # service "my-run-only-pod" created
     # route "my-run-only-pod" created
     # imagestream "my-run-only-pod" created
