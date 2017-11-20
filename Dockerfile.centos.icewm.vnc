@@ -23,8 +23,8 @@ EXPOSE $VNC_PORT $NO_VNC_PORT
 ENV HOME=/headless \
     TERM=xterm \
     STARTUPDIR=/dockerstartup \
-    INST_SCRIPTS=$HOME/install \
-    NO_VNC_HOME=$HOME/noVNC \
+    INST_SCRIPTS=/headless/install \
+    NO_VNC_HOME=/headless/noVNC \
     VNC_COL_DEPTH=24 \
     VNC_RESOLUTION=1280x1024 \
     VNC_PW=vncpassword \
