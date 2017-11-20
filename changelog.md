@@ -1,5 +1,12 @@
 ## Changelog of the Docker headless VNC images
 
+### Version 1.2.2
+* disable automatic firefox updates ([#45](https://github.com/ConSol/docker-headless-vnc-container/issue/45))
+* fix wrong env usage of `$HOME` ([#47](https://github.com/ConSol/docker-headless-vnc-container/issue/47))
+* fix hanging vnc handshake if container is offline ([#50](https://github.com/ConSol/docker-headless-vnc-container/issue/50))
+* Merge pull requestfrom:
+    * @dmhumph: Update OpenShift instructions for OCP 3.5 or greater ([#44](https://github.com/ConSol/docker-headless-vnc-container/issue/44)) 
+
 ### Version 1.2.1
 * Centos7: use temporally epel-testing repo to fix chrome error `libpng warning: Application built with libpng-1.6.22 but running with 1.5.13` in version `60.0.3112.113-2.el7`
 * Fix broken `docker stop/start` ([#40](https://github.com/ConSol/docker-headless-vnc-container/issues/40))
