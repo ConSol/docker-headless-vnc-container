@@ -1,5 +1,8 @@
 ## Changelog of the Docker headless VNC images
 
+### DEV - Version:
+* add "Known Issues" documentation: [Chromium crashes with high VNC_RESOLUTION](https://github.com/ConSol/docker-headless-vnc-container#51-chromium-crashes-with-high-vnc_resolution-53)
+
 ### Version 1.2.2
 * disable automatic firefox updates ([#45](https://github.com/ConSol/docker-headless-vnc-container/issue/45))
 * fix wrong env usage of `$HOME` ([#47](https://github.com/ConSol/docker-headless-vnc-container/issue/47))
