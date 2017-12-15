@@ -12,7 +12,9 @@ URLS=(
 PAYLOAD='{"source_type": "Tag", "source_name": "'$DOCKER_TAG'"}'
 
 if [[ $DOCKER_TAG == "latest" ]] ; then
-   PAYLOAD='{"docker_tag": "'latest'"}'
+    echo "DockerHub will not be triggered: use script 'tag_image.sh'"
+    #PAYLOAD='{"docker_tag": "'latest'"}'
+    exit 0
 fi
 if [[ $DOCKER_TAG == "dev" ]] ; then
    PAYLOAD='{"docker_tag": "'dev'"}'
