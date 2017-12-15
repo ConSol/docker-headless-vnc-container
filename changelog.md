@@ -1,6 +1,12 @@
 ## Changelog of the Docker headless VNC images
 
-### DEV - Version:
+### Version 1.2.3:
+
+* start no_vnc with localhost instead of VNC_IP to ensure startup on docker bridge mode ([#41](https://github.com/ConSol/docker-headless-vnc-container/issue/41)) 
+* add xfce4-terminal to enable copy and paste ([#55](https://github.com/ConSol/docker-headless-vnc-container/issue/55))
+* add save mode for tag_image.sh script 
+* disable trigger latest Dockerhub build -> use tag_image.sh script 
+* use correct python-numpy packages 
 * add "Known Issues" documentation: [Chromium crashes with high VNC_RESOLUTION](https://github.com/ConSol/docker-headless-vnc-container#51-chromium-crashes-with-high-vnc_resolution-53)
 
 ### Version 1.2.2
