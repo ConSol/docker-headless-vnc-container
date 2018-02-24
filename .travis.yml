@@ -1,0 +1,24 @@
+sudo: required
+
+services:
+  - docker
+
+language: generic
+
+env:
+- DISTRI=centos DESKTOP=Xfce4
+- DISTRI=centos DESKTOP=IceWM
+- DISTRI=ubuntu DESKTOP=Xfce4
+- DISTRI=ubuntu DESKTOP=IceWM
+
+script:
+  - 'if [ ${DISTRI} == "centos" ] && [ ${DESKTOP} == "Xfce4" ]; then
+      docker build -t centos-xfce-vnc -f ./Dockerfile.centos.xfce.vnc . ;
+    elif [ ${DISTRI} == "centos" ] && [ ${DESKTOP} == "IceWM" ]; then
+      docker build -t centos-icewm-vnc -f ./Dockerfile.centos.icewm.vnc . ;
+    elif [ ${DISTRI} == "ubuntu" ] && [ ${DESKTOP} == "Xfce4" ]; then
+      docker build -t ubuntu-xfce-vnc -f ./Dockerfile.ubuntu.xfce.vnc . ;
+    else
+      docker build -t ubuntu-icewm-vnc -f ./Dockerfile.ubuntu.icewm.vnc . ;
+    fi' 
+  
