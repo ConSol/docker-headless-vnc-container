@@ -1,0 +1,62 @@
+#### POD config (run one time)
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: headless-vnc
+  labels:
+    application: headless-vnc
+spec:
+  # 1 Pods should exist at all times.
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        application: headless-vnc
+    spec:
+      terminationGracePeriodSeconds: 5
+      containers:
+      - name: headless-vnc
+        image: consol/centos-xfce-vnc
+        imagePullPolicy: Always
+        args:
+          ### make normal UI startup to connect via: oc rsh <pod-name> bash
+          #- '--tail-log'
+        ### checks that vnc server is up and running
+        livenessProbe:
+          tcpSocket:
+            port: 5901
+          initialDelaySeconds: 1
+          timeoutSeconds: 1
+        ### checks if http-vnc connection is working
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 6901
+            scheme: HTTP
+          initialDelaySeconds: 1
+          timeoutSeconds: 1
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    application: headless-vnc
+  name: headless-vnc
+spec:
+  externalName: headless-vnc
+  ports:
+  - name: http-port-tcp
+    protocol: TCP
+    port: 6901
+    targetPort: 6901
+    nodePort: 32001
+  - name: vnc-port-tcp
+    protocol: TCP
+    port: 5901
+    targetPort: 5901
+    nodePort: 32002
+  selector:
+    application: headless-vnc
+  type: NodePort
+# Use type loadbalancer if needed
+#  type: LoadBalancer

@@ -32,7 +32,10 @@ Each Docker image is installed with the following components:
 
 ## OpenShift / Kubernetes
 
-It's also possible to run the images in container orchestration platforms like [Kubernetes](https://kubernetes.io) or [OpenShift](https://openshift.io/). For more information how to deploy containers in the cluster, take a look at [OpenShift usage of "headless" VNC Docker images](/openshift/README.md) 
+It's also possible to run the images in container orchestration platforms like [Kubernetes](https://kubernetes.io) or [OpenShift](https://openshift.io/). For more information how to deploy containers in the cluster, take a look at:
+
+* [Kubernetes usage of "headless" VNC Docker images](./kubernetes/README.md)
+* [OpenShift usage of "headless" VNC Docker images](./openshift/README.md) 
 
 ## Latest Changes
 See the [**changelog.md**](./changelog.md).
