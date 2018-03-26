@@ -3,7 +3,7 @@
 FROM ubuntu:16.04
 
 MAINTAINER Tobias Schneck "tobias.schneck@consol.de"
-ENV REFRESHED_AT 2017-11-20
+ENV REFRESHED_AT 2018-03-26
 
 LABEL io.k8s.description="Headless VNC Container with IceWM window manager, firefox and chromium" \
       io.k8s.display-name="Headless VNC Container based on Ubuntu" \
