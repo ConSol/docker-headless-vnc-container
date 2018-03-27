@@ -147,6 +147,9 @@ At this point we want to thank all contributors, which helped to move this great
 * [hsiaoyi0504](https://github.com/hsiaoyi0504) - PR [#66](https://github.com/ConSol/docker-headless-vnc-container/pull/66)
 * [dmhumph](https://github.com/dmhumph) - PR [#44](https://github.com/ConSol/docker-headless-vnc-container/issue/44) 
 
+## Changelog
+
+The current changelog is provided here: **[changelog.md](./changelog.md)**
 
 ## Contact
 For questions, professional support or maybe some hints, feel free to contact us via **[testautomatisierung@consol.de](mailto:testautomatisierung@consol.de)** or open an [issue](https://github.com/ConSol/docker-headless-vnc-container/issues/new).
