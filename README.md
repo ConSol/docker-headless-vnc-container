@@ -10,8 +10,11 @@ Each Docker image is installed with the following components:
 * Browsers:
   * Mozilla Firefox
   * Chromium
-
+  
 ![Docker VNC Desktop access via HTML page](.pics/vnc_container_view.png)
+
+## Build Status
+`master`:  [![Build Status MASTER](https://travis-ci.org/ConSol/docker-headless-vnc-container.svg?branch=master)](https://travis-ci.org/ConSol/docker-headless-vnc-container) `dev`: [![Build Status DEV](https://travis-ci.org/ConSol/docker-headless-vnc-container.svg?branch=dev)](https://travis-ci.org/ConSol/docker-headless-vnc-container)
 
 ## Current provided OS & UI sessions:
 * `consol/centos-xfce-vnc`: __Centos7 with `Xfce4` UI session__ 
