@@ -40,9 +40,6 @@ It's also possible to run the images in container orchestration platforms like [
 * [Kubernetes usage of "headless" VNC Docker images](./kubernetes/README.md)
 * [OpenShift usage of "headless" VNC Docker images](./openshift/README.md) 
 
-## Latest Changes
-See the [**changelog.md**](./changelog.md).
-
 ## Usage
 The usage is for all provide images **similar**, for instance see following the usage of the `consol/centos-xfce-vnc` image:
 
@@ -71,7 +68,7 @@ If the container is started like mentioned above, connect via one of these optio
 
 * connect via __VNC viewer `localhost:5901`__, default password: `vncpassword`
 * connect via __noVNC HTML5 full client__: [http://localhost:6901/vnc.html](), default password: `vncpassword` 
-* connect via __noVNC HTML5 direct client__: [http://localhost:6901/?password=vncpassword]() 
+* connect via __noVNC HTML5 lite client__: [http://localhost:6901/?password=vncpassword]() 
 
 
 ## Hints
