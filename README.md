@@ -6,7 +6,7 @@ Each Docker image is installed with the following components:
 
 * Desktop environment [**Xfce4**](http://www.xfce.org) or [**IceWM**](http://www.icewm.org/)
 * VNC-Server (default VNC port `5901`)
-* [**noVNC**](https://github.com/kanaka/noVNC) - HTML5 VNC client (default http port `6901`)
+* [**noVNC**](https://github.com/novnc/noVNC) - HTML5 VNC client (default http port `6901`)
 * Browsers:
   * Mozilla Firefox
   * Chromium
@@ -43,6 +43,10 @@ See the [**changelog.md**](./changelog.md).
 ## Usage
 The usage is for all provide images **similar**, for instance see following the usage of the `consol/centos-xfce-vnc` image:
 
+Print out help page:
+
+    docker run consol/centos-xfce-vnc --help    
+
 Run command with mapping to local port `5901` (vnc protocol) and `6901` (vnc web access):
 
     docker run -d -p 5901:5901 -p 6901:6901 consol/centos-xfce-vnc
@@ -59,9 +63,12 @@ Build an image from scratch:
 
     docker build -t consol/centos-xfce-vnc centos-xfce-vnc
 
-=> connect via __VNC viewer `localhost:5901`__, default password: `vncpassword`
+# Connect & Control
+If the container is started like mentioned above, connect via one of these options:
 
-=> connect via __noVNC HTML5 client__: [http://localhost:6901/?password=vncpassword]()
+* connect via __VNC viewer `localhost:5901`__, default password: `vncpassword`
+* connect via __noVNC HTML5 full client__: [http://localhost:6901/vnc.html](), default password: `vncpassword` 
+* connect via __noVNC HTML5 direct client__: [http://localhost:6901/?password=vncpassword]() 
 
 
 ## Hints
@@ -71,21 +78,20 @@ Since `1.1.0` all images run as non-root user per default, so that means, if you
 
 ```bash
 ## Custom Dockerfile
-FROM consol/centos-xfce-vnc:1.1.0
-MAINTAINER Tobias Schneck "tobias.schneck@consol.de"
-ENV REFRESHED_AT 2017-04-10
+FROM consol/centos-xfce-vnc
+ENV REFRESHED_AT 2018-03-18
 
 ## Install a gedit
 USER 0
 RUN yum install -y gedit \
     && yum clean all
 ## switch back to default user
-USER 1984
+USER 1000
 ```
 
 ### 2) Change User of running Sakuli Container
 
-Per default, since version `1.1.0` all container processes will executed with user id `1984`. You can change the user id like follow: 
+Per default, since version `1.3.0` all container processes will executed with user id `1000`. You can change the user id like follow: 
 
 #### 2.1) Using root (user id `0`)
 Add the `--user` flag to your docker run command:
