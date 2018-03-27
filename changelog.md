@@ -1,5 +1,17 @@
 ## Changelog of the Docker headless VNC images
 
+### Version 1.3.0:
+* change default USER to `1000` ([#61](https://github.com/ConSol/docker-headless-vnc-container/issues/61))
+* refactor vnc startup script ([#73](https://github.com/ConSol/docker-headless-vnc-container/issues/73))
+  * add help option `--help`
+  * ensure correct forwarding of shutdown signals
+  * add "DEBUG" mode and move all log output to this mode
+  * update README.md
+* merge pull request from:
+  * [hsiaoyi0504](https://github.com/hsiaoyi0504) update noVNC to [https://github.com/novnc/noVNC/releases/tag/v1.0.0](v1.0.0) ([#66](https://github.com/ConSol/docker-headless-vnc-container/pull/66))
+* add example for [Kubernetes usage](./kubernetes/README.md) ([#71](https://github.com/ConSol/docker-headless-vnc-container/issues/71)) 
+* remove verbose output by default from set_user_permissions.sh
+ 
 ### Version 1.2.3:
 
 * start no_vnc with localhost instead of VNC_IP to ensure startup on docker bridge mode ([#41](https://github.com/ConSol/docker-headless-vnc-container/issue/41)) 
@@ -13,8 +25,8 @@
 * disable automatic firefox updates ([#45](https://github.com/ConSol/docker-headless-vnc-container/issue/45))
 * fix wrong env usage of `$HOME` ([#47](https://github.com/ConSol/docker-headless-vnc-container/issue/47))
 * fix hanging vnc handshake if container is offline ([#50](https://github.com/ConSol/docker-headless-vnc-container/issue/50))
-* Merge pull requestfrom:
-    * @dmhumph: Update OpenShift instructions for OCP 3.5 or greater ([#44](https://github.com/ConSol/docker-headless-vnc-container/issue/44)) 
+* Merge pull request from:
+    * [dmhumph](https://github.com/dmhumph): Update OpenShift instructions for OCP 3.5 or greater ([#44](https://github.com/ConSol/docker-headless-vnc-container/issue/44)) 
 
 ### Version 1.2.1
 * Centos7: use temporally epel-testing repo to fix chrome error `libpng warning: Application built with libpng-1.6.22 but running with 1.5.13` in version `60.0.3112.113-2.el7`
