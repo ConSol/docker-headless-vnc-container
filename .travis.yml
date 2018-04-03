@@ -21,4 +21,17 @@ script:
     else
       docker build -t ubuntu-icewm-vnc -f ./Dockerfile.ubuntu.icewm.vnc . ;
     fi' 
-  
+
+deploy:
+  provider: script
+  script: .build/trigger_dockerhub.sh
+  on:
+    tags: false
+    all_branches: true
+
+notifications:
+  email:
+    recipients:
+      - Sakuli%0032%0062%0032Notifications+719bb1d7615904fb214c668723655875@zulip.consol.de
+    on_success: always # default: change
+    on_failure: always # default: always

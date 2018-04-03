@@ -8,9 +8,9 @@
   * add "DEBUG" mode and move all log output to this mode
   * update README.md
 * merge pull request from:
-  * [hsiaoyi0504](https://github.com/hsiaoyi0504) update noVNC to [https://github.com/novnc/noVNC/releases/tag/v1.0.0](v1.0.0) ([#66](https://github.com/ConSol/docker-headless-vnc-container/pull/66))
+  * [hsiaoyi0504](https://github.com/hsiaoyi0504) update noVNC to [v1.0.0](https://github.com/novnc/noVNC/releases/tag/v1.0.0) ([#66](https://github.com/ConSol/docker-headless-vnc-container/pull/66))
 * add example for [Kubernetes usage](./kubernetes/README.md) ([#71](https://github.com/ConSol/docker-headless-vnc-container/issues/71)) 
-* remove verbose output by default from set_user_permissions.sh
+* remove verbose output by default from `set_user_permissions.sh` script
  
 ### Version 1.2.3:
 
