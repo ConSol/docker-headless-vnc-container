@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 set -e -o pipefail
+
+
 if [ -z $GIT_BRANCH ] ; then
     GIT_BRANCH=$TRAVIS_BRANCH
 fi
@@ -35,11 +37,16 @@ if [[ $DOCKER_TAG == "dev" ]] ; then
    PAYLOAD='{"docker_tag": "'dev'"}'
 fi
 
+# use first parameter to filter trigger command
+IMAGENAME=$1
+
 #Loop
 for URL in "${URLS[@]}"
 do
-	echo "URL: $URL"
-  	echo "PAYLOAD: $PAYLOAD"
-    curl -H "Content-Type: application/json" --data "$PAYLOAD" -X POST "$URL"
-    echo " - done!"
+    if [ -z $IMAGENAME ] || [[ $URL =~ .*"$IMAGENAME".* ]] ; then
+        echo "URL: $URL"
+        echo "PAYLOAD: $PAYLOAD"
+        curl -H "Content-Type: application/json" --data "$PAYLOAD" -X POST "$URL"
+        echo " - done!"
+    fi
 done
