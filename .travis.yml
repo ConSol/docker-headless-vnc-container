@@ -17,8 +17,10 @@ after_success:
   - bash .build/trigger_dockerhub.sh ${DISTRI}-${DESKTOP}-vnc
 
 notifications:
-  email:
-    recipients:
-      - "Sakuli%0032%0062%0032Notifications+719bb1d7615904fb214c668723655875@zulip.consol.de"
-    on_success: always # default: change
-    on_failure: always # default: always
+webhooks:
+- https://zulip.consol.de/api/v1/external/travis?stream=travis&topic=build-status&api_key=oyr05aerjU4OVFAmlAx4aV9FzMfA04Uc
+#  email:
+#    recipients:
+#      - "Sakuli%0032%0062%0032Notifications+719bb1d7615904fb214c668723655875@zulip.consol.de"
+#    on_success: always # default: change
+#    on_failure: always # default: always
