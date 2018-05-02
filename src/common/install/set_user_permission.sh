@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 ### every exit != 0 fails the script
 set -e
-if [[ -z $DEBUG ]]; then
+if [[ -n $DEBUG ]]; then
     verbose="-v"
 fi
 
