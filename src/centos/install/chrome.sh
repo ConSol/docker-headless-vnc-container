@@ -3,13 +3,9 @@
 set -e
 
 echo "Install Chromium Browser"
-
-#TODO use temporally epel-testing repo to fix chrome version 60.0.3112.113-2.el7
-yum-config-manager --enable epel-testing
 yum -y install chromium chromium-libs chromium-libs-media
-yum-config-manager --enable epel-testing
-
 yum clean all
+
 ln -s /usr/bin/chromium-browser /usr/bin/google-chrome
 
 ### fix to start chromium in a Docker container, see https://github.com/ConSol/docker-headless-vnc-container/issues/2
