@@ -48,6 +48,10 @@ RUN $INST_SCRIPTS/chrome.sh
 RUN $INST_SCRIPTS/tigervnc.sh
 RUN $INST_SCRIPTS/no_vnc.sh
 
+### Install xfce UI
+RUN $INST_SCRIPTS/xfce_ui.sh
+ADD ./src/common/xfce/ $HOME/
+
 ### configure startup
 RUN $INST_SCRIPTS/libnss_wrapper.sh
 ADD ./src/common/scripts $STARTUPDIR

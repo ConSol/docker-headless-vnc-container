@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 ### every exit != 0 fails the script
-set -ex
+set -e
 
 echo "Install Chromium Browser"
 apt-get update
