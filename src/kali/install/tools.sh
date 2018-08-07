@@ -4,7 +4,7 @@ set -e
 
 echo "Install some common tools for further installation"
 apt-get update
-apt-get install -y kali-linux-top10 xauth vim wget net-tools locales bzip2 libc6-i386 libx11-6 \
+apt-get install -y host traceroute kali-linux-top10 xauth vim wget net-tools locales bzip2 libc6-i386 libx11-6 \
     python-numpy #used for websockify/novnc
 apt-get clean -y
 
