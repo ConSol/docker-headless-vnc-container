@@ -5,10 +5,10 @@ FROM centos:7
 MAINTAINER Tobias Schneck "tobias.schneck@consol.de"
 ENV REFRESHED_AT 2018-03-27
 
-LABEL io.k8s.description="Headless VNC Container with Xfce window manager, firefox and chromium" \
+LABEL io.k8s.description="Headless VNC Container with X11 window manager" \
       io.k8s.display-name="Headless VNC Container based on Centos" \
       io.openshift.expose-services="6901:http,5901:xvnc" \
-      io.openshift.tags="vnc, centos, xfce" \
+      io.openshift.tags="vnc, centos, X11" \
       io.openshift.non-scalable=true
 
 ## Connection ports for controlling the UI:
