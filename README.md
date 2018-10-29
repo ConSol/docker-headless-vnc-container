@@ -138,6 +138,9 @@ If you open some graphic/work intensive websites in the Docker container (especi
   
 Thx @raghavkarol for the hint! 
 
+## How to release
+See **[how-to-release.md](./how-to-release.md)**
+
 ## Contributors
 
 At this point we want to thank all contributors, which helped to move this great project by submitting code, writing documentation, or adapting other tools to play well together with the docker headless container.

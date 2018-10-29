@@ -67,6 +67,12 @@ echo -e "\n------------------ change VNC password  ------------------"
 # first entry is control, second is view (if only one is valid for both)
 mkdir -p "$HOME/.vnc"
 PASSWD_PATH="$HOME/.vnc/passwd"
+
+if [[ -f $PASSWD_PATH ]]; then
+    echo -e "\n---------  purging existing VNC password settings  ---------"
+    rm -f $PASSWD_PATH
+fi
+
 if [[ $VNC_VIEW_ONLY == "true" ]]; then
     echo "start VNC server in VIEW ONLY mode!"
     #create random pw to prevent access
