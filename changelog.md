@@ -1,5 +1,13 @@
 ## Changelog of the Docker headless VNC images
 
+### Version 1.4.0:
+* added Github issue and pull request templates
+* added install script for custom fonts ([#83](https://github.com/ConSol/docker-headless-vnc-container/issues/83)))
+* fixed problem that VNC password was not properly set after doing a Docker commit ([#88](https://github.com/ConSol/docker-headless-vnc-container/issues/88))
+* fixed some typos ([#87](https://github.com/ConSol/docker-headless-vnc-container/issues/87))
+* added 'how-to-release' info ([#75](https://github.com/ConSol/docker-headless-vnc-container/issues/75))
+* added Travis build ([#74](https://github.com/ConSol/docker-headless-vnc-container/issues/74))
+
 ### Version 1.3.0:
 * change default USER to `1000` ([#61](https://github.com/ConSol/docker-headless-vnc-container/issues/61))
 * refactor vnc startup script ([#73](https://github.com/ConSol/docker-headless-vnc-container/issues/73))
