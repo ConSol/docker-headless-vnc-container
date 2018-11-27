@@ -31,8 +31,8 @@ floating_modifier $mod
 
 # start a terminal
 # bindsym $mod+Return exec i3-sensible-terminal
-# bindsym $mod+Return exec "/usr/bin/xterm -fs 14 -bg black -fg white -e bash"
-bindsym $mod+Return exec "/usr/bin/xterm -e bash"
+bindsym $mod+Return exec "/usr/bin/xterm -fs 14 -bg black -fg white -e bash"
+# bindsym $mod+Return exec "/usr/bin/xterm -e bash"
 
 
 # kill focused window
