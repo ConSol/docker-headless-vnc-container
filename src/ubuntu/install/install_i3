@@ -28,7 +28,7 @@ chown -R $name /home/$name/.config
 
 
 # login with no-root user
-xhost +; pkill icewm && /bin/su -l $name -c '/bin/sh -c i3 &'
+xhost +; pkill icewm && /bin/su -l $name -c '/bin/bash -c i3 &'
 
 
 
