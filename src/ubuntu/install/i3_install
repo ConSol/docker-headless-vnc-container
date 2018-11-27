@@ -19,5 +19,4 @@ else
 fi
 
 # login with no-root user
-# /bin/su -l $name -c '/bin/sh -c i3'
-pkill icewm && i3 &
+xhost +; pkill icewm && /bin/su -l $name -c '/bin/sh -c i3 &'
