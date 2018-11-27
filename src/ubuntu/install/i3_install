@@ -1,0 +1,23 @@
+#/bin/bash
+
+# install i3
+wget http://debian.sur5r.net/i3/pool/main/s/sur5r-keyring/sur5r-keyring_2018.01.30_all.deb
+dpkg -i sur*
+echo "deb http://debian.sur5r.net/i3/ $(grep '^DISTRIB_CODENAME=' /etc/lsb-release | cut -f2 -d=) universe" >> /etc/apt/sources.list.d/sur5r-i3.list
+apt update
+apt install -y i3 sudo
+
+# create user
+read -p "input username :" name
+egrep "^$name" /etc/passwd >/dev/null
+if [ $? -eq 0 ]; then
+    echo "$name exists!"
+else
+    useradd -m $name
+    adduser $name sudo
+    passwd $name
+fi
+
+# login with no-root user
+# /bin/su -l $name -c '/bin/sh -c i3'
+pkill icewm && i3 &
