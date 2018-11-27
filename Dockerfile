@@ -56,8 +56,8 @@ RUN $INST_SCRIPTS/tigervnc.sh
 RUN $INST_SCRIPTS/no_vnc.sh
 
 ### Install firefox and chrome browser
-#RUN $INST_SCRIPTS/firefox.sh
-#RUN $INST_SCRIPTS/chrome.sh
+RUN $INST_SCRIPTS/firefox.sh
+RUN $INST_SCRIPTS/chrome.sh
 
 ### Install IceWM UI
 RUN $INST_SCRIPTS/icewm_ui.sh
