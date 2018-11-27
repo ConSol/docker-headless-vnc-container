@@ -1,0 +1,232 @@
+! Font options - ~/.fonts.conf seems to override this
+! Resolution for Xft in dots per inch (e.g. 96)
+!Xft.dpi:       128
+! Type of subpixel antialiasing (none, rgb, bgr, vrgb or vbgr)
+!Xft.rgba:      rgba
+!Xft.antialias: 1
+!Xft.hinting:   1
+!Xft.autohint:  0
+! What degree of hinting to use (hintnone, hintslight, hintmedium, or hintfull)
+!Xft.hintstyle: hintslight
+
+xterm*faceName: terminus-12
+URxvt*font:     terminus-12
+URxvt*boldFont: terminus-12
+
+!#define FONTSIZE 12
+!xterm*faceName: xft:PragmataPro:size=FONTSIZE:antialias=true:hinting=true:autohint=false:hintstyle=hintnone:dpi=96
+!URxvt*font:     xft:PragmataPro:size=FONTSIZE:antialias=true:hinting=true:autohint=false:hintstyle=hintnone:dpi=96
+!URxvt*boldFont: xft:PragmataPro:size=FONTSIZE:antialias=true:hinting=true:autohint=false:hintstyle=hintnone:dpi=96
+
+! Extra options for xft font spec - ~/.fonts.conf seems to override this
+!:antialias=false:hintstyle=hintfull
+
+#define WINDOWGEOMETRY 90x20
+! xterm
+xterm*dynamiccolors:      true
+xterm*utf8:               2
+xterm*geometry:           WINDOWGEOMETRY
+xterm*visualBell:         off
+xterm*highlightSelection: true
+!xterm*background:      lightblack
+!xterm*foreground:      lightblue
+!xterm*colorMode:       on
+!xterm*colorBD:         lightcyan
+!xterm*colorBDMode:     on
+!xterm*colorUL:         white
+!xterm*colorULMode:     on
+!xterm*scrollTtyOutput: false
+!xterm*scrollKey:       true
+!xterm*scrollBar:       true
+
+XTerm*selectToClipboard: true
+
+
+! URxvt
+URxvt.modifier: mod1
+URxvt*loginShell: true
+URxvt.borderless: false
+URxvt*dynamicColors: on
+URxvt*letterSpace: -1
+URxvt.geometry: WINDOWGEOMETRY
+URxvt.imLocale: en_US.UTF-8
+URxvt.lineSpace: 0
+URxvt.loginShell: true
+URxvt.saveLines: 5000
+URxvt.scrollBar: false
+URxvt.scrollstyle: plain
+URxvt*termName: xterm-256color
+URxvt.transparent: false
+URxvt.visualBell: false
+
+
+! URxvt.urgentOnBell: true
+! URxvt.urlLauncher: chrome
+! URxvt.internalBorder: 3
+! URxvt.depth: 24
+! URxvt.letterSpace: -1
+! URxvt.shading: 100
+
+! URxvt.perl-ext-common:  default,tabbed
+! ,clipboard
+! URxvt.tabbed.tabbar-fg: 4
+! URxvt.tabbed.tabbar-bg: 0
+! URxvt.tabbed.tab-fg:    9
+! URxvt.tabbed.tab-bg:    0
+! URxvt.keysym.M-c:   perl:clipboard:copy
+! URxvt.keysym.M-v:   perl:clipboard:paste
+
+! Colors
+
+*.boldMode: true
+*.colorBDMode: false
+!*.colorBD: cyan
+
+!! Base16 Flat
+!#define base00 #2C3E50
+!#define base01 #34495E
+!#define base02 #7F8C8D
+!#define base03 #95A5A6
+!#define base04 #BDC3C7
+!#define base05 #e0e0e0
+!#define base06 #f5f5f5
+!#define base07 #ECF0F1
+!#define base08 #E74C3C
+!#define base09 #E67E22
+!#define base0A #F1C40F
+!#define base0B #2ECC71
+!#define base0C #1ABC9C
+!#define base0D #3498DB
+!#define base0E #9B59B6
+!#define base0F #be643c
+
+! Base16 Eighties
+#define base00 #2d2d2d
+#define base01 #393939
+#define base02 #515151
+#define base03 #747369
+#define base04 #a09f93
+#define base05 #d3d0c8
+#define base06 #e8e6df
+#define base07 #f2f0ec
+#define base08 #f2777a
+#define base09 #f99157
+#define base0A #ffcc66
+#define base0B #99cc99
+#define base0C #66cccc
+#define base0D #6699cc
+#define base0E #cc99cc
+#define base0F #d27b53
+
+!! Base16 Atelier Dune
+!#define base00 #20201d
+!#define base01 #292824
+!#define base02 #6e6b5e
+!#define base03 #7d7a68
+!#define base04 #999580
+!#define base05 #a6a28c
+!#define base06 #e8e4cf
+!#define base07 #fefbec
+!#define base08 #d73737
+!#define base09 #b65611
+!#define base0A #cfb017
+!#define base0B #60ac39
+!#define base0C #1fad83
+!#define base0D #6684e1
+!#define base0E #b854d4
+!#define base0F #d43552
+
+
+! Dark
+*.foreground:   base05
+*.background:   base00
+*.cursorColor:  base05
+*.cursorColor2:  base05
+*.cursorUnderline: true
+*.cursorBlink: true
+
+! Light
+!*.foreground:   base02
+!*.background:   base07
+!*.cursorColor:  base02
+!*.cursorColor2:  base02
+
+*.color0:       base00
+*.color1:       base08
+*.color2:       base0B
+*.color3:       base0A
+*.color4:       base0D
+*.color5:       base0E
+*.color6:       base0C
+*.color7:       base05
+*.color8:       base03
+*.color9:       base08
+*.color10:      base0B
+*.color11:      base0A
+*.color12:      base0D
+*.color13:      base0E
+*.color14:      base0C
+*.color15:      base07
+*.color16:      base09
+*.color17:      base0F
+*.color18:      base01
+*.color19:      base02
+*.color20:      base04
+*.color21:      base06
+
+!! Solarized color scheme for the X Window System
+!! http://ethanschoonover.com/solarized
+!! Common
+!#define S_yellow        #b58900
+!#define S_orange        #cb4b16
+!#define S_red           #dc322f
+!#define S_magenta       #d33682
+!#define S_violet        #6c71c4
+!#define S_blue          #268bd2
+!#define S_cyan          #2aa198
+!#define S_green         #859900
+!! Dark
+!#define S_base02        #073642
+!#define S_base03        #002b36
+!#define S_base01        #586e75
+!#define S_base00        #657b83
+!#define S_base0         #839496
+!#define S_base1         #93a1a1
+!#define S_base2         #eee8d5
+!#define S_base3         #fdf6e3
+!! Light
+!!#define S_base03        #fdf6e3
+!!#define S_base02        #eee8d5
+!!#define S_base01        #93a1a1
+!!#define S_base00        #839496
+!!#define S_base0         #657b83
+!!#define S_base1         #586e75
+!!#define S_base2         #073642
+!!#define S_base3         #002b36
+!
+!*background:              S_base03
+!*foreground:              S_base0
+!*fading:                  40
+!*fadeColor:               S_base03
+!*cursorColor:             S_base1
+!*pointerColorBackground:  S_base01
+!*pointerColorForeground:  S_base1
+!
+!*color0:                  S_base02
+!*color1:                  S_red
+!*color2:                  S_green
+!*color3:                  S_yellow
+!*color4:                  S_blue
+!*color5:                  S_magenta
+!*color6:                  S_cyan
+!*color7:                  S_base2
+!*color9:                  S_orange
+!*color8:                  S_base03
+!*color10:                 S_base01
+!*color11:                 S_base00
+!*color12:                 S_base0
+!*color13:                 S_violet
+!*color14:                 S_base1
+!*color15:                 S_base3
+
+!Xcursor.size: 32

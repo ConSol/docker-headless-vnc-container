@@ -7,6 +7,7 @@ echo "deb http://debian.sur5r.net/i3/ $(grep '^DISTRIB_CODENAME=' /etc/lsb-relea
 apt update
 apt install -y i3 sudo
 
+
 # create user
 read -p "input username :" name
 egrep "^$name" /etc/passwd >/dev/null
@@ -18,5 +19,14 @@ else
     passwd $name
 fi
 
+mkdir -p /home/$name/.config/i3
+cp ./config /home/$name/.config/i3
+chown -R $name /home/$name/.config
+/bin/su -l $name -c 'xrdb ./.Xresources'
+
+
 # login with no-root user
 xhost +; pkill icewm && /bin/su -l $name -c '/bin/sh -c i3 &'
+
+
+
