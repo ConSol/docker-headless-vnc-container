@@ -2,9 +2,9 @@
 ### every exit != 0 fails the script
 set -e
 
-echo "Install Xfce4 UI components and disable xfce-polkit"
+echo "Install IceWM UI components"
 
-yum -y install xorg-x11-fonts* xulrunner icewm
+yum -y install xorg-x11-fonts* xulrunner icewm xauth xkbcomp
 yum -y groups install "Fonts"
 yum erase -y *power* *screensaver*
 yum clean all
