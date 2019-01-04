@@ -34,11 +34,12 @@ PAYLOAD='{"source_type": "Tag", "source_name": "'$DOCKER_TAG'"}'
 
 # use docker tag instead of branch
 if [ "$DOCKER_TAG" = "dev" ]; then
-   echo "Triggering 'dev' build."
-   PAYLOAD='{"docker_tag": "'dev'"}'
-elif [ "$TRAVIS_EVENT_TYPE" = "cron" ]; then
-   echo "Triggering 'nightly' build."
-   PAYLOAD='{"docker_tag": "'nightly'"}'
+    echo "Triggering 'dev' build."
+    PAYLOAD='{"docker_tag": "'dev'"}'
+    if [ "$TRAVIS_EVENT_TYPE" = "cron" ]; then
+        echo "'nightly' tag."
+        PAYLOAD='{"docker_tag": "'nightly'"}'
+    fi
 fi
 
 # use first parameter to filter trigger command
