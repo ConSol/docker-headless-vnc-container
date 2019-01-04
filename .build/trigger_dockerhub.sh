@@ -14,7 +14,7 @@ echo "branch=$GIT_BRANCH"
 GIT_BRANCH=${GIT_BRANCH/origin\/}
 DOCKER_TAG="${GIT_BRANCH/refs\/tags\/}"
 
-if [[ $DOCKER_TAG == "master" ]] ; then
+if [ "$DOCKER_TAG" == "master" ]; then
    echo "skip building latest tag!"
    echo "... use 'tag_image.sh' script to release a new version. See: https://github.com/ConSol/docker-headless-vnc-container/blob/master/how-to-release.md"
    exit 0
@@ -33,8 +33,12 @@ URLS=(
 PAYLOAD='{"source_type": "Tag", "source_name": "'$DOCKER_TAG'"}'
 
 # use docker tag instead of branch
-if [[ $DOCKER_TAG == "dev" ]] ; then
+if [ "$DOCKER_TAG" = "dev" ]; then
+   echo "Triggering 'dev' build."
    PAYLOAD='{"docker_tag": "'dev'"}'
+elif [ "$TRAVIS_EVENT_TYPE" = "cron" ]; then
+   echo "Triggering 'nightly' build."
+   PAYLOAD='{"docker_tag": "'nightly'"}'
 fi
 
 # use first parameter to filter trigger command
