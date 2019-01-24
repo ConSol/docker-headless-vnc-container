@@ -39,12 +39,3 @@ function instFF() {
 }
 
 instFF '45.9.0esr' '/usr/lib/firefox'
-
-#yum -y install firefox-45.7.0-2.el7.centos
-#yum -y install firefox
-#yum clean all
-#apt-get update
-#apt-get install -y firefox
-#apt-get install -y firefox=45*
-#apt-mark hold firefox
-#apt-get clean -y
