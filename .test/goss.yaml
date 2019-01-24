@@ -1,0 +1,34 @@
+file:
+  /dockerstartup/vnc_startup.sh:
+    exists: true
+    mode: "0777"
+    owner: root
+    group: root
+    filetype: file
+    contains: []
+  /headless/wm_startup.sh:
+    exists: true
+    mode: "0777"
+    owner: root
+    group: root
+    filetype: file
+    contains: []
+port:
+  tcp:5901:
+    listening: true
+    ip:
+    - 0.0.0.0
+  tcp:6901:
+    listening: true
+    ip:
+    - 0.0.0.0
+process:
+  Xvnc:
+    running: true
+http:
+  http://localhost:6901/?password=vncpassword:
+    status: 200
+    allow-insecure: false
+    no-follow-redirects: false
+    timeout: 5000
+    body: []
