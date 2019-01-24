@@ -13,6 +13,8 @@ env:
 
 script:
   - docker build -t local/${DISTRI}-${DESKTOP}-vnc -f ./Dockerfile.${DISTRI}.${DESKTOP}.vnc .
+  - bash .build/install_dgoss.sh
+  - bash .build/run_test.sh local/${DISTRI}-${DESKTOP}-vnc .test/
 after_success:
   - bash .build/trigger_dockerhub.sh ${DISTRI}-${DESKTOP}-vnc
 
