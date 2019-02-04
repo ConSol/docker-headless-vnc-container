@@ -110,7 +110,7 @@ Add the `--user` flag to your docker run command:
 The following VNC environment variables can be overwritten at the `docker run` phase to customize your desktop environment inside the container:
 * `VNC_COL_DEPTH`, default: `24`
 * `VNC_RESOLUTION`, default: `1280x1024`
-* `VNC_PW`, default: `my-pw`
+* `VNC_PW`, default: `vncpassword`
 
 #### 3.1) Example: Override the VNC password
 Simply overwrite the value of the environment variable `VNC_PW`. For example in
