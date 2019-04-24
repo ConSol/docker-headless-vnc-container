@@ -1,0 +1,15 @@
+version: '3'
+services:
+
+  centosbox:
+    image: consol/centos-xfce-vnc
+    ports:
+      - "5901:5901"
+      - "6901:6901"
+    networks:
+      - centosbox
+    user: 0:0
+
+networks:
+  centosbox:
+    driver: overlay
