@@ -95,8 +95,14 @@ vncserver -kill $DISPLAY &> $STARTUPDIR/vnc_startup.log \
     || echo "no locks present"
 
 echo -e "start vncserver with param: VNC_COL_DEPTH=$VNC_COL_DEPTH, VNC_RESOLUTION=$VNC_RESOLUTION\n..."
-if [[ $DEBUG == true ]]; then echo "vncserver $DISPLAY -depth $VNC_COL_DEPTH -geometry $VNC_RESOLUTION"; fi
-vncserver $DISPLAY -depth $VNC_COL_DEPTH -geometry $VNC_RESOLUTION &> $STARTUPDIR/no_vnc_startup.log
+vnc_cmd="vncserver $DISPLAY -depth $VNC_COL_DEPTH -geometry $VNC_RESOLUTION"
+
+if [[ ${VNC_PASSWORDLESS:-} == "true" ]]; then
+  vnc_cmd="${vnc_cmd} -SecurityTypes None"
+fi
+
+if [[ $DEBUG == true ]]; then echo "$vnc_cmd"; fi
+$vnc_cmd &> $STARTUPDIR/no_vnc_startup.log
 echo -e "start window manager\n..."
 $HOME/wm_startup.sh &> $STARTUPDIR/wm_startup.log
 
