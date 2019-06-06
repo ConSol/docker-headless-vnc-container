@@ -100,6 +100,7 @@ The following VNC environment variables can be overwritten at the `docker run` p
 * `VNC_COL_DEPTH`, default: `24`
 * `VNC_RESOLUTION`, default: `1280x1024`
 * `VNC_PW`, default: `my-pw`
+* `VNC_PASSWORDLESS`, default: `<not set>`
 
 #### 3.1) Example: Override the VNC password
 Simply overwrite the value of the environment variable `VNC_PW`. For example in
@@ -112,6 +113,13 @@ Simply overwrite the value of the environment variable `VNC_RESOLUTION`. For exa
 the docker run command:
 
     docker run -it -p 5901:5901 -p 6901:6901 -e VNC_RESOLUTION=800x600 consol/rocky-xfce-vnc
+
+#### 3.3) Example: Start passwordless
+Set `VNC_PASSWORDLESS` to `true` to disable the VNC password.
+It is highly recommended that you put some kind of authorization mechanism
+before this. For example in the docker run command:
+
+    docker run -it -p 5901:5901 -p 6901:6901 -e VNC_PASSWORDLESS=true consol/rocky-xfce-vnc
 
 ### 4) View only VNC
 Since version `1.2.0` it's possible to prevent unwanted control via VNC. Therefore you can set the environment variable `VNC_VIEW_ONLY=true`. If set, the startup script will create a random password for the control connection and use the value of `VNC_PW` for view only connection over the VNC connection.
