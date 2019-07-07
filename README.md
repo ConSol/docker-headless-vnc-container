@@ -1,3 +1,8 @@
+# EOL
+
+This repository is no longer maintained. For productive use with Sakuli 2, please refer to the Enterprise packages that include maintained headless-container.
+[Sakuli 2 Enterprise](https://sakuli.io/enterprise/)
+
 # Docker container images with "headless" VNC session
 
 This repository contains a collection of Docker images with headless VNC environments.
