@@ -37,6 +37,9 @@ fi
 # should also source $STARTUPDIR/generate_container_user
 source $HOME/.bashrc
 
+# For heroku, change port on runtime
+export NO_VNC_PORT=${NO_VNC_PORT-$PORT}
+
 # add `--skip` to startup args, to skip the VNC startup procedure
 if [[ $1 =~ -s|--skip ]]; then
     echo -e "\n\n------------------ SKIP VNC STARTUP -----------------"
