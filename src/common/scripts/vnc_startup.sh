@@ -6,13 +6,10 @@ set -e
 help (){
 echo "
 USAGE:
-docker run -it -p 6901:6901 -p 5901:5901 consol/<image>:<tag> <option>
+docker run -it -p 6901:6901 -p 5901:5901 jiajiey/<image>:<tag> <option>
 
 IMAGES:
-consol/ubuntu-xfce-vnc
-consol/centos-xfce-vnc
-consol/ubuntu-icewm-vnc
-consol/centos-icewm-vnc
+jiajiey/xfce:v1.0
 
 TAGS:
 latest  stable version of branch 'master'
@@ -55,9 +52,6 @@ cleanup () {
     exit 0
 }
 trap cleanup SIGINT SIGTERM
-
-## write correct window size to chrome properties
-$STARTUPDIR/chrome-init.sh
 
 ## resolve_vnc_connection
 VNC_IP=$(hostname -i)
