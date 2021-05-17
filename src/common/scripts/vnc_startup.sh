@@ -35,7 +35,9 @@ if [[ $1 =~ -h|--help ]]; then
 fi
 
 # should also source $STARTUPDIR/generate_container_user
-source $HOME/.bashrc
+if [[ -e $HOME/.bashrc ]]; then
+	source $HOME/.bashrc
+fi
 
 # add `--skip` to startup args, to skip the VNC startup procedure
 if [[ $1 =~ -s|--skip ]]; then
@@ -111,6 +113,8 @@ if [[ $DEBUG == true ]] || [[ $1 =~ -t|--tail-log ]]; then
     # if option `-t` or `--tail-log` block the execution and tail the VNC log
     tail -f $STARTUPDIR/*.log $HOME/.vnc/*$DISPLAY.log
 fi
+
+xhost 127.0.0.1
 
 if [ -z "$1" ] || [[ $1 =~ -w|--wait ]]; then
     wait $PID_SUB
