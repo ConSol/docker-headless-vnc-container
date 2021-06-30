@@ -32,7 +32,6 @@ WORKDIR /home/testup
 
 ### Add all install scripts for further steps
 ADD src/install/ $INST_SCRIPTS/
-ADD ./src/ubuntu/install/ $INST_SCRIPTS/
 RUN find $INST_SCRIPTS -name '*.sh' -exec chmod a+x {} +
 
 ### Install some common tools
@@ -51,10 +50,10 @@ RUN $INST_SCRIPTS/chrome.sh
 
 ### Install xfce UI
 RUN $INST_SCRIPTS/xfce_ui.sh
-ADD ./src/common/xfce/ $HOME/
+ADD ./src/xfce/ $HOME/
 
 ### configure startup
-ADD ./src/common/scripts $STARTUPDIR
+ADD src/scripts $STARTUPDIR
 RUN $INST_SCRIPTS/set_user_permission.sh $STARTUPDIR $HOME
 
 RUN sed -i -e "/^%sudo/ s/.*/%sudo ALL=(ALL) NOPASSWD:ALL/" /etc/sudoers
