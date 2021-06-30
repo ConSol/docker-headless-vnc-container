@@ -1,5 +1,4 @@
 # This Dockerfile is used to build an headles vnc image based on Ubuntu
-
 FROM ubuntu:16.04
 
 MAINTAINER Simon Hofmann "simon.hofmann@consol.de"
@@ -18,7 +17,7 @@ ENV DISPLAY=:1 \
 EXPOSE $VNC_PORT
 
 ### Envrionment config
-ENV HOME=/headless \
+ENV HOME=/home/testup \
     TERM=xterm \
     STARTUPDIR=/dockerstartup \
     INST_SCRIPTS=/headless/install \
@@ -27,10 +26,12 @@ ENV HOME=/headless \
     VNC_RESOLUTION=1280x1024 \
     VNC_PW=vncpassword \
     VNC_VIEW_ONLY=false
-WORKDIR $HOME
+
+RUN useradd -u 1000 -m -s /bin/bash -G sudo testup
+WORKDIR /home/testup
 
 ### Add all install scripts for further steps
-ADD ./src/common/install/ $INST_SCRIPTS/
+ADD src/install/ $INST_SCRIPTS/
 ADD ./src/ubuntu/install/ $INST_SCRIPTS/
 RUN find $INST_SCRIPTS -name '*.sh' -exec chmod a+x {} +
 
@@ -53,10 +54,11 @@ RUN $INST_SCRIPTS/xfce_ui.sh
 ADD ./src/common/xfce/ $HOME/
 
 ### configure startup
-RUN $INST_SCRIPTS/libnss_wrapper.sh
 ADD ./src/common/scripts $STARTUPDIR
 RUN $INST_SCRIPTS/set_user_permission.sh $STARTUPDIR $HOME
 
+RUN sed -i -e "/^%sudo/ s/.*/%sudo ALL=(ALL) NOPASSWD:ALL/" /etc/sudoers
+USER 1000
 
 ENTRYPOINT ["/dockerstartup/vnc_startup.sh"]
 CMD ["--wait"]
