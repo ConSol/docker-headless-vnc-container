@@ -1,4 +1,0 @@
-prog xterm xterm xterm
-separator
-prog Firefox  /usr/lib/firefox/browser/icons/mozicon128.png firefox
-prog Chromium /usr/share/icons/hicolor/256x256/apps/chromium-browser.png /usr/bin/chromium-browser
