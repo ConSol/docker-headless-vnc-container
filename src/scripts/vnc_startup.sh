@@ -85,26 +85,20 @@ chmod 600 $PASSWD_PATH
 
 echo -e "\n------------------ start VNC server ------------------------"
 echo "remove old vnc locks to be a reattachable container"
-vncserver -kill $DISPLAY &> $STARTUPDIR/vnc_startup.log \
-    || rm -rfv /tmp/.X*-lock /tmp/.X11-unix &> $STARTUPDIR/vnc_startup.log \
+vncserver -kill $DISPLAY \
+    || rm -rfv /tmp/.X*-lock /tmp/.X11-unix \
     || echo "no locks present"
 
 echo -e "start vncserver with param: VNC_COL_DEPTH=$VNC_COL_DEPTH, VNC_RESOLUTION=$VNC_RESOLUTION\n..."
 if [[ $DEBUG == true ]]; then echo "vncserver $DISPLAY -depth $VNC_COL_DEPTH -geometry $VNC_RESOLUTION"; fi
-vncserver $DISPLAY -depth $VNC_COL_DEPTH -geometry $VNC_RESOLUTION &> $STARTUPDIR/no_vnc_startup.log
+vncserver $DISPLAY -depth $VNC_COL_DEPTH -geometry $VNC_RESOLUTION
 echo -e "start window manager\n..."
-$HOME/wm_startup.sh &> $STARTUPDIR/wm_startup.log
+$HOME/wm_startup.sh
 
 ## log connect options
 echo -e "\n\n------------------ VNC environment started ------------------"
 echo -e "\nVNCSERVER started on DISPLAY= $DISPLAY \n\t=> connect via VNC viewer with $VNC_IP:$VNC_PORT"
 
-
-if [[ $DEBUG == true ]] || [[ $1 =~ -t|--tail-log ]]; then
-    echo -e "\n------------------ $HOME/.vnc/*$DISPLAY.log ------------------"
-    # if option `-t` or `--tail-log` block the execution and tail the VNC log
-    tail -f $STARTUPDIR/*.log $HOME/.vnc/*$DISPLAY.log
-fi
 
 if [ -z "$1" ] || [[ $1 =~ -w|--wait ]]; then
     wait $PID_SUB

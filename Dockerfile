@@ -27,36 +27,44 @@ ENV HOME=/home/testup \
     VNC_PW=vncpassword \
     VNC_VIEW_ONLY=false
 
-RUN useradd -u 1000 -m -s /bin/bash -G sudo testup
-WORKDIR /home/testup
 
-### Add all install scripts for further steps
-ADD src/install/ $INST_SCRIPTS/
-RUN find $INST_SCRIPTS -name '*.sh' -exec chmod a+x {} +
+WORKDIR $INST_SCRIPTS
 
 ### Install some common tools
-RUN $INST_SCRIPTS/tools.sh
+ADD src/install/tools.sh .
+RUN ./tools.sh
 ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
 
 ### Install custom fonts
-RUN $INST_SCRIPTS/install_custom_fonts.sh
+ADD src/install/install_custom_fonts.sh .
+RUN ./install_custom_fonts.sh
 
 ### Install xvnc-server - HTML5 based VNC viewer
-RUN $INST_SCRIPTS/tigervnc.sh
-
-### Install firefox and chrome browser
-RUN $INST_SCRIPTS/firefox.sh
-RUN $INST_SCRIPTS/chrome.sh
+ADD src/install/tigervnc.sh .
+RUN ./tigervnc.sh
 
 ### Install xfce UI
+ADD src/install/xfce_ui.sh .
 RUN $INST_SCRIPTS/xfce_ui.sh
-ADD ./src/xfce/ $HOME/
+
+### Install firefox and chrome browser
+ADD src/install/firefox.sh .
+RUN $INST_SCRIPTS/firefox.sh
+
+ADD src/install/chrome.sh .
+RUN $INST_SCRIPTS/chrome.sh
+
+### Setup user
+RUN useradd -u 1000 -m -s /bin/bash -G sudo testup
+
+WORKDIR /home/testup
+ADD ./src/xfce/ .
+ADD src/install/set_user_permission.sh .
+RUN ./set_user_permission.sh
 
 ### configure startup
 ADD src/scripts $STARTUPDIR
-RUN $INST_SCRIPTS/set_user_permission.sh $STARTUPDIR $HOME
 
-RUN sed -i -e "/^%sudo/ s/.*/%sudo ALL=(ALL) NOPASSWD:ALL/" /etc/sudoers
 USER 1000
 
 ENTRYPOINT ["/dockerstartup/vnc_startup.sh"]
