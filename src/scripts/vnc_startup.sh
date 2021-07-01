@@ -82,7 +82,6 @@ chmod 600 $PASSWD_PATH
 
 
 ## start vncserver
-
 echo -e "\n------------------ start VNC server ------------------------"
 echo "remove old vnc locks to be a reattachable container"
 vncserver -kill $DISPLAY \
@@ -93,7 +92,6 @@ echo -e "start vncserver with param: VNC_COL_DEPTH=$VNC_COL_DEPTH, VNC_RESOLUTIO
 if [[ $DEBUG == true ]]; then echo "vncserver $DISPLAY -depth $VNC_COL_DEPTH -geometry $VNC_RESOLUTION"; fi
 vncserver $DISPLAY -depth $VNC_COL_DEPTH -geometry $VNC_RESOLUTION
 echo -e "start window manager\n..."
-$HOME/wm_startup.sh
 
 ## log connect options
 echo -e "\n\n------------------ VNC environment started ------------------"

@@ -56,15 +56,15 @@ RUN $INST_SCRIPTS/chrome.sh
 
 ### Setup user
 RUN useradd -u 1000 -m -s /bin/bash -G sudo testup
+ADD ./src/xfce/ /home/testup
 
-WORKDIR /home/testup
-ADD ./src/xfce/ .
 ADD src/install/set_user_permission.sh .
 RUN ./set_user_permission.sh
 
 ### configure startup
 ADD src/scripts $STARTUPDIR
 
+WORKDIR /home/testup
 USER 1000
 
 ENTRYPOINT ["/dockerstartup/vnc_startup.sh"]
