@@ -2,10 +2,28 @@
 ### every exit != 0 fails the script
 set -e
 
-echo "Install Chromium Browser"
-apt-get update
-apt-get install -y chromium-browser chromium-browser-l10n chromium-codecs-ffmpeg
-apt-get clean -y
-ln -s /usr/bin/chromium-browser /usr/bin/google-chrome
-### fix to start chromium in a Docker container, see https://github.com/ConSol/docker-headless-vnc-container/issues/2
-#echo "CHROMIUM_FLAGS='--no-sandbox --start-maximized --user-data-dir'" > $HOME/.chromium-browser.init
+
+echo "Install Chrome Browser"
+apt-get update && apt-get install -y \
+	apt-transport-https \
+	ca-certificates \
+	curl \
+	gnupg \
+	--no-install-recommends
+
+curl -sSL https://dl.google.com/linux/linux_signing_key.pub | apt-key add -
+echo "deb https://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list
+
+apt-get update && apt-get install -y \
+	google-chrome-stable \
+	fontconfig \
+	fonts-ipafont-gothic \
+	fonts-wqy-zenhei \
+	fonts-thai-tlwg \
+	fonts-kacst \
+	fonts-symbola \
+	fonts-noto \
+	fonts-freefont-ttf \
+	--no-install-recommends
+
+rm -rf /var/lib/apt/lists/*
