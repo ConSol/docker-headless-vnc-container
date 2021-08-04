@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Sakuli - Testing and Monitoring-Tool for Websites and common UIs.
+  ~
+  ~ Copyright 2013 - 2015 the original author or authors.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<channel name="xfce4-panel" version="1.0">
+    <property name="configver" type="int" value="2"/>
+    <property name="panels" type="array">
+        <value type="int" value="1"/>
+        <property name="panel-1" type="empty">
+            <property name="position" type="string" value="p=6;x=0;y=0"/>
+            <property name="length" type="uint" value="100"/>
+            <property name="position-locked" type="bool" value="true"/>
+            <property name="size" type="uint" value="30"/>
+            <property name="plugin-ids" type="array">
+                <value type="int" value="1"/>
+                <value type="int" value="3"/>
+                <value type="int" value="15"/>
+                <value type="int" value="4"/>
+                <value type="int" value="5"/>
+                <value type="int" value="2"/>
+            </property>
+        </property>
+    </property>
+    <property name="plugins" type="empty">
+        <property name="plugin-1" type="string" value="applicationsmenu"/>
+        <property name="plugin-2" type="string" value="actions"/>
+        <property name="plugin-3" type="string" value="tasklist"/>
+        <property name="plugin-15" type="string" value="separator">
+            <property name="expand" type="bool" value="true"/>
+            <property name="style" type="uint" value="0"/>
+        </property>
+        <property name="plugin-4" type="string" value="pager"/>
+        <property name="plugin-5" type="string" value="clock"/>
+        <property name="plugin-6" type="string" value="systray"/>
+        <property name="plugin-7" type="string" value="showdesktop"/>
+        <property name="plugin-8" type="string" value="separator"/>
+        <property name="plugin-9" type="string" value="launcher">
+            <property name="items" type="array">
+                <value type="string" value="14413071971.desktop"/>
+            </property>
+        </property>
+        <property name="plugin-10" type="string" value="launcher">
+            <property name="items" type="array">
+                <value type="string" value="14413071972.desktop"/>
+            </property>
+        </property>
+        <property name="plugin-11" type="string" value="launcher">
+            <property name="items" type="array">
+                <value type="string" value="14413071973.desktop"/>
+            </property>
+        </property>
+        <property name="plugin-12" type="string" value="launcher">
+            <property name="items" type="array">
+                <value type="string" value="14413071974.desktop"/>
+            </property>
+        </property>
+        <property name="plugin-13" type="string" value="separator"/>
+        <property name="plugin-14" type="string" value="directorymenu">
+            <property name="base-directory" type="string" value="/root"/>
+        </property>
+    </property>
+</channel>

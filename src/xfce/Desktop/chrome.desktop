@@ -1,0 +1,27 @@
+[Desktop Entry]
+Version=1.0
+Name=Google Chrome
+GenericName=Web Browser
+Comment=Access the Internet
+Exec=google-chrome --no-sandbox --maximize %U
+Terminal=false
+X-MultipleArgs=false
+Type=Application
+Icon=google-chrome
+Categories=Network;WebBrowser;
+MimeType=text/html;text/xml;application/xhtml_xml;x-scheme-handler/http;x-scheme-handler/https;
+StartupWMClass=google-chrome
+StartupNotify=true
+Actions=NewWindow;Incognito;TempProfile;
+X-AppInstall-Package=google-chrome
+
+[Desktop Action NewWindow]
+Name=Open a New Window
+Exec=google-chrome --no-sandbox
+
+[Desktop Action Incognito]
+Name=Open a New Window in incognito mode
+Exec=google-chrome --no-sandbox --incognito
+
+[Desktop Action TempProfile]
+Exec=google-chrome --no-sandbox --temp-profile
