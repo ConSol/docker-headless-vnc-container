@@ -3,4 +3,13 @@
 set -e
 
 echo "Installing ttf-wqy-zenhei"
-apt-get install -y ttf-wqy-zenhei
+apt-get install -y \
+	fontconfig \
+	fonts-ipafont-gothic \
+	fonts-wqy-zenhei \
+	fonts-thai-tlwg \
+	fonts-kacst \
+	fonts-symbola \
+	fonts-noto \
+	fonts-freefont-ttf \
+	--no-install-recommends
