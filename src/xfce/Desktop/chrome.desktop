@@ -3,7 +3,7 @@ Version=1.0
 Name=Google Chrome
 GenericName=Web Browser
 Comment=Access the Internet
-Exec=google-chrome --no-sandbox --maximize %U
+Exec=google-chrome --no-sandbox --maximize --test-type %U
 Terminal=false
 X-MultipleArgs=false
 Type=Application
@@ -17,11 +17,11 @@ X-AppInstall-Package=google-chrome
 
 [Desktop Action NewWindow]
 Name=Open a New Window
-Exec=google-chrome --no-sandbox
+Exec=google-chrome --no-sandbox --test-type
 
 [Desktop Action Incognito]
 Name=Open a New Window in incognito mode
-Exec=google-chrome --no-sandbox --incognito
+Exec=google-chrome --no-sandbox --incognito --test-type
 
 [Desktop Action TempProfile]
-Exec=google-chrome --no-sandbox --temp-profile
+Exec=google-chrome --no-sandbox --temp-profile --test-type
