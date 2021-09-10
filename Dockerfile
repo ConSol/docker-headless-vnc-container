@@ -47,6 +47,9 @@ RUN ./tigervnc.sh
 ADD src/install/xfce_ui.sh .
 RUN $INST_SCRIPTS/xfce_ui.sh
 
+### Libre office
+RUN apt install -y libreoffice
+
 ### Install firefox and chrome browser
 ADD src/install/firefox.sh .
 RUN $INST_SCRIPTS/firefox.sh

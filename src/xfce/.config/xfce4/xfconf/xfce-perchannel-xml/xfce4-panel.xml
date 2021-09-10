@@ -72,7 +72,7 @@
         </property>
         <property name="plugin-13" type="string" value="separator"/>
         <property name="plugin-14" type="string" value="directorymenu">
-            <property name="base-directory" type="string" value="/root"/>
+            <property name="base-directory" type="string" value="/home/testup"/>
         </property>
     </property>
 </channel>
