@@ -56,7 +56,6 @@ RUN $INST_SCRIPTS/firefox.sh
 
 ADD src/install/chrome.sh .
 RUN $INST_SCRIPTS/chrome.sh
-RUN apt update
 
 ### Setup user
 RUN useradd -u 1000 -m -s /bin/bash -G sudo testup
