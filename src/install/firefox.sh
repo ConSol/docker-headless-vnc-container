@@ -15,14 +15,27 @@ function instFF() {
             echo "FF_URL: $FF_URL"
             wget -qO- $FF_URL | tar xvj --strip 1 -C $FF_INST/
             ln -s "$FF_INST/firefox" /usr/bin/firefox
+
+            if [ ! "${3:0:1}" == "" ]; then
+              echo "Installing custom Firefox policy"
+              mkdir -pv /etc/firefox/policies
+              cat <<EOF > /etc/firefox/policies/policies.json
+{
+  "policies": {
+    "DisableAppUpdate": true
+  }
+}
+EOF
+            fi
             exit $?
         fi
     fi
-    echo "function parameter are not set correctly please call it like 'instFF [version] [install path]'"
+
+    echo "function parameter are not set correctly please call it like 'instFF [version] [install path] [custom_policy]'"
     exit -1
 }
 
-instFF '94.0' '/usr/lib/firefox'
+instFF '91.0' '/usr/lib/firefox' 'true'
 
 #yum -y install firefox-45.7.0-2.el7.centos
 #yum -y install firefox
