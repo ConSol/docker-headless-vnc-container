@@ -95,4 +95,6 @@ else
     exec "$@"
 fi
 
+`xfconf-query -c xfce4-panel -np /plugins/clipman/tweaks/skip-action-on-key-down -t 'bool' -s true`
+
 sleep infinity
