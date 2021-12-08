@@ -1,9 +1,13 @@
 #!/usr/bin/env bash
 ### every exit != 0 fails the script
-set -e
+set -ex
+
 if [[ -n $DEBUG ]]; then
     verbose="-v"
 fi
+
+#groupadd -g 1000 testup
+#useradd testup -u 1000 -g 1000 -m -s /bin/bash
 
 sed -i -e "/^%sudo/ s/.*/%sudo ALL=(ALL) NOPASSWD:ALL/" /etc/sudoers
 touch "$HOME/.sudo_as_admin_successful"
@@ -38,3 +42,6 @@ echo Welcome to Testup!
 echo Use \"sudo apt install xxx\" to install packages from the Ubuntu universe.
 echo
 EOF
+
+chown -R testup:testup $HOME
+

@@ -55,6 +55,18 @@ if [[ $1 =~ -d|--debug ]]; then
     export DEBUG=true
 fi
 
+
+#Prepare .vnc folder
+
+echo -e "\n\n -------- XXXX Create /home/testup/.vnc/xstartup -------"
+if [[ ! -d /home/testup/.vnc ]]; then
+  echo -e "\n\n -------- Create /home/testup/.vnc/xstartup -------"
+  mkdir /home/testup/.vnc
+  cp /dockerstartup/xstartup /home/testup/.vnc
+fi
+
+
+
 ## correct forwarding of shutdown signal
 cleanup () {
     kill -s SIGTERM $!
@@ -81,7 +93,13 @@ if [[ $VNC_VIEW_ONLY == "true" ]]; then
     #create random pw to prevent access
     echo $(head /dev/urandom | tr -dc A-Za-z0-9 | head -c 20) | vncpasswd -f > $PASSWD_PATH
 fi
+
+if [[ -f /home/testup/vncsecret/vnc_password ]]; then
+    VNC_PW=$(cat /home/testup/vncsecret/vnc_password)
+fi
+
 echo "$VNC_PW" | vncpasswd -f >> $PASSWD_PATH
+
 chmod 600 $PASSWD_PATH
 
 

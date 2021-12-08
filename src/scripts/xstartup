@@ -23,9 +23,4 @@ xsetroot -solid grey
 
 vncconfig SendPrimary=0 -nowin &
 
-# xfconf-query -c xfce4-panel -np /plugins/clipman/tweaks/skip-action-on-key-down -t 'bool' -s true &
 
-#/usr/bin/firefox --kiosk $WEB_URL &
-
-#xterm -geometry 80x24+10+10 -ls -title "$VNCDESKTOP Desktop" &
-#twm
