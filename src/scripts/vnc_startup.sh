@@ -36,6 +36,13 @@ fi
 
 #source $HOME/.bashrc
 
+#Prepare .vnc folder
+
+if [[ ! -d /home/testup/.vnc ]]; then
+  mkdir /home/testup/.vnc
+  cp /dockerstartup/xstartup /home/testup/.vnc
+fi
+
 # add `--skip` to startup args, to skip the VNC startup procedure
 if [[ $1 =~ -s|--skip ]]; then
     echo -e "\n\n------------------ SKIP VNC STARTUP -----------------"
@@ -95,6 +102,6 @@ else
     exec "$@"
 fi
 
-`xfconf-query -c xfce4-panel -np /plugins/clipman/tweaks/skip-action-on-key-down -t 'bool' -s true`
+#`xfconf-query -c xfce4-panel -np /plugins/clipman/tweaks/skip-action-on-key-down -t 'bool' -s true`
 
 sleep infinity

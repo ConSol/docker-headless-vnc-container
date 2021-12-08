@@ -1,0 +1,28 @@
+#!/bin/sh
+
+
+unset SESSION_MANAGER
+unset DBUS_SESSION_BUS_ADDRESS
+OS=`uname -s`
+if [ $OS = 'Linux' ]; then
+  case "$WINDOWMANAGER" in
+    *gnome*)
+      if [ -e /etc/SuSE-release ]; then
+        PATH=$PATH:/opt/gnome/bin
+        export PATH
+      fi
+      ;;
+  esac
+fi
+if [ -f /etc/X11/xinit/xinitrc ]; then
+  sh -c /etc/X11/xinit/xinitrc &
+fi
+[ -r $HOME/.Xresources ] && xrdb $HOME/.Xresources
+xsetroot -solid grey
+
+xfconf-query -c xfce4-panel -np /plugins/clipman/tweaks/skip-action-on-key-down -t 'bool' -s true &
+
+#/usr/bin/firefox --kiosk $WEB_URL &
+
+#xterm -geometry 80x24+10+10 -ls -title "$VNCDESKTOP Desktop" &
+#twm
