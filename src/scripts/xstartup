@@ -18,9 +18,12 @@ if [ -f /etc/X11/xinit/xinitrc ]; then
   sh -c /etc/X11/xinit/xinitrc &
 fi
 [ -r $HOME/.Xresources ] && xrdb $HOME/.Xresources
+
 xsetroot -solid grey
 
-xfconf-query -c xfce4-panel -np /plugins/clipman/tweaks/skip-action-on-key-down -t 'bool' -s true &
+vncconfig SendPrimary=0 -nowin &
+
+# xfconf-query -c xfce4-panel -np /plugins/clipman/tweaks/skip-action-on-key-down -t 'bool' -s true &
 
 #/usr/bin/firefox --kiosk $WEB_URL &
 
