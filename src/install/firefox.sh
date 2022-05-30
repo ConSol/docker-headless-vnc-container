@@ -35,7 +35,7 @@ EOF
     exit -1
 }
 
-instFF '91.0' '/usr/lib/firefox' 'true'
+instFF '93.0' '/usr/lib/firefox' 'true'
 
 #yum -y install firefox-45.7.0-2.el7.centos
 #yum -y install firefox
