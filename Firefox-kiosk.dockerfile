@@ -36,8 +36,15 @@ WORKDIR $INST_SCRIPTS
 ADD /src .
 RUN ./install/image.sh
 
+
+COPY /src/scripts /dockerstartup
+COPY /src/startup/start_firefox.sh /dockerstartup/start_browser.sh
+
+### Setup user
+RUN useradd -u 1000 -m -s /bin/bash -G sudo testup
+
 WORKDIR /home/testup
 USER 1000
 
-#ENTRYPOINT ["/dockerstartup/vnc_startup.sh"]
-#CMD ["--wait"]
+ENTRYPOINT ["/dockerstartup/vnc_startup.sh"]
+CMD ["--wait"]
