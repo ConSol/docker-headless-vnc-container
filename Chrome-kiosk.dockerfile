@@ -4,7 +4,7 @@ FROM ubuntu:18.04
 MAINTAINER Simon Hofmann "simon.hofmann@consol.de"
 ENV REFRESHED_AT 2018-10-29
 
-LABEL io.k8s.description="Headless VNC Container with Xfce window manager, firefox and chromium" \
+LABEL io.k8s.description="Headless VNC Container with Chrome in Kiosk mode" \
       io.k8s.display-name="Headless VNC Container based on Ubuntu" \
       io.openshift.expose-services="6901:http,5901:xvnc" \
       io.openshift.tags="vnc, ubuntu, xfce" \
@@ -35,17 +35,22 @@ WORKDIR $INST_SCRIPTS
 
 ADD /src .
 RUN ./install/image.sh
+RUN ./install/chrome.sh
 
-RUN ./install/firefox.sh
 
 COPY /src/scripts /dockerstartup
 COPY /src/startup/start_firefox.sh /dockerstartup/start_browser.sh
+COPY /src/startup/start_chrome.sh /dockerstartup/start_browser.sh
 
 ### Setup user
 RUN useradd -u 1000 -m -s /bin/bash -G sudo testup
 
+ADD src/install/set_user_permission.sh .
+RUN ./set_user_permission.sh -xxx
+
 WORKDIR /home/testup
 USER 1000
+
 
 ENTRYPOINT ["/dockerstartup/vnc_startup.sh"]
 CMD ["--wait"]

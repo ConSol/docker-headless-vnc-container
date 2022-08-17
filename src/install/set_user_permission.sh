@@ -17,17 +17,20 @@ mkdir -p $HOME/.config/google-chrome
 touch $HOME/.config/google-chrome/'First Run'
 
 # Configure Firefox
-cat > /usr/lib/firefox/defaults/pref/autoconfig.js <<EOF_FF
-pref("general.config.filename", "firefox.cfg");
-pref("general.config.obscure_value", 0);
+if [ -d "/usr/lib/firefox/" ]
+then
+  cat > /usr/lib/firefox/defaults/pref/autoconfig.js <<EOF_FF
+  pref("general.config.filename", "firefox.cfg");
+  pref("general.config.obscure_value", 0);
 EOF_FF
-cat > /usr/lib/firefox/firefox.cfg << EOF_FF
-// Testup settings
-lockPref("app.update.auto", false);
-lockPref("app.update.enabled", false);
-lockPref("browser.shell.checkDefaultBrowser", false);
-defaultPref("browser.tabs.warnOnClose", false);
+  cat > /usr/lib/firefox/firefox.cfg << EOF_FF
+  // Testup settings
+  lockPref("app.update.auto", false);
+  lockPref("app.update.enabled", false);
+  lockPref("browser.shell.checkDefaultBrowser", false);
+  defaultPref("browser.tabs.warnOnClose", false);
 EOF_FF
+fi
 
 
 # Fix permissions

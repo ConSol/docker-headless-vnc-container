@@ -9,8 +9,6 @@ apt-get install -y wget sudo
 
 echo "*** Install XOrg minimal"
 sh -c $INST_SCRIPTS/install/xorg_firefox_minimal.sh
-echo "*** Install Firefox"
-sh -c $INST_SCRIPTS/install/firefox.sh
 echo "*** Install TigerVNC"
 sh -c $INST_SCRIPTS/install/tigervnc.sh
 echo "*** Setup User Permissions"
