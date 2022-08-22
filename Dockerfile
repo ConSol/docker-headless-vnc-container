@@ -49,7 +49,7 @@ RUN $INST_SCRIPTS/xfce_ui.sh
 
 ### Install user stuff
 RUN apt install -y libreoffice
-RUN apt install -y jq xclip claws-mail xvkbd
+RUN apt install -y jq xclip claws-mail xvkbd libavcodec-extra
 
 ### Install firefox and chrome browser
 ADD src/install/firefox.sh .
@@ -63,13 +63,17 @@ RUN useradd -u 1000 -m -s /bin/bash -G sudo testup
 ADD ./src/xfce/ /home/testup
 
 ADD src/install/set_user_permission.sh .
-RUN ./set_user_permission.sh
+RUN ./set_user_permission.sh -xxx
 
 ### configure startup
 ADD src/scripts $STARTUPDIR
 
 WORKDIR /home/testup
 USER 1000
+
+### User-level configuration for tigervnc
+ADD src/install/tigervnc_user_conf.sh .
+RUN ./tigervnc_user_conf.sh
 
 ENTRYPOINT ["/dockerstartup/vnc_startup.sh"]
 CMD ["--wait"]

@@ -1,9 +1,13 @@
 #!/usr/bin/env bash
 ### every exit != 0 fails the script
-set -e
+set -ex
+
 if [[ -n $DEBUG ]]; then
     verbose="-v"
 fi
+
+#groupadd -g 1000 testup
+#useradd testup -u 1000 -g 1000 -m -s /bin/bash
 
 sed -i -e "/^%sudo/ s/.*/%sudo ALL=(ALL) NOPASSWD:ALL/" /etc/sudoers
 touch "$HOME/.sudo_as_admin_successful"
@@ -13,17 +17,20 @@ mkdir -p $HOME/.config/google-chrome
 touch $HOME/.config/google-chrome/'First Run'
 
 # Configure Firefox
-cat > /usr/lib/firefox/defaults/pref/autoconfig.js <<EOF_FF
-pref("general.config.filename", "firefox.cfg");
-pref("general.config.obscure_value", 0);
+if [ -d "/usr/lib/firefox/" ]
+then
+  cat > /usr/lib/firefox/defaults/pref/autoconfig.js <<EOF_FF
+  pref("general.config.filename", "firefox.cfg");
+  pref("general.config.obscure_value", 0);
 EOF_FF
-cat > /usr/lib/firefox/firefox.cfg << EOF_FF
-// Testup settings
-lockPref("app.update.auto", false);
-lockPref("app.update.enabled", false);
-lockPref("browser.shell.checkDefaultBrowser", false);
-defaultPref("browser.tabs.warnOnClose", false);
+  cat > /usr/lib/firefox/firefox.cfg << EOF_FF
+  // Testup settings
+  lockPref("app.update.auto", false);
+  lockPref("app.update.enabled", false);
+  lockPref("browser.shell.checkDefaultBrowser", false);
+  defaultPref("browser.tabs.warnOnClose", false);
 EOF_FF
+fi
 
 
 # Fix permissions
@@ -38,3 +45,6 @@ echo Welcome to Testup!
 echo Use \"sudo apt install xxx\" to install packages from the Ubuntu universe.
 echo
 EOF
+
+chown -R testup:testup $HOME
+
