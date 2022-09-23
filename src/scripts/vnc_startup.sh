@@ -104,11 +104,13 @@ chmod 600 $PASSWD_PATH
 
 
 ## start vncserver
-if [[ ! -z $VNC_RESOLUTION ]]; then
-    /dockerstartup/vnc_resize.sh $VNC_RESOLUTION
-else
-   echo "Run /dockerstartup/vnc_resize.sh to set the screen resolution"
-fi
+#if [[ ! -z $VNC_RESOLUTION ]]; then
+#    /dockerstartup/vnc_resize_call.sh $VNC_RESOLUTION
+#else
+#   echo "Run /dockerstartup/vnc_resize.sh to set the screen resolution"
+#fi
+
+source /dockerstartup/vnc_resize_call.sh 1024x768
 
 
 if [ -z "$1" ] || [[ $1 =~ -w|--wait ]]; then
@@ -119,7 +121,5 @@ else
     echo "Executing command: '$@'"
     exec "$@"
 fi
-
-#`xfconf-query -c xfce4-panel -np /plugins/clipman/tweaks/skip-action-on-key-down -t 'bool' -s true`
 
 sleep infinity

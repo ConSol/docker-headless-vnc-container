@@ -5,7 +5,7 @@ echo "Hello world"
 apt-get update
 
 #Move this into tools_minimal.sh
-apt-get install -y wget sudo
+apt-get install -y wget sudo netcat
 
 echo "*** Install XOrg minimal"
 sh -c $INST_SCRIPTS/install/xorg_firefox_minimal.sh

@@ -30,6 +30,8 @@ ENV HOME=/home/testup \
     LANGUAGE='en_US:en' \
     LC_ALL='en_US.UTF-8'
 
+ENV START_BROWSER=true
+
 
 WORKDIR $INST_SCRIPTS
 
