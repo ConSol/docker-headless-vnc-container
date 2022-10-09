@@ -1,5 +1,7 @@
 # Docker container images with "headless" VNC session
 
+** This project is no longer maintained **
+
 This repository contains a collection of Docker images with headless VNC environments.
 
 Each Docker image is installed with the following components:
@@ -145,22 +147,13 @@ See **[how-to-release.md](./how-to-release.md)**
 
 At this point we want to thank all contributors, which helped to move this great project by submitting code, writing documentation, or adapting other tools to play well together with the docker headless container.
 
-* [Tobias Schneck](https://github.com/toschneck) - Lead development
+* [Tobias Schneck](https://github.com/toschneck)
 * [Robert Bohne](https://github.com/rbo) - IceWM images
 * [hsiaoyi0504](https://github.com/hsiaoyi0504) - PR [#66](https://github.com/ConSol/docker-headless-vnc-container/pull/66)
 * [dmhumph](https://github.com/dmhumph) - PR [#44](https://github.com/ConSol/docker-headless-vnc-container/issue/44) 
-* [Simon Hofmann](https://github.com/s1hofmann) - Current maintainer
+* [Simon Hofmann](https://github.com/s1hofmann)
 
 ## Changelog
 
 The current changelog is provided here: **[changelog.md](./changelog.md)**
 
-## Contact
-For questions, professional support or maybe some hints, feel free to contact us via **[testautomatisierung@consol.de](mailto:testautomatisierung@consol.de)** or open an [issue](https://github.com/ConSol/docker-headless-vnc-container/issues/new).
-
-The guys behind:
-
-**ConSol Software GmbH** <br/>
-*Franziskanerstr. 38, D-81669 Munich* <br/>
-*Tel. +49-89-45841-100, Fax +49-89-45841-111*<br/>
-*Homepage: http://www.consol.de E-Mail: [info@consol.de](info@consol.de)*
