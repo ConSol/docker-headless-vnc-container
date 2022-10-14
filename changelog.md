@@ -1,5 +1,9 @@
 ## Changelog of the Docker headless VNC images
 
+### Version 2.0.0:
+* migrated ubuntu to debian 11
+* migrated centos 7 to rocky linux 9
+
 ### Version 1.4.0:
 * added Github issue and pull request templates
 * added install script for custom fonts ([#83](https://github.com/ConSol/docker-headless-vnc-container/issues/83)))

@@ -1,14 +1,14 @@
-# This Dockerfile is used to build an headles vnc image based on Centos
+# This Dockerfile is used to build an headles vnc image based on Rocky linux
 
-FROM centos:7
+FROM rockylinux:9
 
-MAINTAINER Simon Hofmann "simon.hofmann@consol.de"
-ENV REFRESHED_AT 2018-10-29
+MAINTAINER Sven Nierlein "sven@consol.de"
+ENV REFRESHED_AT 2022-10-13
 
-LABEL io.k8s.description="Headless VNC Container with Xfce window manager, firefox and chromium" \
-      io.k8s.display-name="Headless VNC Container based on Centos" \
+LABEL io.k8s.description="Headless VNC Container with IceWM window manager, firefox and chromium" \
+      io.k8s.display-name="Headless VNC Container based on Rocky linux" \
       io.openshift.expose-services="6901:http,5901:xvnc" \
-      io.openshift.tags="vnc, centos, xfce" \
+      io.openshift.tags="vnc, rocky, icewm" \
       io.openshift.non-scalable=true
 
 ## Connection ports for controlling the UI:
@@ -33,8 +33,7 @@ WORKDIR $HOME
 
 ### Add all install scripts for further steps
 ADD ./src/common/install/ $INST_SCRIPTS/
-ADD ./src/centos/install/ $INST_SCRIPTS/
-RUN find $INST_SCRIPTS -name '*.sh' -exec chmod a+x {} +
+ADD ./src/rocky/install/ $INST_SCRIPTS/
 
 ### Install some common tools
 RUN $INST_SCRIPTS/tools.sh
@@ -48,14 +47,15 @@ RUN $INST_SCRIPTS/no_vnc.sh
 RUN $INST_SCRIPTS/firefox.sh
 RUN $INST_SCRIPTS/chrome.sh
 
-### Install xfce UI
-RUN $INST_SCRIPTS/xfce_ui.sh
-ADD ./src/common/xfce/ $HOME/
+### Install IceWM UI
+RUN $INST_SCRIPTS/icewm_ui.sh
+ADD ./src/rocky/icewm/ $HOME/
 
 ### configure startup
 RUN $INST_SCRIPTS/libnss_wrapper.sh
 ADD ./src/common/scripts $STARTUPDIR
 RUN $INST_SCRIPTS/set_user_permission.sh $STARTUPDIR $HOME
+RUN $INST_SCRIPTS/rocky.sh
 
 USER 1000
 

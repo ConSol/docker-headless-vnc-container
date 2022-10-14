@@ -1,6 +1,6 @@
 ---
 name: Feature request
-about: Open a feature request 
+about: Open a feature request
 ---
 
 **Short overview**

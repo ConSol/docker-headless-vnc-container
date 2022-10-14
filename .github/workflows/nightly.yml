@@ -1,0 +1,51 @@
+name: Docker nightly
+
+on:
+  push:
+    branches:
+      - master
+    tags-ignore:
+      - '*'
+  workflow_dispatch:
+
+jobs:
+  push_to_registries:
+    name: Push Docker image to github and dockerhub
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+    strategy:
+      fail-fast: false
+      matrix:
+        target:
+          - rocky-icewm-vnc
+          - rocky-xfce-vnc
+          - debian-icewm-vnc
+          - debian-xfce-vnc
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Log in to GitHub Docker Registry
+        uses: docker/login-action@v1
+        with:
+          registry: docker.pkg.github.com
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Push to Docker Hub
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          file: Dockerfile.${{ matrix.target }}
+          tags: consol/${{ matrix.target }}:nightly
+      - name: Build container image
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          file: Dockerfile.${{ matrix.target }}
+          tags: docker.pkg.github.com/consol/docker-headless-vnc-container/${{ matrix.target }}:nightly

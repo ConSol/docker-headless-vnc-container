@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 set -e
 
-echo "Install Firefox"
+VERSION="102.3.0esr"
+echo "Install Firefox $VERSION"
 
 function disableUpdate(){
     ff_def="$1/browser/defaults/profile"
@@ -18,7 +19,6 @@ EOF_FF
     > $ff_def/user.js
 }
 
-#copy from org/sakuli/common/bin/installer_scripts/linux/install_firefox_portable.sh
 function instFF() {
     if [ ! "${1:0:1}" == "" ]; then
         FF_VERS=$1
@@ -38,13 +38,5 @@ function instFF() {
     exit -1
 }
 
-instFF '45.9.0esr' '/usr/lib/firefox'
+instFF "$VERSION" '/usr/lib/firefox'
 
-#yum -y install firefox-45.7.0-2.el7.centos
-#yum -y install firefox
-#yum clean all
-#apt-get update
-#apt-get install -y firefox
-#apt-get install -y firefox=45*
-#apt-mark hold firefox
-#apt-get clean -y

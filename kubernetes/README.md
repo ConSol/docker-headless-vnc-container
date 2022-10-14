@@ -1,13 +1,13 @@
 # Kubernetes usage of "headless" VNC Docker images
 
-The following content uses as example the image `consol/centos-xfce-vnc` of the Dockerfile [`Dockerfile.centos.xfce.vnc`](../Dockerfile.centos.xfce.vnc).
+The following content uses as example the image `consol/rocky-xfce-vnc` of the Dockerfile [`Dockerfile.rocky-xfce-vnc`](../Dockerfile.rocky-xfce-vnc).
 
-## Deploy one pod of `centos-xfce-vnc` image and expose a service
- 
-On an already logged in Kubernetes cluster just use the predefined deployment with service config [`kubernetes.headless-vnc.example.deployment.yaml`](kubernetes.headless-vnc.example.deployment.yaml): 
+## Deploy one pod of `rocky-xfce-vnc` image and expose a service
+
+On an already logged in Kubernetes cluster just use the predefined deployment with service config [`kubernetes.headless-vnc.example.deployment.yaml`](kubernetes.headless-vnc.example.deployment.yaml):
 
     kubectl apply -f  kubernetes/kubernetes.headless-vnc.example.deployment.yaml
-    
+
 Now a new pod with corresponding service should spin up with `ContainerCreating`:
 
 ```bash
@@ -15,7 +15,7 @@ kubectl get pods --output=wide
 
 NAME                            READY     STATUS              RESTARTS   AGE       IP        NODE
 headless-vnc-7f6bc46c84-hrhc2   0/1       ContainerCreating   0          28s       <none>    kubermatic-s9g9frstlk-n7tw6
-```    
+```
 
 After a while the kublet will have downloaded the imaged and started - shown as `Running`:
 

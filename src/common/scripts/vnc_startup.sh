@@ -9,10 +9,10 @@ USAGE:
 docker run -it -p 6901:6901 -p 5901:5901 consol/<image>:<tag> <option>
 
 IMAGES:
-consol/ubuntu-xfce-vnc
-consol/centos-xfce-vnc
-consol/ubuntu-icewm-vnc
-consol/centos-icewm-vnc
+consol/debian-xfce-vnc
+consol/rocky-xfce-vnc
+consol/debian-icewm-vnc
+consol/rocky-icewm-vnc
 
 TAGS:
 latest  stable version of branch 'master'
@@ -21,9 +21,9 @@ dev     current development version of branch 'dev'
 OPTIONS:
 -w, --wait      (default) keeps the UI and the vncserver up until SIGINT or SIGTERM will received
 -s, --skip      skip the vnc startup and just execute the assigned command.
-                example: docker run consol/centos-xfce-vnc --skip bash
+                example: docker run consol/rocky-xfce-vnc --skip bash
 -d, --debug     enables more detailed startup output
-                e.g. 'docker run consol/centos-xfce-vnc --debug bash'
+                e.g. 'docker run consol/rocky-xfce-vnc --debug bash'
 -h, --help      print out this help
 
 Fore more information see: https://github.com/ConSol/docker-headless-vnc-container
@@ -58,6 +58,7 @@ trap cleanup SIGINT SIGTERM
 
 ## write correct window size to chrome properties
 $STARTUPDIR/chrome-init.sh
+source $HOME/.chromium-browser.init
 
 ## resolve_vnc_connection
 VNC_IP=$(hostname -i)
@@ -84,19 +85,19 @@ chmod 600 $PASSWD_PATH
 
 ## start vncserver and noVNC webclient
 echo -e "\n------------------ start noVNC  ----------------------------"
-if [[ $DEBUG == true ]]; then echo "$NO_VNC_HOME/utils/launch.sh --vnc localhost:$VNC_PORT --listen $NO_VNC_PORT"; fi
-$NO_VNC_HOME/utils/launch.sh --vnc localhost:$VNC_PORT --listen $NO_VNC_PORT &> $STARTUPDIR/no_vnc_startup.log &
+if [[ $DEBUG == true ]]; then echo "$NO_VNC_HOME/utils/novnc_proxy --vnc localhost:$VNC_PORT --listen $NO_VNC_PORT"; fi
+$NO_VNC_HOME/utils/novnc_proxy --vnc localhost:$VNC_PORT --listen $NO_VNC_PORT > $STARTUPDIR/no_vnc_startup.log 2>&1 &
 PID_SUB=$!
 
-echo -e "\n------------------ start VNC server ------------------------"
-echo "remove old vnc locks to be a reattachable container"
+#echo -e "\n------------------ start VNC server ------------------------"
+#echo "remove old vnc locks to be a reattachable container"
 vncserver -kill $DISPLAY &> $STARTUPDIR/vnc_startup.log \
     || rm -rfv /tmp/.X*-lock /tmp/.X11-unix &> $STARTUPDIR/vnc_startup.log \
     || echo "no locks present"
 
 echo -e "start vncserver with param: VNC_COL_DEPTH=$VNC_COL_DEPTH, VNC_RESOLUTION=$VNC_RESOLUTION\n..."
-if [[ $DEBUG == true ]]; then echo "vncserver $DISPLAY -depth $VNC_COL_DEPTH -geometry $VNC_RESOLUTION"; fi
-vncserver $DISPLAY -depth $VNC_COL_DEPTH -geometry $VNC_RESOLUTION &> $STARTUPDIR/no_vnc_startup.log
+if [[ $DEBUG == true ]]; then echo "vncserver $DISPLAY -depth $VNC_COL_DEPTH -geometry $VNC_RESOLUTION PasswordFile=$HOME/.vnc/passwd"; fi
+vncserver $DISPLAY -depth $VNC_COL_DEPTH -geometry $VNC_RESOLUTION PasswordFile=$HOME/.vnc/passwd > $STARTUPDIR/no_vnc_startup.log 2>&1
 echo -e "start window manager\n..."
 $HOME/wm_startup.sh &> $STARTUPDIR/wm_startup.log
 

@@ -115,4 +115,4 @@ parameters:
 - description: Headless vnc image
   name: IMAGE
   required: true
-  value: consol/centos-xfce-vnc:dev
+  value: consol/rocky-xfce-vnc:dev
