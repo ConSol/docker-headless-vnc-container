@@ -1,4 +1,4 @@
-name: Docker nightly
+name: Docker releases
 
 on:
   push:
