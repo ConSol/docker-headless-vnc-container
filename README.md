@@ -14,24 +14,13 @@ Each Docker image is installed with the following components:
 ![Docker VNC Desktop access via HTML page](.pics/vnc_container_view.png)
 
 ## Build Status
-`master`:  [![Build Status MASTER](https://travis-ci.org/ConSol/docker-headless-vnc-container.svg?branch=master)](https://travis-ci.org/ConSol/docker-headless-vnc-container) `dev`: [![Build Status DEV](https://travis-ci.org/ConSol/docker-headless-vnc-container.svg?branch=dev)](https://travis-ci.org/ConSol/docker-headless-vnc-container)
+[![Build Status MASTER](https://github.com/ConSol/docker-headless-vnc-container/actions/workflows/nightly.yml/badge.svg)](https://github.com/ConSol/docker-headless-vnc-container/actions/workflows/nightly.yml)
 
 ## Current provided OS & UI sessions:
 * `consol/rocky-xfce-vnc`: __Rocky 9 with `Xfce4` UI session__
-
-  [![](https://images.microbadger.com/badges/version/consol/rocky-xfce-vnc.svg)](https://hub.docker.com/r/consol/rocky-xfce-vnc/) [![](https://images.microbadger.com/badges/image/consol/rocky-xfce-vnc.svg)](http://microbadger.com/images/consol/rocky-xfce-vnc)
-
 * `consol/debian-xfce-vnc`: __Debian 11 with `Xfce4` UI session__
-
-  [![](https://images.microbadger.com/badges/version/consol/debian-xfce-vnc.svg)](https://hub.docker.com/r/consol/debian-xfce-vnc/) [![](https://images.microbadger.com/badges/image/consol/debian-xfce-vnc.svg)](http://microbadger.com/images/consol/debian-xfce-vnc)
-
 * `consol/rocky-icewm-vnc`: __Rocky 9 with `IceWM` UI session__
-
-  [![](https://images.microbadger.com/badges/version/consol/rocky-icewm-vnc.svg)](https://hub.docker.com/r/consol/rocky-icewm-vnc/) [![](https://images.microbadger.com/badges/image/consol/rocky-icewm-vnc.svg)](http://microbadger.com/images/consol/rocky-icewm-vnc)
-
 * `consol/debian-icewm-vnc`: __Debian 11 with `IceWM` UI session__
-
-  [![](https://images.microbadger.com/badges/version/consol/debian-icewm-vnc.svg)](https://hub.docker.com/r/consol/debian-icewm-vnc/) [![](https://images.microbadger.com/badges/image/consol/debian-icewm-vnc.svg)](http://microbadger.com/images/consol/debian-icewm-vnc)
 
 ## OpenShift / Kubernetes
 
