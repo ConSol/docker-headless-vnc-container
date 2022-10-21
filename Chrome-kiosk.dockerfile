@@ -36,7 +36,8 @@ ENV START_BROWSER=true
 WORKDIR $INST_SCRIPTS
 
 ADD /src .
-RUN ./install/image.sh
+RUN ./install/common.sh
+RUN ./install/image-kiosk.sh
 RUN ./install/chrome.sh
 
 

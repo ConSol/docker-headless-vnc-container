@@ -8,7 +8,7 @@ apt-get update
 apt-get install -y wget sudo netcat
 
 echo "*** Install XOrg minimal"
-sh -c $INST_SCRIPTS/install/xorg_firefox_minimal.sh
+sh -c $INST_SCRIPTS/install/xorg_minimal.sh
 echo "*** Install TigerVNC"
 sh -c $INST_SCRIPTS/install/tigervnc.sh
 echo "*** Setup User Permissions"

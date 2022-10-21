@@ -6,4 +6,5 @@ echo "Install Xfce4 UI components"
 apt-get update
 apt-get install -y xfce4 xfce4-terminal xterm xfce4-clipman-plugin
 apt-get purge -y pm-utils xscreensaver*
+apt-get install -y xclip claws-mail xvkbd 
 apt-get clean -y

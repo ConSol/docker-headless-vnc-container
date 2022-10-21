@@ -1,9 +1,6 @@
 # This Dockerfile is used to build an headles vnc image based on Ubuntu
 FROM ubuntu:18.04
 
-MAINTAINER Simon Hofmann "simon.hofmann@consol.de"
-ENV REFRESHED_AT 2018-10-29
-
 LABEL io.k8s.description="Headless VNC Container with Xfce window manager, firefox and chromium" \
       io.k8s.display-name="Headless VNC Container based on Ubuntu" \
       io.openshift.expose-services="6901:http,5901:xvnc" \
@@ -27,17 +24,15 @@ ENV HOME=/home/testup \
     VNC_PW=vncpassword \
     VNC_VIEW_ONLY=false
 
-
+ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
 WORKDIR $INST_SCRIPTS
 
 ### Install some common tools
+ADD src/install/common.sh .
+RUN ./common.sh
+
 ADD src/install/tools.sh .
 RUN ./tools.sh
-ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
-
-### Install custom fonts
-ADD src/install/install_custom_fonts.sh .
-RUN ./install_custom_fonts.sh
 
 ### Install xvnc-server - HTML5 based VNC viewer
 ADD src/install/tigervnc.sh .
@@ -49,7 +44,6 @@ RUN $INST_SCRIPTS/xfce_ui.sh
 
 ### Install user stuff
 RUN apt install -y libreoffice
-RUN apt install -y jq xclip claws-mail xvkbd libavcodec-extra
 
 ### Install firefox and chrome browser
 ADD src/install/firefox.sh .
