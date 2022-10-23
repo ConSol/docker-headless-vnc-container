@@ -2,7 +2,7 @@
 ### every exit != 0 fails the script
 set -e
 
-echo y | unminimize
+yes | unminimize
 
 echo "Install some common tools for further installation"
 apt-get update 
