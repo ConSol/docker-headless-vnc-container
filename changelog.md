@@ -1,5 +1,9 @@
 ## Changelog of the Docker headless VNC images
 
+### next:
+* add passwordless vnc option
+* fix chrome crash due to shm size
+
 ### Version 2.0.0:
 * migrated ubuntu to debian 11
 * migrated centos 7 to rocky linux 9
