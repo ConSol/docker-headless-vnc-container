@@ -1,6 +1,6 @@
 ## Changelog of the Docker headless VNC images
 
-### next:
+### Version 2.0.1:
 * add passwordless vnc option
 * fix chrome crash due to shm size
 
