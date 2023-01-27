@@ -1,0 +1,35 @@
+version: '3.7'
+
+services:
+  debian-icewm:
+    image: "local/debian-xfce-vnc"
+    build:
+      context: ".."
+      dockerfile: "Dockerfile.debian-xfce-vnc"
+    ports:
+      - 127.0.99.13:5901:5901
+      - 127.0.99.13:6901:6901
+  debian-xfce:
+    image: "local/debian-icewm-vnc"
+    build:
+      context: ".."
+      dockerfile: "Dockerfile.debian-icewm-vnc"
+    ports:
+      - 127.0.99.13:5902:5901
+      - 127.0.99.13:6902:6901
+  rocky-icewm:
+    image: "local/rocky-xfce-vnc"
+    build:
+      context: ".."
+      dockerfile: "Dockerfile.rocky-xfce-vnc"
+    ports:
+      - 127.0.99.13:5903:5901
+      - 127.0.99.13:6903:6901
+  rocky-xfce:
+    image: "local/rocky-icewm-vnc"
+    build:
+      context: ".."
+      dockerfile: "Dockerfile.rocky-icewm-vnc"
+    ports:
+      - 127.0.99.13:5904:5901
+      - 127.0.99.13:6904:6901

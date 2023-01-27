@@ -8,6 +8,24 @@ on:
       - '*'
 
 jobs:
+  build-and-test:
+    name: build and test images
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: install test dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y curl perl netcat-traditional libtest-simple-perl
+      - name: run prepare
+        run: make prepare
+      - name: run test
+        run: make test
+      - name: run clean
+        run: make clean
+
+
   push_to_registries:
     name: Push Docker image to github and dockerhub
     runs-on: ubuntu-latest
