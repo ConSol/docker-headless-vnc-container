@@ -17,7 +17,7 @@ jobs:
       - name: install test dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y curl perl netcat-traditional libtest-simple-perl
+          sudo apt-get install -y curl perl netcat-traditional libtest-simple-perl libyaml-perl
       - name: run test
         run: make test
       - name: run clean
