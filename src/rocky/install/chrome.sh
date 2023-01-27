@@ -3,5 +3,5 @@
 set -e
 
 echo "Install Chromium Browser"
-yum -y install chromium chromium-libs chromium-libs-media
+yum -y install chromium
 yum clean all
