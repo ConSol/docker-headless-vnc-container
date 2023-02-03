@@ -13,6 +13,12 @@ cat << EOF > /home/testup/.vnc/config
 geometry=$VNC_RESOLUTION
 depth=$VNC_COL_DEPTH
 SendPrimary=0
+
+Protocol3.3
+FrameRate=2
+CompareFB=0
+nocursor
+Log=*:stdout:100
 EOF
 
 vncserver $DISPLAY &
@@ -23,6 +29,7 @@ while ! nc -z localhost 5901; do
 done
 
 echo "vncserver started..."
+xsetroot -solid "#ff0000"
 
 if [[ ! -z $START_BROWSER ]]; then
   source /dockerstartup/start_browser.sh

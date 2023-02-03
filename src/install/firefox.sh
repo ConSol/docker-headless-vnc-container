@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -e
+set -ex
 
 echo "Install Firefox"
 
@@ -26,7 +26,15 @@ function instFF() {
   }
 }
 EOF
+
             fi
+
+            echo "Install Geckodriver"
+
+            curl -L https://github.com/mozilla/geckodriver/releases/download/v0.32.0/geckodriver-v0.32.0-linux64.tar.gz -o /tmp/geckodriver.tgz
+            tar zxvf /tmp/geckodriver.tgz -C /tmp
+            mv /tmp/geckodriver /usr/bin/geckodriver
+            rm /tmp/geckodriver.tgz
             exit $?
         fi
     fi
@@ -37,11 +45,3 @@ EOF
 
 instFF '93.0' '/usr/lib/firefox' 'true'
 
-#yum -y install firefox-45.7.0-2.el7.centos
-#yum -y install firefox
-#yum clean all
-#apt-get update
-#apt-get install -y firefox
-#apt-get install -y firefox=45*
-#apt-mark hold firefox
-#apt-get clean -y
