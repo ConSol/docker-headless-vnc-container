@@ -4,8 +4,8 @@ echo "Hello world"
 
 apt-get update
 
-#Move this into tools_minimal.sh
-apt-get install -y wget unzip sudo netcat vim net-tools curl tcpflow
+echo "*** Install tools-minimal"
+sh -c $INST_SCRIPTS/install/tools_minimal.sh
 
 echo "*** Install XOrg minimal"
 sh -c $INST_SCRIPTS/install/xorg_minimal.sh
