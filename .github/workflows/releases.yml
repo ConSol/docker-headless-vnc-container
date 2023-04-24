@@ -59,6 +59,7 @@ jobs:
           push: true
           file: Dockerfile.${{ matrix.target }}
           tags: consol/${{ matrix.target }}:${{ env.BRANCH_NAME }}, consol/${{ matrix.target }}:latest
+          platforms: linux/amd64,linux/arm64
       - name: Build container image
         uses: docker/build-push-action@v4
         with:
