@@ -1,5 +1,8 @@
 ## Changelog of the Docker headless VNC images
 
+### Version 2.0.2:
+* fix not exposing VNC port ([#165](https://github.com/ConSol/docker-headless-vnc-container/issues/165)))
+
 ### Version 2.0.1:
 * add passwordless vnc option
 * fix chrome crash due to shm size
