@@ -23,7 +23,6 @@ jobs:
       - name: run clean
         run: make clean
 
-
   push_to_registries:
     name: Push Docker image to github and dockerhub
     runs-on: ubuntu-latest
@@ -66,3 +65,4 @@ jobs:
           push: true
           file: Dockerfile.${{ matrix.target }}
           tags: docker.pkg.github.com/consol/docker-headless-vnc-container/${{ matrix.target }}:${{ env.BRANCH_NAME }}, docker.pkg.github.com/consol/docker-headless-vnc-container/${{ matrix.target }}:latest
+          platforms: linux/amd64,linux/arm64
