@@ -60,7 +60,7 @@ jobs:
       - name: Log in to GitHub Docker Registry
         uses: docker/login-action@v2
         with:
-          registry: docker.pkg.github.com
+          registry: ghcr.io
           username: ${{ secrets.REGISTRY_USER }}
           password: ${{ secrets.PTA }}
       - name: Build/Push to github.com
@@ -68,4 +68,5 @@ jobs:
         with:
           push: true
           file: Dockerfile.${{ matrix.target }}
-          tags: docker.pkg.github.com/consol/docker-headless-vnc-container/${{ matrix.target }}:nightly
+          tags: ghcr.io/consol/docker-headless-vnc-container/${{ matrix.target }}:nightly
+          platforms: linux/amd64,linux/arm64
