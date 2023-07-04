@@ -69,4 +69,3 @@ jobs:
           push: true
           file: Dockerfile.${{ matrix.target }}
           tags: docker.pkg.github.com/consol/docker-headless-vnc-container/${{ matrix.target }}:nightly
-          platforms: linux/amd64,linux/arm64
