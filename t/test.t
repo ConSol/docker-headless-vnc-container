@@ -7,7 +7,7 @@ use File::Basename;
 use YAML ();
 use Test::More;
 
-plan tests => 14;
+plan tests => 22;
 
 chdir(dirname($0));
 my $conf = YAML::LoadFile("docker-compose.yml");
@@ -20,15 +20,28 @@ for my $svc (sort keys %{$conf->{'services'}}) {
 	ok(1, $svc);
 	for my $port (@{$app->{'ports'}}) {
 		my($ip, $localport, $remoteport) = split(/:/mx, $port);
+		ok(1, " - ".$remoteport);
 		if($remoteport eq "5901") {
 			# vnc test
-			my $out = `nc -w 1 127.0.99.13 $localport 2>&1`;
-			like($out, '/RFB/', "vnc connect header found")
+			eval {
+				alarm(3);
+				local $SIG{'ALRM'} = sub { die("timeout"); };
+				my $out = `echo "" | nc -q 1 -w 1 127.0.99.13 $localport 2>&1`;
+				like($out, '/RFB/', "vnc connect header found")
+			};
+			alarm(0);
+			fail($@) if $@;
 		}
 		elsif($remoteport eq "6901") {
 			# http test
-			my $out = `curl -s http://127.0.99.13:$localport/?password=vncpassword 2>&1`;
-			like($out, '/noVNC/', "web vnc html contains noVNC")
+			eval {
+				alarm(3);
+				local $SIG{'ALRM'} = sub { die("timeout"); };
+				my $out = `curl -s http://127.0.99.13:$localport/?password=vncpassword 2>&1`;
+				like($out, '/noVNC/', "web vnc html contains noVNC")
+			};
+			alarm(0);
+			fail($@) if $@;
 		} else {
 			die("unknown port: ".$remoteport);
 		}
