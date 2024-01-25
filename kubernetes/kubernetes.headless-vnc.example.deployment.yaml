@@ -1,5 +1,5 @@
 #### POD config (run one time)
-apiVersion: apps/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: headless-vnc
@@ -8,6 +8,9 @@ metadata:
 spec:
   # 1 Pods should exist at all times.
   replicas: 1
+  selector:
+    matchLabels:
+      application: headless-vnc
   template:
     metadata:
       labels:
@@ -20,7 +23,7 @@ spec:
         imagePullPolicy: Always
         args:
           ### make normal UI startup to connect via: oc rsh <pod-name> bash
-          #- '--tail-log'
+          - '--tail-log'
         ### checks that vnc server is up and running
         livenessProbe:
           tcpSocket:
@@ -35,6 +38,10 @@ spec:
             scheme: HTTP
           initialDelaySeconds: 1
           timeoutSeconds: 1
+        #TODO remove later
+        securityContext:
+          runAsUser: 0
+
 ---
 apiVersion: v1
 kind: Service
@@ -57,6 +64,7 @@ spec:
     nodePort: 32002
   selector:
     application: headless-vnc
-  type: NodePort
+#  type: NodePort
+  #### connect by: http://NODEIP:NODEPORT/?password=vncpassword
 # Use type loadbalancer if needed
-#  type: LoadBalancer
+  type: LoadBalancer
