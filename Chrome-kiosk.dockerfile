@@ -37,6 +37,8 @@ WORKDIR $INST_SCRIPTS
 
 ADD /src .
 RUN ./install/common.sh
+RUN ./install/tools.sh
+RUN ./install/tigervnc.sh
 RUN ./install/image-kiosk.sh
 RUN ./install/chrome.sh
 

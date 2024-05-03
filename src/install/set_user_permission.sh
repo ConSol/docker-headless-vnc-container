@@ -9,8 +9,11 @@ fi
 #groupadd -g 1000 testup
 #useradd testup -u 1000 -g 1000 -m -s /bin/bash
 
-sed -i -e "/^%sudo/ s/.*/%sudo ALL=(ALL) NOPASSWD:ALL/" /etc/sudoers
-touch "$HOME/.sudo_as_admin_successful"
+if [ -f /etc/sudoers ]
+then
+  sed -i -e "/^%sudo/ s/.*/%sudo ALL=(ALL) NOPASSWD:ALL/" /etc/sudoers
+  touch "$HOME/.sudo_as_admin_successful"
+fi
 
 # Configure Chrome
 mkdir -p $HOME/.config/google-chrome
@@ -47,4 +50,3 @@ echo
 EOF
 
 chown -R testup:testup $HOME
-
