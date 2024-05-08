@@ -14,10 +14,10 @@ apt install -y ./google-chrome-stable_current_amd64.deb
 
 rm ./google-chrome-stable_current_amd64.deb
 
-curl https://chromedriver.storage.googleapis.com/106.0.5249.61/chromedriver_linux64.zip -o /tmp/chromedriver.zip
+curl https://storage.googleapis.com/chrome-for-testing-public/124.0.6367.91/linux64/chromedriver-linux64.zip -o /tmp/chromedriver.zip
 unzip /tmp/chromedriver.zip -d /tmp
 rm /tmp/chromedriver.zip
-mv /tmp/chromedriver /usr/bin/chromedriver
+mv /tmp/chromedriver-linux64/chromedriver /usr/bin/chromedriver
 
 rm -rf /var/lib/apt/lists/*
 # libasound2:amd64
