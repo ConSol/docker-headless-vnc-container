@@ -2,7 +2,7 @@
 
 FROM rockylinux:9
 
-MAINTAINER Sven Nierlein "sven@consol.de"
+LABEL maintainer="Sven Nierlein sven@consol.de"
 ENV REFRESHED_AT=2024-08-28
 
 LABEL io.k8s.description="Headless VNC Container with Xfce window manager, firefox and chromium" \
