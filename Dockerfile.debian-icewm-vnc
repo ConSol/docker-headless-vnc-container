@@ -1,9 +1,9 @@
 # This Dockerfile is used to build an headles vnc image based on Debian
 
-FROM debian:11
+FROM debian:12
 
 MAINTAINER Sven Nierlein "sven@consol.de"
-ENV REFRESHED_AT 2023-01-27
+ENV REFRESHED_AT=2024-08-28
 
 LABEL io.k8s.description="Headless VNC Container with IceWM window manager, firefox and chromium" \
       io.k8s.display-name="Headless VNC Container based on Debian" \
