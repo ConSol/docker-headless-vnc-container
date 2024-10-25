@@ -8,6 +8,7 @@ dnf -y update
 dnf -y install vim sudo wget which net-tools bzip2 findutils procps \
     numpy \
     dbus-glib \
-    psmisc
+    psmisc \
+    langpacks-en glibc-all-langpacks
 dnf -y install mailcap
 dnf clean all
