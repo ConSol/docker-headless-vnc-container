@@ -2,7 +2,8 @@
 ### every exit != 0 fails the script
 set -e
 
-echo "Install Chromium Browser"
-apt-get install -y chromium
-ln -sfn /usr/bin/chromium /usr/bin/chromium-browser
+echo "Install Google Chrome"
+wget -O /tmp/1.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+apt-get install -y /tmp/1.deb
 apt-get clean -y
+rm -rf /tmp/1.deb
