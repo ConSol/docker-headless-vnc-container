@@ -89,21 +89,21 @@ if [[ $DEBUG == true ]]; then echo "$NO_VNC_HOME/utils/novnc_proxy --vnc localho
 $NO_VNC_HOME/utils/novnc_proxy --vnc localhost:$VNC_PORT --listen $NO_VNC_PORT > $STARTUPDIR/no_vnc_startup.log 2>&1 &
 PID_SUB=$!
 
-#echo -e "\n------------------ start VNC server ------------------------"
-#echo "remove old vnc locks to be a reattachable container"
+echo -e "\n------------------ start VNC server ------------------------"
+echo "remove old vnc locks to be a reattachable container"
 vncserver -kill $DISPLAY &> $STARTUPDIR/vnc_startup.log \
     || rm -rfv /tmp/.X*-lock /tmp/.X11-unix &> $STARTUPDIR/vnc_startup.log \
     || echo "no locks present"
 
 echo -e "start vncserver with param: VNC_COL_DEPTH=$VNC_COL_DEPTH, VNC_RESOLUTION=$VNC_RESOLUTION\n..."
 
-vnc_cmd="vncserver $DISPLAY -depth $VNC_COL_DEPTH -geometry $VNC_RESOLUTION PasswordFile=$HOME/.vnc/passwd"
+vnc_cmd="vncserver $DISPLAY -depth $VNC_COL_DEPTH -geometry $VNC_RESOLUTION -PasswordFile=$HOME/.vnc/passwd"
 if [[ ${VNC_PASSWORDLESS:-} == "true" ]]; then
   vnc_cmd="${vnc_cmd} -SecurityTypes None --I-KNOW-THIS-IS-INSECURE"
 fi
 
 if [[ $DEBUG == true ]]; then echo "$vnc_cmd"; fi
-$vnc_cmd > $STARTUPDIR/no_vnc_startup.log 2>&1
+$vnc_cmd > $STARTUPDIR/vnc_startup.log 2>&1
 
 echo -e "start window manager\n..."
 $HOME/wm_startup.sh &> $STARTUPDIR/wm_startup.log
