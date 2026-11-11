@@ -1,7 +1,8 @@
 # Set current user in nss_wrapper
+USER=${USER:-default}
 USER_ID=$(id -u)
 GROUP_ID=$(id -g)
-echo "USER_ID: $USER_ID, GROUP_ID: $GROUP_ID"
+echo "USER: $USER, USER_ID: $USER_ID, GROUP_ID: $GROUP_ID"
 
 if [ x"$USER_ID" != x"0" ]; then
 
@@ -10,7 +11,7 @@ if [ x"$USER_ID" != x"0" ]; then
 
     cat /etc/passwd > $NSS_WRAPPER_PASSWD
 
-    echo "default:x:${USER_ID}:${GROUP_ID}:Default Application User:${HOME}:/bin/bash" >> $NSS_WRAPPER_PASSWD
+    echo "${USER}:x:${USER_ID}:${GROUP_ID}:Default Application User:${HOME}:/bin/bash" >> $NSS_WRAPPER_PASSWD
 
     export NSS_WRAPPER_PASSWD
     export NSS_WRAPPER_GROUP
